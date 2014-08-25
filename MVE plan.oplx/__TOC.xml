@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<omniplan xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
+  <window x="0" y="83" w="1440" h="795">
+    <editing-scenario>cY4cOGbg0QX</editing-scenario>
+    <view>task</view>
+    <change-tracking/>
+    <draw-folded/>
+    <status-display>basic</status-display>
+    <task-view>
+      <split-view-divider-position>504</split-view-divider-position>
+      <outline x="0" y="24.5" w="504" h="691">
+        <column name="Violations" width="20"/>
+        <column name="Notes" width="20"/>
+        <column name="Title" width="389"/>
+        <column name="Effort" width="70"/>
+        <expanded-items idrefs="t313 t130 t59 t31 t188 t195 t131 t321 t287 t273 t125 t182 t168 t358 t288 t161 t351 t203 t323 t169 t112 t232 t338 t282 t45 t367 t339 t283 t60 t11 t142 t128 t262 t332 t318 t212 t375 t234 t347 t263 t326 t299 t14 t305 t64 t22 t15 t221 t144 t264 t187 t109 t243"/>
+        <expanded-item-notes idrefs="t116 t4 t318 t7 t221 t5 t238 t8 t225 t6"/>
+        <selected-items-at-filter-time idrefs="t381 t273 t356 t21 t332 t224 t13 t116 t200 t307 t22 t298 t14 t382 t357 t274 t333 t308 t117 t142 t15 t31 t23 t225 t299 t16 t358 t275 t33 t309 t167 t334 t310 t25 t17 t226 t34 t26 t51 t18 t276 t168 t335 t360 t144 t27 t227 t52 t44 t19 t60 t359 t311 t53 t28 t45 t169 t361 t37 t170 t312 t54 t29 t277 t336 t38 t55 t278 t47 t337 t362 t171 t313 t39 t64 t195 t57 t279 t338 t363 t147 t280 t58 t67 t59 t364 t339 t148 t340 t232 t281 t76 t77 t2 t365 t282 t341 t233 t3 t125 t4 t5 t366 t283 t6 t342 t126 t7 t8 t9 t367 t343 t260 t368 t285 t344 t261 t128 t369 t286 t345 t262 t129 t321 t154 t130 t287 t371 t238 t155 t263 t346 t131 t322 t288 t372 t239 t264 t323 t156 t132 t347 t240 t289 t348 t290 t157 t265 t241 t324 t300 t133 t373 t349 t291 t374 t325 t350 t109 t301 t134 t110 t266 t375 t267 t292 t326 t243 t135 t302 t351 t111 t376 t293 t268 t327 t161 t303 t220 t112 t377 t269 t294 t328 t270 t162 t304 t221 t113 t353 t378 t329 t271 t354 t330 t305 t222 t10 t355 t380 t164 t306 t223 t11 t115 t20 t297"/>
+      </outline>
+      <gantt-view x="-54" y="24.5" w="935" h="691">
+        <view-mode>actual</view-mode>
+        <dependency-lines/>
+        <constraints/>
+        <show-project-end/>
+        <task-bar-label task-type="group" position="left">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="group" position="center">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="group" position="right">
+          <key>Assigned</key>
+        </task-bar-label>
+        <task-bar-label task-type="milestone" position="left">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="milestone" position="center">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="milestone" position="right">
+          <key>Assigned</key>
+        </task-bar-label>
+        <task-bar-label task-type="task" position="left">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="task" position="center">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="task" position="right">
+          <key>Assigned</key>
+        </task-bar-label>
+        <scale scale-name="Automatic" full-day-width="4.3757"/>
+        <scale scale-name="Day" full-day-width="1215"/>
+        <scale scale-name="Hour" full-day-width="65880"/>
+        <scale scale-name="Minute" full-day-width="64800"/>
+        <scale scale-name="Month" full-day-width="34.5"/>
+        <scale scale-name="Quarter" full-day-width="9.6"/>
+        <scale scale-name="Week" full-day-width="100.183">
+          <selected/>
+        </scale>
+        <scale scale-name="Year" full-day-width="2.3625"/>
+      </gantt-view>
+    </task-view>
+    <resource-view>
+      <split-view-divider-position>306</split-view-divider-position>
+      <outline x="0" y="0" w="306" h="691">
+        <column name="IM" width="20"/>
+        <column name="Notes" width="20"/>
+        <column name="Type" width="49"/>
+        <column name="Resource" width="150"/>
+        <column name="#" width="75"/>
+      </outline>
+      <timeline x="-359" y="0" w="1105" h="691">
+        <show-project-end/>
+        <task-bar-label task-type="group" position="left">
+          <key>Title</key>
+        </task-bar-label>
+        <task-bar-label task-type="group" position="center">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="group" position="right">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="milestone" position="left">
+          <key>Title</key>
+        </task-bar-label>
+        <task-bar-label task-type="milestone" position="center">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="milestone" position="right">
+          <key>Assigned</key>
+        </task-bar-label>
+        <task-bar-label task-type="task" position="left">
+          <key>Title</key>
+        </task-bar-label>
+        <task-bar-label task-type="task" position="center">
+          <key/>
+        </task-bar-label>
+        <task-bar-label task-type="task" position="right">
+          <key/>
+        </task-bar-label>
+        <scale scale-name="Automatic" full-day-width="300">
+          <selected/>
+        </scale>
+        <scale scale-name="Day" full-day-width="1215"/>
+        <scale scale-name="Hour" full-day-width="65880"/>
+        <scale scale-name="Minute" full-day-width="64800"/>
+        <scale scale-name="Month" full-day-width="34.5"/>
+        <scale scale-name="Quarter" full-day-width="9.6"/>
+        <scale scale-name="Week" full-day-width="162"/>
+        <scale scale-name="Year" full-day-width="2.3625"/>
+      </timeline>
+    </resource-view>
+    <calendar>
+      <split-view-divider-position>290</split-view-divider-position>
+      <outline x="0" y="0" w="290" h="656">
+        <column name="IM" width="20"/>
+        <column name="Notes" width="20"/>
+        <column name="Type" width="49"/>
+        <column name="Resource" width="154"/>
+        <column name="Custom Work Week" width="20"/>
+        <column name="Schedule Exception" width="20"/>
+      </outline>
+    </calendar>
+  </window>
+  <project>
+    <next-task-id>383</next-task-id>
+    <next-resource-id>2</next-resource-id>
+    <scenario id="cY4cOGbg0QX" name="Actual" filename="Actual.xml"/>
+    <date-display dates="true" times="true" seconds="false"/>
+    <numbering-style>wbs</numbering-style>
+    <critical-path-slack>0</critical-path-slack>
+    <currency-format>$1,234.56</currency-format>
+    <duration-format hours-per-day="8" hours-per-week="40" hours-per-month="160" hours-per-year="1920" hours="true" days="true" weeks="true"/>
+    <effort-format hours-per-day="8" hours-per-week="40" hours-per-month="160" hours-per-year="1920" hours="true" days="true" weeks="true"/>
+    <base-style>
+      <style/>
+    </base-style>
+    <column-title-style>
+      <style>
+        <value key="font-weight">9</value>
+        <value key="paragraph-alignment">center</value>
+      </style>
+    </column-title-style>
+    <note-style>
+      <style>
+        <value key="font-family">Helvetica</value>
+        <value key="font-fill">
+          <color w="0.334677"/>
+        </value>
+        <value key="font-size">11</value>
+      </style>
+    </note-style>
+    <standard-task-style>
+      <style/>
+    </standard-task-style>
+    <overdue-task-style>
+      <style/>
+    </overdue-task-style>
+    <completed-task-style>
+      <style>
+        <value key="gantt-completion-color">
+          <color r="0.426443" g="1" b="0.367282"/>
+        </value>
+        <value key="gantt-fill-color">
+          <color r="0.4" g="1" b="0.4"/>
+        </value>
+      </style>
+    </completed-task-style>
+    <group-task-style>
+      <style>
+        <value key="font-weight">9</value>
+        <value key="gantt-completion-color">
+          <color r="0.4" g="1" b="0.4"/>
+        </value>
+      </style>
+    </group-task-style>
+    <milestone-task-style>
+      <style/>
+    </milestone-task-style>
+    <resource-style>
+      <style/>
+    </resource-style>
+    <not-editable-style>
+      <style>
+        <value key="font-fill">
+          <color w="0.334677"/>
+        </value>
+      </style>
+    </not-editable-style>
+    <subscribe-refresh>0</subscribe-refresh>
+    <leveling>
+      <constrains-completion-date/>
+    </leveling>
+    <page-adornment>
+      <master-page-headers>
+        <header location="left">
+          <text>
+            <p>
+              <run>
+                <lit><cell variable="OPDocumentTitleVariableIdentifier"/></lit>
+              </run>
+            </p>
+          </text>
+        </header>
+        <header location="right">
+          <text>
+            <p>
+              <run>
+                <lit><cell variable="OPPrintJobTimestampVariableIdentifier"/></lit>
+              </run>
+            </p>
+          </text>
+        </header>
+        <footer location="left">
+          <text>
+            <p>
+              <run>
+                <lit><cell variable="OPDocumentFilenameVariableIdentifier"/></lit>
+              </run>
+            </p>
+          </text>
+        </footer>
+        <footer location="right">
+          <text>
+            <p>
+              <run>
+                <lit><cell variable="OPPageNumberVariableIdentifier"/></lit>
+              </run>
+            </p>
+          </text>
+        </footer>
+      </master-page-headers>
+    </page-adornment>
+  </project>
+</omniplan>

@@ -1,0 +1,2266 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<scenario xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" id="cY4cOGbg0QX">
+  <start-date>2014-07-22T15:00:00.000Z</start-date>
+  <prototype-task>
+    <task id="t4294967294">
+      <title>Task 1</title>
+      <effort>28800</effort>
+    </task>
+  </prototype-task>
+  <prototype-task>
+    <task id="t4294967293">
+      <title>Milestone 1</title>
+      <type>milestone</type>
+    </task>
+  </prototype-task>
+  <prototype-task>
+    <task id="t4294967292">
+      <title>Group 1</title>
+      <type>group</type>
+    </task>
+  </prototype-task>
+  <prototype-resource>
+    <resource id="r4294967294">
+      <name>Resource 1</name>
+      <type>Staff</type>
+    </resource>
+  </prototype-resource>
+  <prototype-resource>
+    <resource id="r4294967293">
+      <name>Equipment 1</name>
+      <type>Equipment</type>
+    </resource>
+  </prototype-resource>
+  <prototype-resource>
+    <resource id="r4294967292">
+      <name>Material 1</name>
+      <type>Material</type>
+      <units-available>0</units-available>
+      <efficiency>0</efficiency>
+    </resource>
+  </prototype-resource>
+  <prototype-resource>
+    <resource id="r4294967291">
+      <name>Group 1</name>
+      <type>Group</type>
+    </resource>
+  </prototype-resource>
+  <top-resource idref="r-1"/>
+  <resource id="r-1">
+    <type>Group</type>
+    <child-resource idref="r1"/>
+  </resource>
+  <resource id="r1">
+    <name>Resource 1</name>
+    <type>Staff</type>
+  </resource>
+  <top-task idref="t-1"/>
+  <task id="t-1">
+    <type>group</type>
+    <child-task idref="t1"/>
+    <child-task idref="t2"/>
+    <child-task idref="t3"/>
+    <child-task idref="t9"/>
+    <child-task idref="t25"/>
+    <child-task idref="t29"/>
+    <child-task idref="t58"/>
+    <child-task idref="t220"/>
+    <child-task idref="t313"/>
+    <child-task idref="t167"/>
+  </task>
+  <task id="t1">
+    <title>Figure out everything that needs to be done</title>
+    <effort>28800</effort>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t2">
+    <title>Outline the basics</title>
+    <effort>28800</effort>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t3">
+    <title>Basic steps of design</title>
+    <type>group</type>
+    <child-task idref="t4"/>
+    <child-task idref="t5"/>
+    <child-task idref="t6"/>
+    <child-task idref="t7"/>
+    <child-task idref="t8"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t4">
+    <title>empathize</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>use the old one at the dance studio in new arillaga. </lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>ask around and see if people like it</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t5">
+    <title>ideate</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>wireframe and stuff</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t6">
+    <title>prototype</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>build the first iteration - the first few features that matter</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>get the youtube stuff setup and connected to canjs</lit>
+          </run>
+        </p>
+        <p/>
+      </text>
+    </note>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t7">
+    <title>test </title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>on me, other people etc</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t8">
+    <title>iterate</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>by iterating. wow hard</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t9">
+    <title>Various dev todos</title>
+    <type>group</type>
+    <child-task idref="t10"/>
+    <child-task idref="t11"/>
+    <child-task idref="t13"/>
+    <child-task idref="t14"/>
+    <child-task idref="t15"/>
+    <child-task idref="t22"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+  </task>
+  <task id="t10">
+    <title>get a youtube API key that will allow me to do stuff</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t11">
+    <title>learn some canjs stuff</title>
+    <type>group</type>
+    <child-task idref="t20"/>
+    <child-task idref="t21"/>
+  </task>
+  <task id="t13">
+    <title>setup the node routes </title>
+    <effort>28800</effort>
+  </task>
+  <task id="t14">
+    <title>setup heroku and a database</title>
+    <type>group</type>
+    <child-task idref="t19"/>
+  </task>
+  <task id="t15">
+    <title>figure out a database thing to learn </title>
+    <type>group</type>
+    <child-task idref="t16"/>
+    <child-task idref="t17"/>
+    <child-task idref="t18"/>
+  </task>
+  <task id="t16">
+    <title>saving audio?</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t17">
+    <title>saving moves</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t18">
+    <title>having accounts?</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t19">
+    <title>how to make live and not shitty</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t20">
+    <title>can components</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t21">
+    <title>can models</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t22">
+    <title>Get storyboards working</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-26T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t23"/>
+    <start-no-earlier-than>2014-07-26T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t23">
+    <title>need to access the &apos;sigh&apos; variable, so I would need to get proxy http requests working through whatever node server I set up. Ugh</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-26T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-26T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t25">
+    <title>Various design todos</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-26T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t26"/>
+    <child-task idref="t27"/>
+    <child-task idref="t28"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-26T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t26">
+    <title>figure out prototype 1</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-26T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-26T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t27">
+    <title>figure out what goes in prototype 1</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-26T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-26T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t28">
+    <title>build that out!</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-26T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-26T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t29">
+    <title>Round 1</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t109"/>
+    <child-task idref="t53"/>
+    <child-task idref="t31"/>
+    <child-task idref="t33"/>
+    <child-task idref="t112"/>
+    <child-task idref="t128"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t31">
+    <title>make a slider</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t44"/>
+    <child-task idref="t51"/>
+    <child-task idref="t45"/>
+    <child-task idref="t52"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t33">
+    <title>make the controls</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t47"/>
+    <child-task idref="t34"/>
+    <child-task idref="t37"/>
+    <child-task idref="t38"/>
+    <child-task idref="t67"/>
+    <child-task idref="t76"/>
+    <child-task idref="t77"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t34">
+    <title>play button</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-29T16:30:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T16:30:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t37">
+    <title>pause button</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-29T15:45:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:45:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t38">
+    <title>seeking </title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-29T16:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T16:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t39">
+    <title>hold and ease forward</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t44">
+    <title>clicking goes to the place in the movie</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t45">
+    <title>mousing over create some kind of thing</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t55"/>
+    <child-task idref="t57"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t47">
+    <title>timer that updates properly</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-28T23:15:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-28T23:15:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t51">
+    <title>somem kind of bar updates to the right position</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t52">
+    <title>show times loaded</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-28T23:30:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-28T23:30:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t53">
+    <title>random stuff</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t54"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t54">
+    <title>prevent video controls while video loading</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-28T21:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-28T21:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t55">
+    <title>bar on slider to highlight it</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t57">
+    <title>hover thing with time</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t58">
+    <title>Round 2</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t59"/>
+    <child-task idref="t64"/>
+    <child-task idref="t142"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t59">
+    <title>slider</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t60"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t60">
+    <title>thumbnail functionality with the time hover bubble&apos;</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t154"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t64">
+    <title>Timers</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t39"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t67">
+    <title>flipping</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-29T17:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T17:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t76">
+    <title>space button</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t77">
+    <title>arrow keys</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t109">
+    <title>Architecture</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t110"/>
+    <child-task idref="t111"/>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t110">
+    <title>make plugins that </title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t111">
+    <title>make app that dispatches events to plugins</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t112">
+    <title>Make the moves</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t116"/>
+    <child-task idref="t113"/>
+    <child-task idref="t125"/>
+    <child-task idref="t135"/>
+    <child-task idref="t115"/>
+    <child-task idref="t117"/>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t113">
+    <title>button to add moves</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t115">
+    <title>set end</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t116">
+    <title>can.model</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>start time</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>end time</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>videoId</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>movementId</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>name</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t117">
+    <title>set name</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t125">
+    <title>workflow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t126"/>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t126">
+    <title>setting start vs setting end mode</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-02T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-02T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t128">
+    <title>Play the mves</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t129"/>
+    <child-task idref="t130"/>
+    <child-task idref="t131"/>
+    <child-task idref="t132"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t129">
+    <title>styleing</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t130">
+    <title>play one button</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t133"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t131">
+    <title>loop and repeat button</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t134"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t132">
+    <title>&quot;enter&quot; keypress to play</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t133">
+    <title>plays and then pauses</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t134">
+    <title>plays and then loops forever</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t135">
+    <title>set start</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t142">
+    <title>Move storage</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t144"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t144">
+    <title>local storage </title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t200"/>
+    <child-task idref="t147"/>
+    <child-task idref="t148"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t147">
+    <title>retrieve from local storage based on videoid</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t148">
+    <title>read ID from url and load correct moves</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t154">
+    <title>set up server route to find &apos;sigh&apos; field</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t156"/>
+    <child-task idref="t157"/>
+    <child-task idref="t161"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t155">
+    <title>setup server storage to remember sighs</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t156">
+    <title>be able to read the sigh of a video id in index.js</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t157">
+    <title>ajax route that logs the sigh for fixed video id</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t161">
+    <title>create video model</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t162"/>
+    <child-task idref="t164"/>
+    <child-task idref="t155"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t162">
+    <title>just maps youtube ID to sigh</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t164">
+    <title>for now</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t167">
+    <title>Later</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-07T18:00:00.000Z</start-constraint-date>
+    <child-task idref="t168"/>
+    <child-task idref="t180"/>
+    <child-task idref="t243"/>
+    <child-task idref="t195"/>
+    <child-task idref="t305"/>
+    <child-task idref="t208"/>
+    <child-task idref="t261"/>
+    <child-task idref="t262"/>
+    <child-task idref="t280"/>
+    <child-task idref="t203"/>
+    <child-task idref="t318"/>
+    <start-no-earlier-than>2014-08-07T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t168">
+    <title>Sighs</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t169"/>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t169">
+    <title>integrate into video models somehow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t170"/>
+    <child-task idref="t171"/>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t170">
+    <title>so it looks up the sigh if it can&apos;t find one</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t171">
+    <title>and updates the sighs and videos etc..</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t180">
+    <title>zooming thing</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t181"/>
+    <child-task idref="t182"/>
+    <child-task idref="t183"/>
+    <child-task idref="t184"/>
+    <child-task idref="t185"/>
+    <child-task idref="t186"/>
+    <child-task idref="t187"/>
+    <child-task idref="t188"/>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t181">
+    <title>leave behind bar on click and hold</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t182">
+    <title>create second bar on lick and hold</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t189"/>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t183">
+    <title>display times on each bar</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t184">
+    <title>connect bars to display times</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t185">
+    <title>popup icons after display time is set</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t186">
+    <title>have a minimum distance</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t187">
+    <title>on zoom</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t190"/>
+    <child-task idref="t191"/>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t188">
+    <title>make the display bar element</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t192"/>
+    <child-task idref="t193"/>
+    <child-task idref="t194"/>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t189">
+    <title>needs a 1 sec difference or something</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t190">
+    <title>move bars to both sides with a little space</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t191">
+    <title>darken the little space</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t192">
+    <title>for the entire thing, with different scales of markers</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t193">
+    <title>markers are marked with times</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t194">
+    <title>Task 2</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t195">
+    <title>movement storage</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t311"/>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t197">
+    <title>make a less than 1/4X speed player</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t198">
+    <title>smoother time increasing, instead of just jumping through </title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t199">
+    <title>match zero time # of digits to displayed digits</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-31T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-31T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t200">
+    <title>serialize the models</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t203">
+    <title>Other features</title>
+    <type>group</type>
+    <start-constraint-date>2014-07-30T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t204"/>
+    <child-task idref="t205"/>
+    <child-task idref="t206"/>
+    <child-task idref="t207"/>
+    <child-task idref="t241"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-30T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t204">
+    <title>zoom in on parts of the video</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-30T15:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-30T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t205">
+    <title>have a form that allows me to put an input in and get the youtube video associated</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-27T07:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-27T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t206">
+    <title>Some kind of header </title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-30T15:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-30T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t207">
+    <title>Task 1</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-30T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-07-30T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t208">
+    <title>thumbnail functionality</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t210"/>
+    <child-task idref="t211"/>
+    <child-task idref="t212"/>
+    <child-task idref="t213"/>
+    <child-task idref="t217"/>
+    <child-task idref="t227"/>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t210">
+    <title>use slider bubble for now</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t211">
+    <title>map time to sigh url</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t212">
+    <title>map time and sigh img to specific thumbnail position </title>
+    <type>group</type>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t214"/>
+    <child-task idref="t215"/>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t213">
+    <title>save a move loads the image for that time</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t214">
+    <title>get a bunch of videos and see if you can find a correlation with the number of thumbnails</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-04T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-04T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t215">
+    <title>if there is no clear correlation, then give up for now</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t217">
+    <title>hold and slide for movement through thumbnails, like youtube</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-07-29T15:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.317131" g="1" b="0.318926"/>
+      </value>
+    </style>
+    <start-no-earlier-than>2014-07-29T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t220">
+    <title>Round 3 - the redesign</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t221"/>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t221">
+    <title>Movements</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t222"/>
+    <child-task idref="t224"/>
+    <child-task idref="t223"/>
+    <child-task idref="t232"/>
+    <child-task idref="t225"/>
+    <child-task idref="t226"/>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>basically, we are pretty close to something that can actually be useful</lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <lit>think about what it was like to try and teach yourself from a video and also how you&apos;ve taught other people things. The pause points are extremely useful and you spend a lot of time looking at at the screen trying to parse individual movements</lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <lit>Think about the double broadsword flower and how joy tried to learn it</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>think about teaching danni the intermediate set</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>think about trying to teach yourself form the prototype on monday</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>think about coaching badminton </lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <lit>Notes:</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>-Pause points are important</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>-you need that slight pause to get started before the move plays-</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>-times are not as important, you watch the videos to make sure the moves are right</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>- you move from having watched a move to wanting to learn the next move</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>- you don&apos;t know which parts of the move are important until you have tried it a bit first - make editing a move easier and adding pause points</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>- you are talking to somebody who teaches you the moves &quot;go forward, go back&quot; etc. IF you could just talk to the app that would be absolutely amazing</lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <lit>- if you have the arrow keys, there&apos;s no point in having the entire bar for random ass controls, that can be moved or shrunk</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>but they should still be there, i think...</lit>
+          </run>
+        </p>
+        <p/>
+        <p/>
+        <p>
+          <run>
+            <lit>- Distinguish free mode, which is just playing the video, with edit move mode and play move mode. Play move mode should cut focus onto the move</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <lit>- Nvm. It just needs to be very clear when a move is being played</lit>
+          </run>
+        </p>
+        <p/>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t222">
+    <title>rethink entire flow, now that you&apos;ve seen what needs to be done</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>make sure all actions are explicit, saving, canceling, playing, etc.</lit>
+          </run>
+        </p>
+        <p/>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t223">
+    <title>edit move flow</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t224">
+    <title>new move flow</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t225">
+    <title>chain move flow </title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>- pretty important and nice idea, that once you are done with one move you can move on and learn the next. </lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <lit>Learning so far happens a move at a time. Learn a move, learn the next few moves. Then maybe go back and review them all together</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t226">
+    <title>spend time making sure it can be implemented flawlessly. Basically, don&apos;t be afraid or apprehensive to code tons to make sure it turns out right</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t227">
+    <title>Task 3</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t232">
+    <title>play move flow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t233"/>
+    <child-task idref="t239"/>
+    <child-task idref="t240"/>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t233">
+    <title>there should be a slight pause when looping</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t234">
+    <title>Large screen mode</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <child-task idref="t312"/>
+    <child-task idref="t238"/>
+    <child-task idref="t237"/>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t237">
+    <title>redesign for larger screen </title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-03T07:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-03T07:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t238">
+    <title>make sure the aspect ratios are considered properly</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>propabaly doesn&apos;t matter because we aren&apos;t using thumbnails</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t239">
+    <title>play multiple flow</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t240">
+    <title>breakpoints/pausepoints inside a move</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t241">
+    <title>Task 4</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t243">
+    <title>Timer</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t197"/>
+    <child-task idref="t199"/>
+    <child-task idref="t198"/>
+    <child-task idref="t260"/>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t260">
+    <title>key controls for the 1x 2x etc</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t261">
+    <title>menu</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t273"/>
+    <child-task idref="t277"/>
+    <child-task idref="t278"/>
+    <child-task idref="t279"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t262">
+    <title>tooltips + walkthrough tips</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t263"/>
+    <child-task idref="t264"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t263">
+    <title>just have hover text on all the icons</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t267"/>
+    <child-task idref="t268"/>
+    <child-task idref="t269"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t264">
+    <title>for major features, have &quot;don&apos;t show again&quot; type tooltipe</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t265"/>
+    <child-task idref="t266"/>
+    <child-task idref="t270"/>
+    <child-task idref="t271"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t265">
+    <title>style them</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t266">
+    <title>id them and make sure only one appears at a time</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t267">
+    <title>style them</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t268">
+    <title>id them, </title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t269">
+    <title>only one at a time</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t270">
+    <title>make don&apos;t show again work</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t271">
+    <title>make don&apos;t show again remembered locally</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t273">
+    <title>allow key remapping</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t274"/>
+    <child-task idref="t275"/>
+    <child-task idref="t276"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t274">
+    <title>locally once</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t275">
+    <title>remember localstorage</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t276">
+    <title>remember database</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t277">
+    <title>change video</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t278">
+    <title>accounts?</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t279">
+    <title>about me and links to my stuff</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t280">
+    <title>pausepoints</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t281"/>
+    <child-task idref="t282"/>
+    <child-task idref="t283"/>
+    <child-task idref="t287"/>
+    <child-task idref="t288"/>
+    <child-task idref="t299"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t281">
+    <title>pause point creation button</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t282">
+    <title>pausepoint on and off</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t304"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t283">
+    <title>pause point handle</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t294"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t285">
+    <title>pp cancel edit</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t286">
+    <title>pp cancel create</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t287">
+    <title>pause point creation </title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t297"/>
+    <child-task idref="t286"/>
+    <child-task idref="t289"/>
+    <child-task idref="t290"/>
+    <child-task idref="t291"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t288">
+    <title>pause point editing</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t298"/>
+    <child-task idref="t285"/>
+    <child-task idref="t292"/>
+    <child-task idref="t293"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t289">
+    <title>pp save</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t290">
+    <title>allow not saved pause points to exist</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t291">
+    <title>clicking out asks to cancel etc</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t292">
+    <title>pp save</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t293">
+    <title>pp preview</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t294">
+    <title>styling</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t297">
+    <title>mode handling</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t298">
+    <title>mode handling</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t299">
+    <title>pause point selected</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t300"/>
+    <child-task idref="t301"/>
+    <child-task idref="t302"/>
+    <child-task idref="t303"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t300">
+    <title>show icons on hover/select</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t301">
+    <title>pp delete</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t302">
+    <title>pp enter edit mode</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t303">
+    <title>pp preview</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t304">
+    <title>proper pause point handling when playing</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t305">
+    <title>play multimple</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t306"/>
+    <child-task idref="t307"/>
+    <child-task idref="t308"/>
+    <child-task idref="t309"/>
+    <child-task idref="t310"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t306">
+    <title>how this works</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t307">
+    <title>event handling, highlighting</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t308">
+    <title>filling in gaps with moves and showing that</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t309">
+    <title>handling overlaps</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t310">
+    <title>merge moves? create merged moves?</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t311">
+    <title>storage</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t312">
+    <title>only design for large screen. this will be harder, but do it because the app is only useful in large screen mode</title>
+    <effort>28800</effort>
+    <effort-done>28800</effort-done>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t313">
+    <title>round 4 - the reimplementation </title>
+    <type>group</type>
+    <start-constraint-date>2014-08-06T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t234"/>
+    <child-task idref="t321"/>
+    <child-task idref="t332"/>
+    <child-task idref="t367"/>
+    <child-task idref="t358"/>
+    <child-task idref="t326"/>
+    <child-task idref="t339"/>
+    <start-no-earlier-than>2014-08-06T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t314">
+    <title>make it stop and play based on audio input</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t315">
+    <title>recognize &apos;go&apos; and stop etc... Oh man....</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t316">
+    <title>&apos;back&apos;, &apos;replay&apos;&apos; etc.</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t317">
+    <title>or at least respond to a remote?</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t318">
+    <title>remote controlling</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <child-task idref="t319"/>
+    <child-task idref="t314"/>
+    <child-task idref="t315"/>
+    <child-task idref="t316"/>
+    <child-task idref="t317"/>
+    <child-task idref="t320"/>
+    <note>
+      <text>
+        <p>
+          <run>
+            <style>
+              <value key="font-fill">
+                <color w="0"/>
+              </value>
+              <value key="font-size">12</value>
+            </style>
+            <lit>HOLY man this exists</lit>
+          </run>
+        </p>
+        <p>
+          <run>
+            <style>
+              <value key="font-fill">
+                <color w="0"/>
+              </value>
+              <value key="font-size">12</value>
+            </style>
+            <lit>THIS CAN TOTALLY HAPPEN</lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <style>
+              <value key="font-fill">
+                <color w="0"/>
+              </value>
+              <value key="font-size">12</value>
+              <value key="link">http://shapeshed.com/html5-speech-recognition-api/</value>
+            </style>
+            <lit>http://shapeshed.com/html5-speech-recognition-api/</lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <style>
+              <value key="font-fill">
+                <color w="0"/>
+              </value>
+              <value key="font-size">12</value>
+            </style>
+            <lit>and it might be fast enough</lit>
+          </run>
+        </p>
+        <p/>
+        <p>
+          <run>
+            <style>
+              <value key="font-fill">
+                <color w="0"/>
+              </value>
+              <value key="font-size">12</value>
+            </style>
+            <lit>and of course the other idea is just to freaking write my own audio processor. Because screw school. </lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t319">
+    <title>just get audio to text demo working</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t320">
+    <title>interface that allows you to modify remote keys in-pageand stores them</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-05T15:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-05T15:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t321">
+    <title>new movement flow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-21T15:45:00.000Z</start-constraint-date>
+    <child-task idref="t322"/>
+    <child-task idref="t325"/>
+    <child-task idref="t323"/>
+    <start-no-earlier-than>2014-08-21T15:45:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t322">
+    <title>style all buttons into place, disable ones not being used</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>this includes pause point buttons </lit>
+          </run>
+        </p>
+        <p/>
+      </text>
+    </note>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t323">
+    <title>edit start and edit end flows</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <child-task idref="t324"/>
+    <child-task idref="t329"/>
+    <child-task idref="t328"/>
+    <child-task idref="t330"/>
+    <child-task idref="t334"/>
+    <child-task idref="t335"/>
+    <child-task idref="t336"/>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t324">
+    <title>start as undefined</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t325">
+    <title>new movement button just shows new move interface</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t326">
+    <title>play flow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-20T23:30:00.000Z</start-constraint-date>
+    <child-task idref="t327"/>
+    <child-task idref="t337"/>
+    <child-task idref="t350"/>
+    <child-task idref="t338"/>
+    <child-task idref="t347"/>
+    <child-task idref="t351"/>
+    <start-no-earlier-than>2014-08-20T23:30:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t327">
+    <title>don&apos;t allow unless move is well defined</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t328">
+    <title>click to set enters edit mode</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t329">
+    <title>edit mode states</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t330">
+    <title>edit mode save</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t332">
+    <title>new state machine design</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-20T23:00:00.000Z</start-constraint-date>
+    <child-task idref="t380"/>
+    <child-task idref="t381"/>
+    <child-task idref="t333"/>
+    <start-no-earlier-than>2014-08-20T23:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t333">
+    <title>allow for a ton of mini state machines, some of which can be exclusive and demand the stage, while some don&apos;t have to be. but most will be exclusive</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t334">
+    <title>edit mode cancel</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t335">
+    <title>once defined goto time</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t336">
+    <title>once defined edit</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t337">
+    <title>exit other flows and state machines</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t338">
+    <title>on play</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <child-task idref="t344"/>
+    <child-task idref="t345"/>
+    <child-task idref="t346"/>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t339">
+    <title>select saved movement flow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-21T20:00:00.000Z</start-constraint-date>
+    <child-task idref="t340"/>
+    <child-task idref="t341"/>
+    <child-task idref="t342"/>
+    <child-task idref="t343"/>
+    <start-no-earlier-than>2014-08-21T20:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t340">
+    <title>clear current </title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t341">
+    <title>swap in data/set as current move</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t342">
+    <title>reset all handles/pausepoint imagery</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t343">
+    <title>zoom out maybe</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t344">
+    <title>go to start</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t345">
+    <title>minor pause</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t346">
+    <title>pause at end</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t347">
+    <title>on loop</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <child-task idref="t348"/>
+    <child-task idref="t349"/>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t348">
+    <title>go to start</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t349">
+    <title>loop on finish with minor pause</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t350">
+    <title>make buttons work and display properly</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t351">
+    <title>on click outside of move zone</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <child-task idref="t353"/>
+    <child-task idref="t354"/>
+    <child-task idref="t355"/>
+    <child-task idref="t356"/>
+    <child-task idref="t357"/>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t353">
+    <title>exit play or loop state</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t354">
+    <title>for clicking other parts of the bar</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t355">
+    <title>for any of the easing/pause play controls</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t356">
+    <title>for clicking any other parts of the move button</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t357">
+    <title>maybe but up a darkening shim on everything else</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t358">
+    <title>chain movement flow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-20T22:30:00.000Z</start-constraint-date>
+    <child-task idref="t359"/>
+    <child-task idref="t360"/>
+    <child-task idref="t361"/>
+    <child-task idref="t362"/>
+    <child-task idref="t363"/>
+    <child-task idref="t364"/>
+    <child-task idref="t365"/>
+    <child-task idref="t366"/>
+    <start-no-earlier-than>2014-08-20T22:30:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t359">
+    <title>stop playing vid</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t360">
+    <title>stop editing </title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t361">
+    <title>leave all other states, playing looping etc</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t362">
+    <title>seek to end/new beginning</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t363">
+    <title>save movement in current state</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t364">
+    <title>animate end time to move to new start time</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t365">
+    <title>set end time to be undefined</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t366">
+    <title>reset the name</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t367">
+    <title>saving flow</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-21T15:15:00.000Z</start-constraint-date>
+    <child-task idref="t371"/>
+    <child-task idref="t372"/>
+    <child-task idref="t374"/>
+    <child-task idref="t375"/>
+    <child-task idref="t373"/>
+    <child-task idref="t368"/>
+    <child-task idref="t369"/>
+    <start-no-earlier-than>2014-08-21T15:15:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t368">
+    <title>show movement in movement list</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t369">
+    <title>show movement is selected from list</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t371">
+    <title>saving icon only shows when move is well defined</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t372">
+    <title>saving icon darkens after a successful save</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t373">
+    <title>saving animates the corresponding move in the list</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t374">
+    <title>editing anything lightens the icon</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t375">
+    <title>selecting another move while not saved puts popup - or loading another video or closing the screen</title>
+    <type>group</type>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <child-task idref="t376"/>
+    <child-task idref="t377"/>
+    <child-task idref="t378"/>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t376">
+    <title>save and continue</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t377">
+    <title>don&apos;t save and continue</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t378">
+    <title>cancel and don&apos;t load movement</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t380">
+    <title>build incrementally</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t381">
+    <title>Task 5</title>
+    <effort>28800</effort>
+    <start-constraint-date>2014-08-11T18:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2014-08-11T18:00:00.000Z</start-no-earlier-than>
+  </task>
+  <critical-path root="-1" enabled="false" resources="false">
+    <color r="1" g="0.5" b="0.5"/>
+  </critical-path>
+</scenario>

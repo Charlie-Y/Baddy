@@ -1,0 +1,105 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+@import "compass/css3/box-sizing";
+@import "compass/css3/filter";
+@import "compass/css3/transform";
+
+
+
+
+// $vid-w-s: 853px; // Small vid width
+// $vid-h-s: 480px; // Mkae sure these sync with the stuff
+
+$vid-w-s: 1080px; // Small vid width
+$vid-h-s: 558px; // Mkae sure these sync with the stuff
+
+$main-h: 1000px;
+
+
+$slider-h: 30px;
+$time-controls-h: 50px;
+$movement-controls-h: 110px;
+
+$slider-color: #bfbfbf;
+
+
+
+
+
+$highlight-blue: #4de1ff;
+
+
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
+%font-smoothing{
+	-webkit-font-smoothing: antialiased;
+}
+
+// Rememver to define a height or else this doesn't work
+%vertical-abs-center{
+	position: absolute;
+	top:0;
+	bottom:0;
+	margin-top:auto;
+	margin-bottom: auto;
+}
+
+%horizontal-abs-center{
+	position: absolute;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right: auto;
+}
+
+// Remember height and width 
+%abs-center{
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right: 0;
+	margin: auto;
+}
+
+.hide{
+	display:none !important;
+}
+
+
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden
+}
+
+ul.inline-list{
+	// display:flex;
+	li{
+		display: inline-block;
+	}
+}
+
+

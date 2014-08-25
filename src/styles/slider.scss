@@ -1,0 +1,211 @@
+@import "globals.scss";
+
+.controls.player-slider{
+	position: relative;
+	background: darken(gray, 40);
+	$slider-w: $vid-w-s * .82;
+	$slider-side-w: ($vid-w-s - $slider-w) / 2;
+
+	// Just makes it take up the entire space and gives it absolute positioning
+	%slider-rect{
+		height: 100%;
+		position: absolute;
+		top:0;
+		left: 0;
+	}
+	.slider-bar-wrap{
+		position: relative;
+		height: 100%;
+	}
+	.slider-bar{
+		cursor: pointer;
+		height: $slider-h;
+
+		width: $slider-w;
+		left:$slider-side-w;
+		position: relative;
+		z-index: 7;
+		background: $slider-color;
+	}
+	.slider-progress{
+		@extend %slider-rect;
+		background:red;
+		@include transition(width .1s linear);
+		z-index: 2;
+
+		&.show-end:after{
+			// position: relative;
+			position: absolute;
+			// z-index: 99;
+
+			content: " ";
+			background: #dc0114;
+			right: -1px;
+			// left: 0;
+			top:0;
+
+			display: block;	
+
+			width: 2px;
+			height: 100%;
+		}
+
+	} 
+	.slider-loaded{
+		@extend %slider-rect;
+		z-index: 1;
+		background:tint($slider-color, 30);
+	}
+	.slider-mouser{
+		@extend %slider-rect;
+		background: white;
+		left: -3px;
+		width: 3px;
+		z-index: 3;
+	}
+	.slider-labels{
+		@extend %slider-rect;
+		width: 100%;
+		z-index: 4;
+		.slider-label{
+			width: 0;
+			position: absolute;
+			bottom: 0;
+			height: 100%;
+			border-left: 1px solid rgba(255,255,255,.6); 
+			&.full{
+				height: 80%;
+			}
+			&.half{
+				height: 50%;
+			}
+		}
+	}
+	.slider-time{
+		// display: none;
+		@extend %slider-rect;
+		width: 100%;
+		z-index: 6;
+		line-height: $slider-h;
+		.time{
+			font-size: 12px;
+			color: grey;
+			$margin-v: 10px;
+			&.left-time{
+				float:left;
+				margin-left: $margin-v;
+			}
+			&.right-time{
+				float:right;
+				margin-right: $margin-v + 2;
+			}
+		}
+	}
+
+	.slider-spacer{
+		position: relative;
+		z-index: 1;
+		height: 15px;
+		width: 100%;
+		background: darken($slider-color, 80);
+		&.spacer-bottom{
+			// height: 0px;
+			height: 20px;
+		}
+		.time{
+			height: 20px;
+			line-height: 20px;
+			font-size: 12px;
+			display: inline-block;
+			&.zero-time{
+				color:grey;
+				float: left;
+				margin-left: $slider-side-w / 2;
+			}
+			&.current-time{
+				@extend %horizontal-abs-center;
+				color:white;
+				width: 50px;
+				text-align: center;
+				// margin: 0 auto;
+			}
+			&.total-time{
+				color:grey;
+				float: right;
+				margin-right: $slider-side-w / 2;
+			}
+		}
+	}
+	.slider-bubble{
+		background: rgba(0,0,0,.5);
+		position: absolute;
+		z-index: 8; // should be higher than the handles
+		width: 52px;
+		text-align: center;
+		color:white;
+		height: 14px;
+		line-height: 15px;
+		top: -18px;
+		// bottom: -16px;
+		.bubble-time{
+			font-size: 12px;
+			color: white;
+		}
+		.bubble-img{
+			// THis really depends on the video i think
+			height: 60px;
+			width: 80px;
+			position: absolute;
+			top: -60px;
+			left: -10px;
+			&.hd{
+				width: 106px;
+				height: 60px;
+				left: -20px;
+			}
+			// background-size:cover;
+		}
+
+	}
+	.slider-handle{
+		@extend %slider-rect;
+		z-index: 6;
+		@include transition(left .2s ease-in);
+		.handle-bar{
+			width: 2px;
+			height: 100%;
+			background:white;
+		}
+		.handle-bubble{
+			background: rgba(0,0,0,.9);
+			position: absolute;
+			// z-index: 2;
+			width: 52px;
+			left:-25px;
+			text-align: center;
+			color:white;
+			height: 14px;
+			line-height: 15px;
+			top: -18px;
+			// bottom: -16px;
+			color: white;
+			font-size: 12px;
+		}
+		&.selected{
+			z-index: 7;
+			.handle-bar{
+				background: $highlight-blue;
+			}
+			.handle-bubble{
+				color: $highlight-blue;
+			}
+		}
+	}
+	.handle-middle{
+		@include transition(all .2s ease-in);
+
+		@extend %slider-rect;
+		z-index: 2;
+		background: rgba(0,0,255,.2);
+	}
+}

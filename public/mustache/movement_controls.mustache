@@ -1,0 +1,86 @@
+<div class="new-movement cover">
+  <button type="button" class="new-move block-button cover-button">
+    Learn new movement
+  </button>
+</div>
+
+<div class="new-movement content">
+  {{#currentMovement}}
+
+
+  {{! flex child }}
+  <div class="name-left {{#validated}} show-buttons {{/validated}} new-movement-block">
+    {{! New Movement }}
+    {{name}}
+
+    <div class="movement-play-controls ">
+      <i class="fa fa-play-circle movement-play-control play-move"></i>
+      <i class="fa fa-refresh movement-play-control loop-move {{#looping}} selected {{/looping}}"></i>
+    </div>
+
+  </div>
+
+
+  {{! flex child }}
+  <div class="new-move-body new-movement-block">
+    <span class="time-wrap start">
+      <h3 class="time-title"> 
+        Start
+        <a class=" edit-start edit-time"> <i class="fa fa-pencil"></i></a>
+
+      </h3>
+      
+      <div class="time-val-wrap {{#tempStart}} show-temp-time{{/tempStart}}">
+        
+        <div class="saved-time">
+          {{formattedTime startTime}}
+        </div>
+        <div class="temp-time">
+          {{formattedTime tempTime}}
+        </div>
+      </div>
+
+      <div class="time-button-wrap">
+        <button type="button" class="set-time block-button"> <i class="fa fa-check"></i></button>
+        <button type="button" class="cancel-time block-button "> <i class="fa fa-times"></i></button>
+      </div>
+
+    </span>
+
+    <span class="time-wrap end edit-end ">
+      <h3 class="time-title"> 
+        End 
+        <a class=" edit-end edit-time"> <i class="fa fa-pencil"></i></a>
+      </h3>
+      
+      <div class="time-val-wrap {{#tempEnd}} show-temp-time{{/tempEnd}}">
+        
+        <div class="saved-time">
+          {{formattedTime endTime}}
+        </div>
+        <div class="temp-time">
+          {{formattedTime tempTime}}
+        </div>
+      </div>
+
+      <div class="time-button-wrap">
+        <button type="button" class="set-time block-button"> <i class="fa fa-check"></i></button>
+        <button type="button" class="cancel-time block-button "> <i class="fa fa-times"></i></button>
+      </div>
+
+        
+    </span>
+  </div>
+
+
+  {{! flex child }}
+  <div class="new-move-controls new-movement-block">
+      <button class="new-move-save block-button" type="button"> <i class="fa fa-save"></i> </button>
+      <button class="new-move-chain block-button" type="button"> <i class="fa fa-chain"></i> </button>
+      <button class="new-move-cancel block-button" type="button"> <i class="fa fa-times"></i> </button>
+  </div>
+
+  {{/currentMovement}}
+
+</div>
+  

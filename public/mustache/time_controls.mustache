@@ -1,0 +1,54 @@
+<ul class="inline-list">
+  {{! <li class="time-main-li">
+    <div class="time-wrap">
+      <span class="current-time time"> 00:00:00</span> 
+      <span class="total-time time"> 00:00:00</span>
+    </div>
+  </li> }}
+
+
+  <li class="time-main-li">
+    <ul class="seeker-buttons unselectable">
+      <li class="seek-button-li">
+        <i class="fa fa-angle-double-left seek-icon"></i>
+      </li>
+      <li class="seek-button-li">
+        <i class="fa fa-angle-left seek-icon"></i>
+      </li>
+      <li class="seek-button-li">
+        <i class="fa fa-play play-icon "></i>
+      </li>
+      <li class="seek-button-li">
+        <i class="fa fa-angle-right seek-icon"></i>
+      </li>
+      <li class="seek-button-li">
+        <i class="fa fa-angle-double-right seek-icon"></i>
+      </li>
+    </ul>
+  </li>
+
+  <li class="time-main-li">
+    <div class="rates">
+      {{#playbackRates}}
+        <span class="playback-rate {{#active}}active-rate{{/active}}" {{data 'rate'}}>
+          {{rate}}X
+        </span>
+      {{/playbackRates}}
+    </div>
+  </li>
+  
+  <li class="time-main-li">
+    <div class="flip">
+      <i class="fa fa-arrows-h flip-icon"></i>
+    </div>
+
+    <div class="zoom hide">
+      <i class="fa fa-search-minus zoom-out"></i>
+      <i class="fa fa-search-plus zoom-in"></i>
+    </div>
+  </li>
+  {{!         <div class="new-movement">
+  </div>
+  }}
+
+</ul>

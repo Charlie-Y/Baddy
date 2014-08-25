@@ -1,0 +1,27 @@
+<div class="main-wrap">
+    <div class="main-video-column">
+      
+      <div class="player-wrap">
+        {{! The youtube frame needs this.  }}
+        <div id="player"></div>
+      </div>
+
+      <div class="player-slider controls">
+        {{>mustache/slider_controls.mustache}}
+      </div>
+
+      <div class="time-movement-controls">
+        <div class="player-time controls">
+          {{> mustache/time_controls.mustache}}
+        </div>
+        <div class="player-movement controls">
+          {{> mustache/movement_controls.mustache}}
+        </div>
+      </div>
+      
+      <div class="saved-movements controls ">
+        {{> mustache/saved_movements.mustache}}
+      </div>
+
+    </div>
+</div>

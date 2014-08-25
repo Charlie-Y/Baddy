@@ -1,0 +1,88 @@
+@import "globals.scss";
+
+.controls.player-time{
+	background: black;
+
+	.time-main-li{
+		padding-top: 30px;
+	}
+
+	.seeker-buttons{
+		// display: inline-block;
+		// @extend %vertical-abs-center;
+		// @extend %abs-center;
+		// margin: auto 0;
+		margin-left: 20px;
+		height: 33px;
+		width: 167px;
+		left: 30px;
+
+		.seek-button-li{
+			display: inline-block;
+			cursor: pointer;
+			padding: 0 7px;
+			.fa{
+				color: grey;
+				font-size: 30px;
+				&.fa-play{
+					font-size: 25px;
+				}
+				&:hover{
+					color: white;
+				}
+			}
+		}
+	}
+	.rates{
+		// display: inline-block;
+		// @extend %vertical-abs-center;
+		$f: 20px;
+		// height: $f;
+		font-size: $f;
+		// left: 160px;
+		margin-left: 20px;
+		.playback-rate{
+			display: inline-block;
+			cursor: pointer;
+			color: grey;
+			&:hover{
+				color:white;
+			}
+			&.active-rate{
+				@extend :hover;
+			}
+		}
+	}
+	.flip{
+		margin-left: 20px;
+		$f: 15px;
+		// height: $f;
+		font-size: $f;
+
+		.flip-icon{
+			color: grey;
+			cursor: pointer;
+		}
+	}
+	.zoom{
+		// @extend %vertical-abs-center;
+		right: 40px;
+		$f: 15px;
+		// height: $f;
+		font-size: $f;
+
+		.fa{
+			cursor: pointer;
+			&:hover{
+				color:white;
+			}
+		}
+		.zoom-in{
+
+		}
+		.zoom-out{
+
+		}
+	}
+}
+	

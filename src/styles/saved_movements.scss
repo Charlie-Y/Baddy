@@ -1,0 +1,44 @@
+.controls.saved-movements{
+	width:100%;
+	.new-movement-action{
+		width: 100%;
+		padding: 10px;
+		text-align: center;
+		button{
+		}
+	}
+	.movements-ul{
+		padding: 20px;
+	}
+	.movement-li{
+		background: #565656;
+		padding: 20px;
+		margin-bottom: 12px;
+		.fa{
+			cursor: pointer;
+			&:hover{
+				color: $highlight-blue;
+			}
+			&:active{
+				color: darken($highlight-blue, 20);
+			}
+		}
+		.movement-name{
+
+		}
+		.start-time{
+
+		}
+		.end-time{
+
+		}
+		&.playing{
+			background:#6fffe7;
+			color: white;
+			.fa{
+				color: white;
+			}
+		}
+	}
+}
+

@@ -1,0 +1,19 @@
+
+<ul class="movements-ul">
+  {{#movements}}
+    <li class="movement-li movement-data {{#playing}} playing {{/playing}}" {{data 'movement'}}>
+      <span class="movement-play play-move"> 
+        <i class="fa fa-play"></i>
+      </span>
+      <span class="movement-loop loop-move"> 
+        <i class="fa fa-refresh"></i>
+      </span>
+      <span class="movement-name">{{name}}</span>
+      <span class="movement-id hide">{{movementId}}</span>
+      <span class="start-time">{{formattedTime startTime}}</span>
+      - 
+      <span class="end-time">{{formattedTime endTime}}</span>
+
+    </li>
+  {{/movements}}
+</ul>

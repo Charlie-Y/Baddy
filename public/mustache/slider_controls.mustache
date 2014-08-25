@@ -1,0 +1,50 @@
+<div class="slider-spacer spacer-top"></div>
+<div class="slider-bar-wrap">
+  <div class="slider-time">
+    <span class="current-time left-time time"> {{currentTimeObs}}</span>  
+    <span class="total-time right-time time"> {{totalTimeObs}}</span> 
+  </div>
+
+  <div class="slider-bar">
+    <div class="slider-labels">
+      {{#sliderLabels}}
+      <span class="slider-label {{type}}" style="left:{{left}};"></span>
+      {{/sliderLabels}}
+    </div>
+    
+    <div class="slider-progress show-end"></div>
+    <div class="slider-loaded"></div>
+    <div class="slider-mouser hide"></div>
+    
+    {{#sliderBubbleData}}
+    <div class="slider-bubble {{^show}} hide {{/show}}" style="left:{{left}};">
+      <h4 class="bubble-time">{{time}}</h4>
+      <img class="bubble-img {{#highQuality}} hd {{/highQuality}}" src="{{deadPixel}}" alt=""
+      style="background-image: url({{src}}); background-size:{{backgroundSize}}; background-position:{{backgroundPosition}}};"
+
+      >
+    </div>  
+    {{/sliderBubbleData}}
+
+    {{#startHandleData}}
+    <div class="slider-handle start-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
+      <div class="handle-bar"></div>
+      <div class="handle-bubble">{{formattedTime time}}</div>
+    </div>  
+    {{/startHandleData}}
+
+    {{#handleMiddle}}
+    <div class="handle-middle {{^show}} hide {{/show}}" style="left:{{left}}; width:{{width}};"></div>
+    {{/handleMiddle}}
+
+    {{#endHandleData}}
+    <div class="slider-handle end-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
+      <div class="handle-bar"></div>
+      <div class="handle-bubble">{{formattedTime time}}</div>
+    </div>
+    {{/endHandleData}}
+
+
+  </div>
+</div>
+<div class="slider-spacer spacer-bottom"></div>
