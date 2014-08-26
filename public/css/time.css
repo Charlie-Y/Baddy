@@ -1,0 +1,104 @@
+/* line 72, globals.scss */
+.hide {
+  display: none !important;
+}
+
+/* line 77, globals.scss */
+.unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 90, globals.scss */
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* line 100, globals.scss */
+ul.inline-list li {
+  display: inline-block;
+}
+
+/* line 3, time.scss */
+.controls.player-time {
+  background: black;
+}
+/* line 6, time.scss */
+.controls.player-time .time-main-li {
+  padding-top: 30px;
+}
+/* line 10, time.scss */
+.controls.player-time .seeker-buttons {
+  margin-left: 20px;
+  height: 33px;
+  width: 167px;
+  left: 30px;
+}
+/* line 20, time.scss */
+.controls.player-time .seeker-buttons .seek-button-li {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 7px;
+}
+/* line 24, time.scss */
+.controls.player-time .seeker-buttons .seek-button-li .fa {
+  color: grey;
+  font-size: 30px;
+}
+/* line 27, time.scss */
+.controls.player-time .seeker-buttons .seek-button-li .fa.fa-play {
+  font-size: 25px;
+}
+/* line 30, time.scss */
+.controls.player-time .seeker-buttons .seek-button-li .fa:hover, .controls.player-time .seeker-buttons .seek-button-li .rates .fa.playback-rate.active-rate, .controls.player-time .rates .seeker-buttons .seek-button-li .fa.playback-rate.active-rate {
+  color: white;
+}
+/* line 36, time.scss */
+.controls.player-time .rates {
+  font-size: 20px;
+  margin-left: 20px;
+}
+/* line 44, time.scss */
+.controls.player-time .rates .playback-rate {
+  display: inline-block;
+  cursor: pointer;
+  color: grey;
+}
+/* line 48, time.scss */
+.controls.player-time .rates .playback-rate:hover, .controls.player-time .rates .playback-rate.active-rate {
+  color: white;
+}
+/* line 56, time.scss */
+.controls.player-time .flip {
+  margin-left: 20px;
+  font-size: 15px;
+}
+/* line 62, time.scss */
+.controls.player-time .flip .flip-icon {
+  color: grey;
+  cursor: pointer;
+}
+/* line 67, time.scss */
+.controls.player-time .zoom {
+  right: 40px;
+  font-size: 15px;
+}
+/* line 74, time.scss */
+.controls.player-time .zoom .fa {
+  cursor: pointer;
+}
+/* line 76, time.scss */
+.controls.player-time .zoom .fa:hover, .controls.player-time .zoom .rates .fa.playback-rate.active-rate, .controls.player-time .rates .zoom .fa.playback-rate.active-rate {
+  color: white;
+}

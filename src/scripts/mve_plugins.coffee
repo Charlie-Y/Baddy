@@ -1,5 +1,9 @@
-mve = window.mve or {} 
-window.mve = mve
+# mve = window.mve or {} 
+# window.mve = mve
+
+
+
+mve = require('./mve_base')
 
 ###
 
@@ -47,7 +51,7 @@ MVE_MovementStorageControls =
 
 # disableEvent = mve.disableEvent
 
-mve.MVE_Plugin = can.Control.extend({
+MVE_Plugin = can.Control.extend({
 	defaults: {
 		listensToInterval: false
 		listensToPlayerState: false
@@ -91,7 +95,7 @@ mve.MVE_Plugin = can.Control.extend({
 
 })
 
-
+module.exports = MVE_Plugin
 
 
 
@@ -113,7 +117,7 @@ Handles seeking, play/pause button, playback rates
 
 
 # There should only be 2 of these
-mve.SliderHandle = mve.MVE_Plugin.extend({
+mve.SliderHandle = MVE_Plugin.extend({
 	defaults: {
 		}
 }, {

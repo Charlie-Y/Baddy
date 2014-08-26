@@ -1,4 +1,8 @@
-mve.MVE_SliderControls = mve.MVE_Plugin.extend({
+mve = require('./mve_base')
+MVE_Plugin = require('./mve_plugins')
+
+
+MVE_SliderControls = MVE_Plugin.extend({
 	defaults: {
 		playerSliderSelector: ".slider-bar"
 	}
@@ -245,7 +249,7 @@ mve.MVE_SliderControls = mve.MVE_Plugin.extend({
 
 })
 
-
+module.exports = MVE_SliderControls
 
 
 

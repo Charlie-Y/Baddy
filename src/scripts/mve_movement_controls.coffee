@@ -3,8 +3,12 @@
 
 # ALL the logic goes here. even if an element is defined elsewhere, put it back hers
 
+mve = require('./mve_base')
+MVE_Plugin = require('./mve_plugins')
+Movement = require('./mve_movement')
 
-mve.MVE_MovementControls = mve.MVE_Plugin.extend({
+
+MVE_MovementControls = MVE_Plugin.extend({
 	defaults: {
 
 		# Selectors related to making new moves
@@ -32,7 +36,7 @@ mve.MVE_MovementControls = mve.MVE_Plugin.extend({
 		# @options.newMovement.hide().removeClass('hide')
 
 		# -- Current move stuff --- #
-		@options.currentMovement = new mve.Movement({
+		@options.currentMovement = new Movement({
 			startTime: "---"
 			endTime: "---"
 			name: "New Movement"
@@ -42,6 +46,7 @@ mve.MVE_MovementControls = mve.MVE_Plugin.extend({
 			tempTime: -1
 			tempStart: false
 			tempEnd: false
+			looping: false
 
 			})
 		@options.viewData.attr('currentMovement', @options.currentMovement)
@@ -230,10 +235,10 @@ mve.MVE_MovementControls = mve.MVE_Plugin.extend({
 	"{newMoveState} change": (newMoveState, ev, newState, oldState) ->
 		_this = @
 		
-		if newState isnt @NMS.NONE
+		if newState isnt @NMS.DONE
 			@options.playMoveState(@PMS.NONE)
 
-		@app.handleStateChange(_this, newState, oldState)
+		@app.handleStateChange(_this, newState, oldState, 'newMoveState')
 
 
 
@@ -396,10 +401,10 @@ mve.MVE_MovementControls = mve.MVE_Plugin.extend({
 	"{playMoveState} change": (playMoveState, ev, newState, oldState) ->
 		_this = @
 		if newState isnt @PMS.NONE
-			@options.newMoveState(@PMS.DONE)
+			@options.newMoveState(@NMS.DONE)
 
 
-		@app.handleStateChange(_this, newState, oldState)
+		@app.handleStateChange(_this, newState, oldState, 'playMoveState')
 
 	"{playMoveSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
@@ -431,7 +436,9 @@ mve.MVE_MovementControls = mve.MVE_Plugin.extend({
 
 	handlePlayMoveStateInterval: () ->
 		if @options.playMoveState() is @PMS.PLAYING
+			# console.log('playing')
 			if @player.getCurrentTime() > @options.currentMovement.endTime
+				# console.log("foo")
 				if @options.currentMovement.attr('looping')
 					@handleMovePlay()
 				else
@@ -486,7 +493,7 @@ mve.MVE_MovementControls = mve.MVE_Plugin.extend({
 
 
 
-
+module.exports = MVE_MovementControls
 
 
 

@@ -1,22 +1,25 @@
 var gulp = require('gulp');
-var concat = requre('gulp-concat');
+var concat = require('gulp-concat');
 
 
-var glob        = require('glob');
-
-
+var gutil      = require('gulp-util');
 var coffee = require('gulp-coffee');
 var sass = require('gulp-sass');
 
-var browserify = require('browserify');
+var glob        = require('glob');
+var browserify = require('gulp-browserify');
 var watchify = require('watchify');
-
-var source = require('vinyl-source-stream');
+// var source = require('vinyl-source-stream');
 
 var paths = {
-	js: './src/scripts/*.js'
+	js: './src/scripts/*.js',
+	jsFn: 'application.js',
+	jsDest: './public/js',
+	coffeeEntry: './src/scripts/mve_app.coffee',
+	coffee: './src/scripts/*.coffee'
+
 	// css: './public/css'
-}
+};
 
 gulp.task('default', ['watch', 'scripts']);
 
@@ -27,7 +30,15 @@ gulp.task('greet', function () {
 // The goal is to push all of the random ass save on builds that I have 
 // sublime doing and make gulp and browserify do them instead...
 
+/*
 
+The things that need to happen --- 
+
+read scripts from coffeescript
+
+
+
+*/
 
 // Scripts
 // Load can.js and jquery into one file
@@ -38,16 +49,34 @@ gulp.task('greet', function () {
 // Compile all styles - from both font css files and scss files into one file
 
 
+gulp.task('coffee', function() {
+
+});
 
 gulp.task('scripts', function() {
-	return browserify(paths.js)
-		.bundle()
-		.pipe(source('application.js'))
-		.pipe(gulp.dest('./public/js'))
+
+	// return gulp.src(paths.js)
+		// .pipe(concat(paths.jsFn))
+		// .pipe(gulp.dest('./public/js'));
+
+	return gulp.src(paths.coffeeEntry, {read: false})
+ 		.pipe(browserify( {transform: ['coffeeify'], extensions: ['.coffee'] }))
+ 		.pipe(concat(paths.jsFn))
+ 		.pipe(gulp.dest(paths.jsDest));
 });
 
 
 gulp.task('watch', function() {
-	gulp.watch(paths.js, ['scripts']);
+	gulp.watch(paths.coffee, ['scripts']);
 	// gulp.watch(paths.css, ['styles']); // Sass already compiles them all into one file
-})
+});
+
+
+
+
+
+
+
+
+
+

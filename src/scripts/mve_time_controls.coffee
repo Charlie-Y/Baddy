@@ -1,4 +1,8 @@
-mve.MVE_TimeControls = mve.MVE_Plugin.extend({
+mve = require('./mve_base')
+MVE_Plugin = require('./mve_plugins')
+
+
+MVE_TimeControls = MVE_Plugin.extend({
 	defaults:{
 
 		}
@@ -128,3 +132,7 @@ mve.MVE_TimeControls = mve.MVE_Plugin.extend({
 		else 
 			@player.playVideo()
 })
+
+
+
+module.exports = MVE_TimeControls

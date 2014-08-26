@@ -1,9 +1,9 @@
-mve = window.mve or {} 
-window.mve = mve
+# mve = window.mve or {} 
+# window.mve = mve
 
 
 # 
-mve.Movement = can.Model.extend({
+Movement = can.Model.extend({
 	devMovements: [
 		{
 			startTime: 10
@@ -79,9 +79,6 @@ mve.Movement = can.Model.extend({
 			difference = @startTime - @endTime
 			@attr('endTime', @startTime + difference)
 
-
-
-
-
-
 })
+
+module.exports = Movement

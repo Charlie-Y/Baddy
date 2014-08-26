@@ -1,0 +1,216 @@
+/* line 63, globals.scss */
+.controls.player-movement .new-movement .cover-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* line 72, globals.scss */
+.hide {
+  display: none !important;
+}
+
+/* line 77, globals.scss */
+.unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 90, globals.scss */
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* line 100, globals.scss */
+ul.inline-list li {
+  display: inline-block;
+}
+
+/* line 5, movement.scss */
+.controls.player-movement {
+  color: white;
+}
+/* line 8, movement.scss */
+.controls.player-movement .new-movement {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+/* line 22, movement.scss */
+.controls.player-movement .new-movement .cover-button {
+  background: none;
+  border: solid 2px #353535;
+  color: #5d5d5d;
+  height: 40%;
+  width: 80%;
+  font-size: 16px;
+}
+/* line 33, movement.scss */
+.controls.player-movement .new-movement .new-movement-block {
+  height: 100%;
+  box-sizing: border-box;
+}
+/* line 37, movement.scss */
+.controls.player-movement .new-movement .name-left {
+  text-align: center;
+  line-height: 110px;
+  width: 25%;
+  background: #1a1a1a;
+}
+/* line 41, movement.scss */
+.controls.player-movement .new-movement .name-left .movement-play-controls {
+  display: none;
+  margin-top: 15px;
+}
+/* line 44, movement.scss */
+.controls.player-movement .new-movement .name-left .movement-play-controls .movement-play-control {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 25px;
+  padding: 15px;
+  padding-top: 0;
+}
+/* line 50, movement.scss */
+.controls.player-movement .new-movement .name-left .movement-play-controls .movement-play-control:hover {
+  color: #3e6adc;
+}
+/* line 53, movement.scss */
+.controls.player-movement .new-movement .name-left .movement-play-controls .movement-play-control:active {
+  color: #3861ca;
+}
+/* line 56, movement.scss */
+.controls.player-movement .new-movement .name-left .movement-play-controls .movement-play-control.selected {
+  color: #05d3ff;
+}
+/* line 62, movement.scss */
+.controls.player-movement .new-movement .name-left.show-buttons {
+  padding-top: 25px;
+  line-height: 15px;
+}
+/* line 65, movement.scss */
+.controls.player-movement .new-movement .name-left.show-buttons .movement-play-controls {
+  display: block;
+}
+/* line 73, movement.scss */
+.controls.player-movement .new-movement .new-move-body {
+  width: 55%;
+  background: #2c2c2c;
+  display: flex;
+}
+/* line 78, movement.scss */
+.controls.player-movement .new-movement .new-move-controls {
+  width: 20%;
+  background: #4c4c4c;
+}
+/* line 83, movement.scss */
+.controls.player-movement .new-movement .time-wrap {
+  width: 50%;
+  text-align: center;
+  height: 100%;
+}
+/* line 89, movement.scss */
+.controls.player-movement .new-movement .time-wrap.show-buttons .time-title {
+  height: 20%;
+  padding-top: 10px;
+  font-size: 12px;
+}
+/* line 95, movement.scss */
+.controls.player-movement .new-movement .time-wrap.show-buttons .time-val-wrap {
+  height: 40%;
+}
+/* line 98, movement.scss */
+.controls.player-movement .new-movement .time-wrap.show-buttons .time-button-wrap {
+  display: flex;
+  height: 40%;
+}
+/* line 103, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-title {
+  color: #5e5e5e;
+  padding-top: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+/* line 111, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap {
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+/* line 117, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap .saved-time {
+  text-align: center;
+  width: 100%;
+}
+/* line 121, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap .temp-time {
+  display: none;
+  width: 100%;
+}
+/* line 125, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time {
+  padding-top: 5px;
+}
+/* line 128, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .temp-time {
+  display: block;
+}
+/* line 132, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .saved-time {
+  color: #858585;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+/* line 142, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-button-wrap {
+  display: flex;
+}
+/* line 145, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-button-wrap button {
+  font-size: 15px;
+  width: 50%;
+  background: none;
+  color: #5e5e5e;
+}
+/* line 150, movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-button-wrap button:hover {
+  color: #5e5e5e;
+  background: rgba(0, 0, 0, 0.1);
+}
+/* line 163, movement.scss */
+.controls.player-movement .new-movement .time-wrap .edit-time {
+  position: absolute;
+  cursor: pointer;
+  font-size: 12px;
+  color: #414141;
+  padding: 10px;
+  top: 20px;
+  right: 30px;
+}
+/* line 172, movement.scss */
+.controls.player-movement .new-movement .time-wrap .edit-time:hover {
+  color: #5b5b5b;
+}
+/* line 179, movement.scss */
+.controls.player-movement .new-movement .new-move-controls .block-button {
+  display: block;
+  height: 33.33%;
+  background: none;
+}
+/* line 183, movement.scss */
+.controls.player-movement .new-movement .new-move-controls .block-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
