@@ -1,3 +1,5 @@
+@import "font-awesome.min.css";
+@import "fonts-myriad-set-pro-200.css";
 @import "reset.css";
 
 @import "globals.scss";
@@ -6,9 +8,6 @@
 @import "movement.scss";
 @import "saved_movements.scss";
 
-// *{
-// 	font-family: "Myriad Set Pro";
-// }
 
 .button-1{
 	$main-color: white;

@@ -4,7 +4,8 @@ var concat = require('gulp-concat');
 
 var gutil      = require('gulp-util');
 var coffee = require('gulp-coffee');
-var sass = require('gulp-sass');
+// var sass = require('gulp-sass');
+var compass = require('gulp-compass');
 
 var glob        = require('glob');
 var browserify = require('gulp-browserify');
@@ -16,8 +17,12 @@ var paths = {
 	jsFn: 'application.js',
 	jsDest: './public/js',
 	coffeeEntry: './src/scripts/mve_app.coffee',
-	coffee: './src/scripts/*.coffee'
+	coffee: './src/scripts/*.coffee',
 
+	sassEntry: './src/styles/application.scss',
+	sass: './src/styles/*.scss',
+	styles: './src/styles',
+	sassDest: './public/css'
 	// css: './public/css'
 };
 
@@ -49,8 +54,13 @@ read scripts from coffeescript
 // Compile all styles - from both font css files and scss files into one file
 
 
-gulp.task('coffee', function() {
-
+gulp.task('styles', function() {
+	gulp.src(paths.sassEntry)
+		.pipe(compass({
+			css: paths.sassDest,
+			sass: paths.styles
+		}))
+		.pipe(gulp.dest(paths.sassDest))
 });
 
 gulp.task('scripts', function() {
@@ -68,6 +78,7 @@ gulp.task('scripts', function() {
 
 gulp.task('watch', function() {
 	gulp.watch(paths.coffee, ['scripts']);
+	gulp.watch(paths.sass, ['styles']);
 	// gulp.watch(paths.css, ['styles']); // Sass already compiles them all into one file
 });
 
