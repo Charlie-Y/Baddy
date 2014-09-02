@@ -492,7 +492,7 @@ MVEPlayerApp = can.Control.extend({
       show: false,
       showNewMove: true,
       showZoomIn: true,
-      showZoomOut: false,
+      showZoomOut: true,
       left: false
     });
     viewData.attr('sliderButtons', this.options.sliderButtons);
@@ -1176,7 +1176,9 @@ MVE_MovementControls = MVE_Plugin.extend({
     return this.player.playVideo();
   },
   cancelMovePlay: function() {
-    this.options.currentMovement.attr('looping', false);
+    if (this.options.currentMovement) {
+      this.options.currentMovement.attr('looping', false);
+    }
     return this.options.playMoveState(this.PMS.NONE);
   },
   handlePlayMoveStateInterval: function() {
@@ -1427,6 +1429,7 @@ MVE_SliderControls = MVE_Plugin.extend({
   },
   onPlayerReady: function() {
     this._super();
+    this.saveDisplayTimes(0, this.duration);
     return this.labelSliderBar(0, this.duration);
   },
   onPlayerInterval: function() {
@@ -1448,16 +1451,17 @@ MVE_SliderControls = MVE_Plugin.extend({
     return this.options.sliderBubbleData.attr('show', true);
   },
   "{playerSliderSelector} mousemove": function(el, ev) {
-    var mouseX, x;
+    var mouseX, time, x;
     if (this.handleMouseMove(el, ev)) {
       return;
     }
     if (this.mouseenterSlider) {
       x = el.offset().left;
       mouseX = ev.clientX;
-      this.app.options.sliderMouser.css('left', "" + (mouseX - x - this.app.options.sliderMouser.width() / 2) + "px");
-      this.options.sliderBubbleData.attr('time', this.timeFromX(mouseX - x));
-      return this.options.sliderBubbleData.attr('left', "" + (mouseX - x - this.element.find('.slider-bubble').width() / 2) + "px");
+      time = this.timeFromX(mouseX - x);
+      this.app.options.sliderMouser.css('left', "" + (this.modLeft(time, true, -this.app.options.sliderMouser.width() / 2)) + "px");
+      this.options.sliderBubbleData.attr('time', time);
+      return this.options.sliderBubbleData.attr('left', "" + (this.modLeft(time, true, -this.element.find('.slider-bubble').width() / 2)) + "px");
     }
   },
   timeFromSliderMouse: function(el, ev) {
@@ -1539,25 +1543,28 @@ MVE_SliderControls = MVE_Plugin.extend({
     return this.player.seekTo(timeFromPercent);
   },
   "{playerSliderSelector} mousedown": function(el, ev) {
+    var time;
     mve.disableEvent(ev);
     this.options.dragMoveState(this.DMS.DOWN);
     this.mousedownClientX = this.xFromSliderMouse(el, ev);
-    this.options.dragStartHandle.attr('left', "" + this.mousedownClientX + "px");
-    this.options.dragStartHandle.attr('time', this.timeFromSliderMouse(el, ev));
+    time = this.timeFromSliderMouse(el, ev);
+    this.options.dragStartHandle.attr('time', time);
+    this.options.dragStartHandle.attr('left', "" + (this.modLeft(time, true)) + "px");
     this.options.dragEndHandle.attr('show', false);
     this.options.dragEndHandle.attr('time', -1);
     this.options.dragMiddle.attr('show', false);
-    return this.options.dragMiddle.attr('left', "" + this.mousedownClientX + "px");
+    return this.options.dragMiddle.attr('left', "" + (this.modLeft(time, true)) + "px");
   },
   handleDragPlayerInterval: function() {},
   handleMouseMove: function(el, ev) {
-    var _ref;
+    var time, _ref;
     if ((_ref = this.options.dragMoveState()) === this.DMS.DOWN || _ref === this.DMS.MOVED) {
       this.options.dragMoveState(this.DMS.MOVED);
+      time = this.timeFromSliderMouse(el, ev);
       this.options.dragStartHandle.attr('show', true);
       this.options.dragEndHandle.attr('show', true);
-      this.options.dragEndHandle.attr('left', "" + (this.xFromSliderMouse(el, ev)) + "px");
-      this.options.dragEndHandle.attr('time', this.timeFromSliderMouse(el, ev));
+      this.options.dragEndHandle.attr('time', time);
+      this.options.dragEndHandle.attr('left', "" + (this.modLeft(time)) + "px");
       this.player.pauseVideo();
       return this.updateHandleMiddle(this.options.dragMiddle, this.options.dragStartHandle.time, this.options.dragEndHandle.time, this.options.dragStartHandle, this.options.dragEndHandle);
     }
@@ -1568,7 +1575,7 @@ MVE_SliderControls = MVE_Plugin.extend({
   },
   handleDragMouseUp: function() {
     if (this.options.dragMoveState() === this.DMS.MOVED) {
-      this.showDragMoveButtons(this.options.dragStartHandle.time + this.options.dragEndHandle.time);
+      this.showDragMoveButtons(this.options.dragStartHandle.time, this.options.dragEndHandle.time);
     } else if (this.options.dragMoveState() === this.DMS.DOWN) {
       this.options.dragStartHandle.attr('show', false);
       this.options.dragMiddle.attr('show', false);
@@ -1577,13 +1584,12 @@ MVE_SliderControls = MVE_Plugin.extend({
     return this.options.dragMoveState(this.DMS.DONE);
   },
   showDragMoveButtons: function(startTime, endTime) {
-    var middleVal, newLeft, o;
+    var middleVal, o;
     o = this.options;
     middleVal = (startTime + endTime) / 2;
-    newLeft = this.percentForTime(middleVal);
     o.sliderButtons.attr('show', true);
     o.sliderButtons.attr('showNewMove', true);
-    return o.sliderButtons.attr('left', "" + (newLeft * 100 - 3) + "%");
+    return o.sliderButtons.attr('left', "" + (this.modLeft(middleVal, true, -20)) + "px");
   },
   updateHandleMiddle: function(handleMiddle, startTime, endTime, startHandle, endHandle) {
     var smallerVal, timeDifference;
@@ -1592,8 +1598,8 @@ MVE_SliderControls = MVE_Plugin.extend({
     }
     timeDifference = Math.abs(endTime - startTime);
     smallerVal = startTime < endTime ? startTime : endTime;
-    handleMiddle.attr('left', "" + (smallerVal / this.duration * 100) + "%");
-    handleMiddle.attr('width', "" + (timeDifference / this.duration * 100) + "%");
+    handleMiddle.attr('left', "" + (this.modLeft(smallerVal)) + "px");
+    handleMiddle.attr('width', "" + (this.modWidth(timeDifference)) + "%");
     return handleMiddle.attr('show', startHandle.attr('show') && endHandle.attr('show'));
   },
   "{dragNewMoveSelector} click": function(el, ev) {
@@ -1605,12 +1611,60 @@ MVE_SliderControls = MVE_Plugin.extend({
     this.movementControls().loadCreatedMovement(startTime, endTime);
     return this.options.dragMoveState(this.DMS.NONE);
   },
+  modLeft: function(time, inPx, nudge) {
+    var duration, pxWidth, timeDiff;
+    if (inPx == null) {
+      inPx = true;
+    }
+    if (nudge == null) {
+      nudge = 0;
+    }
+    pxWidth = this.app.options.slider.width();
+    duration = Math.abs(this.displayEndTime - this.displayStartTime);
+    timeDiff = time - this.displayStartTime;
+    return (pxWidth * timeDiff / duration) + nudge;
+  },
+  modWidth: function(timeDuration, inPx) {
+    var duration;
+    if (inPx == null) {
+      inPx = false;
+    }
+    duration = Math.abs(this.displayEndTime - this.displayStartTime);
+    if (!inPx) {
+      return timeDuration / duration * 100;
+    }
+    return timeDuration / duration;
+  },
   "{zoomOutSelector} click": function(el, ev) {
-    return mve.disableEvent(ev);
+    mve.disableEvent(ev);
+    console.log("zoomOutSelector click");
+    return this.zoomOnTime(0, this.duration);
   },
   "{zoomInSelector} click": function(el, ev) {
     mve.disableEvent(ev);
-    return console.log("zoomInSelector click");
+    console.log("zoomInSelector click");
+    return this.zoomOnTime(this.options.dragStartHandle.time, this.options.dragEndHandle.time);
+  },
+  saveDisplayTimes: function(startTime, endTime) {
+    this.displayStartTime = startTime;
+    return this.displayEndTime = endTime;
+  },
+  zoomOnTime: function(startTime, endTime) {
+    this.saveDisplayTimes(startTime, endTime);
+    console.log({
+      startTime: startTime,
+      endTime: endTime
+    });
+    return this.updateDragHandles();
+  },
+  updateDragHandles: function() {
+    var endHandleTime, o, starthandleTime;
+    o = this.options;
+    starthandleTime = o.dragStartHandle.attr('time');
+    endHandleTime = o.dragEndHandle.attr('time');
+    o.dragStartHandle.attr('left', "" + (this.modLeft(starthandleTime)) + "px");
+    o.dragEndHandle.attr('left', "" + (this.modLeft(endHandleTime)) + "px");
+    return this.updateHandleMiddle(this.options.dragMiddle, this.options.dragStartHandle.time, this.options.dragEndHandle.time, this.options.dragStartHandle, this.options.dragEndHandle);
   },
 
   /*
@@ -1657,11 +1711,12 @@ MVE_SliderControls = MVE_Plugin.extend({
     }
   },
   labelSliderBar: function(minTime, maxTime) {
-    var minutes, num, sliderBar, width, _i, _results;
+    var intervals, minutes, num, sliderBar, width, _i, _results;
     console.log({
       minTime: minTime,
       maxTime: maxTime
     });
+    intervals = [10 * 60, 5 * 60, 1 * 60, 30, 5, 1, .5];
     sliderBar = this.element.find('.slider-bar');
     width = sliderBar.width();
     minutes = Math.floor(this.duration / 60);

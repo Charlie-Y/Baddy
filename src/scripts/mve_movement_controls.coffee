@@ -516,8 +516,8 @@ MVE_MovementControls = MVE_Plugin.extend({
 		@player.playVideo()
 
 	cancelMovePlay: () ->
-		@options.currentMovement.attr('looping', false)
-		
+		if @options.currentMovement
+			@options.currentMovement.attr('looping', false)
 
 		@options.playMoveState(@PMS.NONE)
 

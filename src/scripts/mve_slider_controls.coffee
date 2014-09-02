@@ -22,6 +22,8 @@ MVE_SliderControls = MVE_Plugin.extend({
 		@sliderLabels = new can.List() # label: {left: % | px, type: full | half}
 		viewData.attr('sliderLabels', @sliderLabels)
 		
+
+
 		# --- Slider elements --- #
 		@app.options.slider = @element.find(@options.playerSliderSelector)
 		@app.options.sliderProgressBar = @element.find('.slider-progress')
@@ -80,6 +82,7 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	onPlayerReady: () ->
 		@_super()
+		@saveDisplayTimes(0, @duration)
 		@labelSliderBar(0, @duration)
 		# @loadSighData()
 
@@ -121,11 +124,14 @@ MVE_SliderControls = MVE_Plugin.extend({
 			x = el.offset().left
 			mouseX = ev.clientX
 
-			@app.options.sliderMouser.css('left', "#{mouseX - x - @app.options.sliderMouser.width()/2}px")
+			time = @timeFromX(mouseX - x)
+
+			@app.options.sliderMouser.css('left', "#{ @modLeft(time, true, -@app.options.sliderMouser.width()/2) }px")
+			# @app.options.sliderMouser.css('left', "#{mouseX - x - @app.options.sliderMouser.width()/2}px")
 			# console.log(x:x, mouseX: mouseX)
 
-			@options.sliderBubbleData.attr('time', @timeFromX(mouseX - x))
-			@options.sliderBubbleData.attr('left', "#{mouseX - x - @element.find('.slider-bubble').width()/2}px")
+			@options.sliderBubbleData.attr('time', time )
+			@options.sliderBubbleData.attr('left', "#{ @modLeft(time, true, -@element.find('.slider-bubble').width()/2)}px")
 			# @setSighImg(@timeFromX(mouseX - x))
 
 	# el should always be {playerSliderSelector}
@@ -136,7 +142,6 @@ MVE_SliderControls = MVE_Plugin.extend({
 		x = el.offset().left
 		mouseX = ev.clientX
 		return mouseX - x
-
 
 	percentForTime: (timeInSeconds) ->
 		# console.log(timeInSeconds: timeInSeconds, duration: @duration)
@@ -250,17 +255,17 @@ MVE_SliderControls = MVE_Plugin.extend({
 		@options.dragMoveState(@DMS.DOWN)
 
 		@mousedownClientX = @xFromSliderMouse(el, ev)
-		
+		time = @timeFromSliderMouse(el,ev)
 
-		@options.dragStartHandle.attr('left', "#{@mousedownClientX}px")
-		@options.dragStartHandle.attr('time', @timeFromSliderMouse(el,ev))
+		@options.dragStartHandle.attr('time', time)
+		@options.dragStartHandle.attr('left', "#{@modLeft(time, true)}px")
 
 		@options.dragEndHandle.attr('show', false)
 		@options.dragEndHandle.attr('time', -1)
 
 		
 		@options.dragMiddle.attr('show', false)
-		@options.dragMiddle.attr('left', "#{@mousedownClientX}px")
+		@options.dragMiddle.attr('left', "#{@modLeft(time, true)}px")
 
 		# console.log('down')
 
@@ -276,12 +281,14 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 			@options.dragMoveState(@DMS.MOVED)
 
+			time = @timeFromSliderMouse(el,ev)
+
 			# @mousemove = true
 			@options.dragStartHandle.attr('show', true)
 			@options.dragEndHandle.attr('show', true)
 
-			@options.dragEndHandle.attr('left', "#{@xFromSliderMouse(el, ev)}px")
-			@options.dragEndHandle.attr('time', @timeFromSliderMouse(el,ev))
+			@options.dragEndHandle.attr('time', time)
+			@options.dragEndHandle.attr('left', "#{@modLeft(time)}px")
 
 
 			# TODO - debounce on the seekTo
@@ -301,15 +308,12 @@ MVE_SliderControls = MVE_Plugin.extend({
 	handleDragMouseUp: () ->
 
 		if @options.dragMoveState() is @DMS.MOVED
-			@showDragMoveButtons(@options.dragStartHandle.time + @options.dragEndHandle.time )
+			@showDragMoveButtons(@options.dragStartHandle.time , @options.dragEndHandle.time )
+		
 		else if @options.dragMoveState() is @DMS.DOWN
 			@options.dragStartHandle.attr('show', false)
 			@options.dragMiddle.attr('show', false)
 			@options.sliderButtons.attr('show', false)
-
-
-
-
 
 		@options.dragMoveState(@DMS.DONE)
 
@@ -319,17 +323,17 @@ MVE_SliderControls = MVE_Plugin.extend({
 	showDragMoveButtons: (startTime, endTime) ->
 		# get the middle value
 		o = @options
+
+		# console.log(startTime: startTime, endTime: endTime)
 		
 		middleVal = ( startTime + endTime ) / 2
-		newLeft = @percentForTime(middleVal)
-
+		# newLeft = @percentForTime(middleVal)
 		# console.log(newLeft: newLeft)
 
 		# TODO - center this better...
 		o.sliderButtons.attr('show', true)
 		o.sliderButtons.attr('showNewMove', true)
-
-		o.sliderButtons.attr('left', "#{newLeft * 100 - 3}%")
+		o.sliderButtons.attr('left', "#{@modLeft(middleVal, true, - 20)}px")
 
 	updateHandleMiddle: (handleMiddle, startTime, endTime, startHandle, endHandle) ->
 		# startTime = @options.currentMovement.startTime
@@ -340,9 +344,11 @@ MVE_SliderControls = MVE_Plugin.extend({
 		timeDifference = Math.abs(endTime - startTime)
 		smallerVal = if startTime < endTime then startTime else endTime
 
-		handleMiddle.attr('left', "#{smallerVal / @duration * 100}%")
-		handleMiddle.attr('width', "#{timeDifference / @duration * 100}%")
+		handleMiddle.attr('left', "#{@modLeft(smallerVal)}px")
+		handleMiddle.attr('width', "#{@modWidth(timeDifference)}%")
+
 		handleMiddle.attr('show', startHandle.attr('show') and endHandle.attr('show'))
+
 
 
 	"{dragNewMoveSelector} click": (el, ev) ->
@@ -357,22 +363,69 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	# ------------------- Zoom stuff -------------------------- #
 
+	# takes in a time value and scales it according to the min and max times
+	# and returns the according 'left' css value
+	modLeft: (time, inPx = true, nudge = 0) ->
+		pxWidth = @app.options.slider.width()
+		
+		duration = Math.abs(@displayEndTime - @displayStartTime)
+		timeDiff = time - @displayStartTime
+
+
+		return (pxWidth * timeDiff / duration) + nudge
+
+	modWidth: (timeDuration, inPx = false) ->
+		duration = Math.abs(@displayEndTime - @displayStartTime)
+
+		if !inPx
+			return timeDuration / duration * 100
+
+
+		return timeDuration / duration
 
 
 	"{zoomOutSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
-
+		console.log("zoomOutSelector click")
+		@zoomOnTime(0, @duration)
 
 
 	"{zoomInSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
 		console.log("zoomInSelector click")
 
+		@zoomOnTime(@options.dragStartHandle.time , @options.dragEndHandle.time )
+
+	saveDisplayTimes: (startTime, endTime) ->
+		@displayStartTime = startTime
+		@displayEndTime = endTime
+
+	zoomOnTime: (startTime, endTime) ->
+		@saveDisplayTimes(startTime, endTime)
+
+		console.log(startTime: startTime, endTime: endTime)
+
+
+		@updateDragHandles()
+		
+
+	# updates them to the current display time
+	updateDragHandles: () ->
+		o = @options
+
+		starthandleTime = o.dragStartHandle.attr('time')
+		endHandleTime = o.dragEndHandle.attr('time')
+
+		o.dragStartHandle.attr('left', "#{@modLeft(starthandleTime)}px")
+		o.dragEndHandle.attr('left', "#{@modLeft(endHandleTime)}px")
+		@updateHandleMiddle(@options.dragMiddle, @options.dragStartHandle.time, @options.dragEndHandle.time, @options.dragStartHandle, @options.dragEndHandle)
+
 
 
 	# label a large thing every minute
 	# label a small one every half minute
 	# label: {left: % | px, type: full | half}
+
 
 	###
 
@@ -428,6 +481,11 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	labelSliderBar: (minTime, maxTime) ->
 		console.log(minTime: minTime, maxTime: maxTime)
+
+
+
+		intervals = [ 10*60, 5*60, 1*60, 30, 5, 1, .5]
+
 
 		sliderBar = @element.find('.slider-bar')
 		width = sliderBar.width()

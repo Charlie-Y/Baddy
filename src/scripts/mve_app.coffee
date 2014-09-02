@@ -112,7 +112,7 @@ MVEPlayerApp = can.Control.extend({
 			show: false
 			showNewMove: true
 			showZoomIn: true
-			showZoomOut: false
+			showZoomOut: true
 			left: false
 			})
 

@@ -33,7 +33,7 @@
 	.slider-progress{
 		@extend %slider-rect;
 		background:red;
-		@include transition(width .1s linear);
+		// @include transition(width .1s linear);
 		z-index: 2;
 
 		&.show-end:after{

@@ -73,7 +73,7 @@ gulp.task('styles', function() {
 			css: paths.sassDest,
 			sass: paths.styles
 		}))
-		.on('error', handleErrors)
+		.on('error', handleErrors) // this has to be right after the compiler to catch those errors
 		.pipe(gulp.dest(paths.sassDest))
 });
 
