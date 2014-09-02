@@ -18,14 +18,17 @@
 		height: 100%;
 	}
 	.slider-bar{
+		// %slider-rects belong in here
 		cursor: pointer;
 		height: $slider-h;
 
+		z-index: 7;
+		background: $slider-color;
+	}
+	.bar-wrap{
 		width: $slider-w;
 		left:$slider-side-w;
 		position: relative;
-		z-index: 7;
-		background: $slider-color;
 	}
 	.slider-progress{
 		@extend %slider-rect;
@@ -58,15 +61,19 @@
 	}
 	.slider-mouser{
 		@extend %slider-rect;
-		background: white;
+		background: rgba(169,0,0,.1);
 		left: -3px;
 		width: 3px;
 		z-index: 3;
 	}
+
+	// This is fun
 	.slider-labels{
 		@extend %slider-rect;
 		width: 100%;
 		z-index: 4;
+
+		// A little stripe that lets things know when is what...
 		.slider-label{
 			width: 0;
 			position: absolute;
@@ -81,6 +88,8 @@
 			}
 		}
 	}
+
+
 	.slider-time{
 		// display: none;
 		@extend %slider-rect;
@@ -105,12 +114,18 @@
 	.slider-spacer{
 		position: relative;
 		z-index: 1;
-		height: 15px;
 		width: 100%;
+		min-height: 15px;
+
 		background: darken($slider-color, 80);
 		&.spacer-bottom{
 			// height: 0px;
-			height: 20px;
+			.bar-wrap{
+				height: 100%;
+			}
+		}
+		&.spacer-top{
+
 		}
 		.time{
 			height: 20px;
@@ -134,6 +149,10 @@
 				float: right;
 				margin-right: $slider-side-w / 2;
 			}
+		}
+		.spacer{
+			width: 1px;
+			height: 30px;
 		}
 	}
 	.slider-bubble{
@@ -200,6 +219,9 @@
 				color: $highlight-blue;
 			}
 		}
+		&.drag-handle{
+			@include transition(none);
+		}
 	}
 	.handle-middle{
 		@include transition(all .2s ease-in);
@@ -207,5 +229,56 @@
 		@extend %slider-rect;
 		z-index: 2;
 		background: rgba(0,0,255,.2);
+		&.drag-middle{
+			@include transition(none);
+		}
 	}
+
+
+	.slider-buttons{
+		position: absolute;
+		width: 0;
+		height: 30px;
+		top:0;
+		line-height: 30px;
+		white-space: nowrap;
+		button{
+			background: #cecece;
+			border: none;
+		}
+
+	}
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -64,6 +64,9 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
+app.get('/:id', index.view);
+
+
 app.get('/video', video.watchVideo);
 app.get('/sigh', video.videoSigh);
 app.get('/sigh/:ytid', video.videoSigh);

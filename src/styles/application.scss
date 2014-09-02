@@ -63,14 +63,20 @@ body{
 }
 
 .main-wrap{
+	display:flex;
 	height: $main-h;
 }
 
 .main-video-column{
-	width: $vid-w-s;
-	margin: 0 auto;
+	min-width: $vid-w-s;
+	// margin: 0 auto;
 	height: 100%;
 	background: rgb(41, 41, 41);
+}
+
+.side-column{
+	min-width: 300px;
+
 }
 
 .player-wrap{

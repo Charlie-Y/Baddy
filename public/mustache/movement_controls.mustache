@@ -32,7 +32,7 @@
       
       <div class="time-val-wrap {{#tempStart}} show-temp-time{{/tempStart}}">
         
-        <div class="saved-time">
+        <div class="saved-time" data-seekable="{{startTime}}">
           {{formattedTime startTime}}
         </div>
         <div class="temp-time">
@@ -55,7 +55,7 @@
       
       <div class="time-val-wrap {{#tempEnd}} show-temp-time{{/tempEnd}}">
         
-        <div class="saved-time">
+        <div class="saved-time" data-seekable="{{endTime}}">
           {{formattedTime endTime}}
         </div>
         <div class="temp-time">
@@ -75,7 +75,7 @@
 
   {{! flex child }}
   <div class="new-move-controls new-movement-block">
-      <button class="new-move-save block-button" type="button"> <i class="fa fa-save"></i> </button>
+      <button class="new-move-pause-point block-button" type="button"> <i class="fa fa-pause"></i> </button>
       <button class="new-move-chain block-button" type="button"> <i class="fa fa-chain"></i> </button>
       <button class="new-move-cancel block-button" type="button"> <i class="fa fa-times"></i> </button>
   </div>

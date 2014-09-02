@@ -117,6 +117,10 @@ $grey-1: #323232;
 				.saved-time{
 					text-align: center;
 					width:100%;
+					cursor: pointer;
+					&:hover{
+						color: #92e8ff;
+					}
 				}
 				.temp-time{
 					display: none;
@@ -133,6 +137,10 @@ $grey-1: #323232;
 						color:#858585;
 						font-size: 12px;
 						margin-bottom: 10px;
+						&:hover{
+							color: #92e8ff;
+						}
+
 						// width: 30%
 						// display: none;
 					}

@@ -1,4 +1,5 @@
 mve = require('./mve_base')
+evt = require('./evt')
 MVE_Plugin = require('./mve_plugins')
 
 
@@ -38,7 +39,7 @@ MVE_TimeControls = MVE_Plugin.extend({
 		@zeroTimeObs(mve.timeInHoursMinsSeconds(0))
 
 		# only allow rates <= 1. No point in watching faster ones
-		allPlaybackRates = @player.getAvailablePlaybackRates()
+		allPlaybackRates = @player.getAvailablePlaybackRates().reverse()
 		for playbackRate in allPlaybackRates
 			if playbackRate <= 1
 				@playbackRates.push(new can.Map({rate: playbackRate, active: (playbackRate is 1)}))
@@ -108,18 +109,18 @@ MVE_TimeControls = MVE_Plugin.extend({
 	"{window} keydown": (el,ev) ->
 		# console.log(keyCode: ev.keyCode)
 		keyCode = ev.keyCode
-		LEFT = 37
-		RIGHT = 39
-		SPACE = 32
-		if keyCode is SPACE
+		# LEFT = 37
+		# RIGHT = 39
+		# SPACE = 32
+		if keyCode is evt.Keyboard.Space
 			@togglePlayPause()
 			mve.disableEvent(ev)
-		else if keyCode is LEFT
+		else if keyCode is evt.Keyboard.ArrowLeft
 			@player.pauseVideo()
 			@player.seekTo( @player.getCurrentTime() - @SMALL_SEEK)
 			# so calling disable event somehow breaks this...
 			mve.disableEvent(ev)
-		else if keyCode is RIGHT
+		else if keyCode is evt.Keyboard.ArrowRight
 			@player.pauseVideo()
 			# console.log( @player.getCurrentTime() + @SMALL_SEEK )
 			@player.seekTo( @player.getCurrentTime() + @SMALL_SEEK )

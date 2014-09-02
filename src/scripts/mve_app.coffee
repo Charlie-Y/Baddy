@@ -1,9 +1,24 @@
+###
+
+Thigns to implement before a grevious redesign and refactoring
+
+Zooming with Labeling
+Chaining
+Remote Controlling
+PausePoints
+
+
+
+
+###
+
 mve = require('./mve_base')
 
 Movement = require('./mve_movement')
 MVE_TimeControls = require('./mve_time_controls')
 MVE_SliderControls = require('./mve_slider_controls')
 MVE_MovementControls = require('./mve_movement_controls')
+MVE_Storage = require('./mve_storage')
 
 # there should only be one
 MVEPlayerApp = can.Control.extend({
@@ -13,6 +28,10 @@ MVEPlayerApp = can.Control.extend({
 		iframeWrapSelector: '.player-wrap'
 
 		# playerSliderSelector: ".player-slider"
+
+		storageSetting: 'LOCAL'
+		# storageSetting: 'DEV'
+		# storageSetting: 'SERVER'
 
 
 		# vidWidth: 853
@@ -79,28 +98,30 @@ MVEPlayerApp = can.Control.extend({
 
 
 		# -- Shared slider variables --- #
-		handleData = {
-			time: -1
-			left: -1
-			selected: false
-			show: false
-			}
+		
 
-		@options.startHandleData = new can.Map(handleData)
-		@options.endHandleData = new can.Map(handleData)
+		@options.startHandleData = new can.Map(mve.handleData)
+		@options.endHandleData = new can.Map(mve.handleData)
 		viewData.attr('startHandleData', @options.startHandleData)
 		viewData.attr('endHandleData', @options.endHandleData)
 
-		@options.handleMiddle = new can.Map({
-			left: false
-			width: false
-			show: false
-			})
+		@options.handleMiddle = new can.Map( mve.handleMiddleData)
 		viewData.attr('handleMiddle', @options.handleMiddle)
 
+		@options.sliderButtons = new can.Map({
+			show: false
+			showNewMove: true
+			showZoomIn: true
+			showZoomOut: false
+			left: false
+			})
+
+		viewData.attr('sliderButtons', @options.sliderButtons)
+
 		# --- JS Movements --- #
-		@movements = new Movement.List(Movement.devMovements)
-		viewData.attr('movements', @movements)
+		# @movements = new Movement.List(Movement.devMovements)
+		@options.movements = @loadMovements()
+		viewData.attr('movements', @options.movements)
 
 		@timeControls = new MVE_TimeControls(@element, {viewData: viewData, app: _this})
 		@sliderControls = new MVE_SliderControls(@element, {viewData: viewData, app: _this})
@@ -119,6 +140,13 @@ MVEPlayerApp = can.Control.extend({
 		player = {}
 		@player = player
 		_this = @
+
+
+		pathname = window.location.pathname
+
+		if pathname isnt '/'
+			@options.videoId = pathname.slice(1)
+
 
 		# Just pass on the event
 		onPlayerReady = (event) -> 
@@ -232,12 +260,38 @@ MVEPlayerApp = can.Control.extend({
 
 	handleStateChange: (_this, newState, oldState, superStateName) ->
 		console.log(superState: superStateName, newState: newState.name, oldState: oldState.name)
+		
+
+
 		oldState.leave(_this).done( () ->
 			# console.log(doneLeaving: oldState.name)
 			newState.enter(_this).done( () ->
 				# console.log(doneEntering: newState.name)
 				)
 			)
+
+
+	# ===================== Movements ============== #
+
+	# Why are the movements here? Why aren't they in the movements controls?
+	# maybe because other things might want them, but I'm not entirely sure
+
+
+	loadMovements: () ->
+		switch @options.storageSetting
+			when 'LOCAL'
+				return new Movement.List( MVE_Storage.getMovementsRaw(@options.videoId) )
+			when 'SERVER'
+				return new Movement.findAll('some parameter TODO') 
+			when 'DEV'
+				return new Movement.List(Movement.devMovements)
+
+	"{movements} change": (movements, ev, index, event, changedMovements) ->
+		switch @options.storageSetting
+			when 'LOCAL'
+				# console.log("Saving to local...")
+				MVE_Storage.saveMovements(@options.videoId, movements.attr())
+
 
 
 })

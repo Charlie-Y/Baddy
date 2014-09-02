@@ -5,7 +5,7 @@
     <span class="total-time right-time time"> {{totalTimeObs}}</span> 
   </div>
 
-  <div class="slider-bar">
+  <div class="slider-bar bar-wrap">
     <div class="slider-labels">
       {{#sliderLabels}}
       <span class="slider-label {{type}}" style="left:{{left}};"></span>
@@ -18,7 +18,7 @@
     
     {{#sliderBubbleData}}
     <div class="slider-bubble {{^show}} hide {{/show}}" style="left:{{left}};">
-      <h4 class="bubble-time">{{time}}</h4>
+      <h4 class="bubble-time">{{formattedTime time}}</h4>
       <img class="bubble-img {{#highQuality}} hd {{/highQuality}}" src="{{deadPixel}}" alt=""
       style="background-image: url({{src}}); background-size:{{backgroundSize}}; background-position:{{backgroundPosition}}};"
 
@@ -26,6 +26,8 @@
     </div>  
     {{/sliderBubbleData}}
 
+
+    {{! Move indicators }}
     {{#startHandleData}}
     <div class="slider-handle start-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
       <div class="handle-bar"></div>
@@ -45,6 +47,62 @@
     {{/endHandleData}}
 
 
+    {{! Drag indicators }}
+    {{#dragStartHandle}}
+    <div class="slider-handle start-handle drag-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
+      <div class="handle-bar"></div>
+      <div class="handle-bubble">{{formattedTime time}}</div>
+    </div>
+    {{/dragStartHandle}}
+    {{#dragMiddle}}
+    <div class="handle-middle drag-middle {{^show}} hide {{/show}}" style="left:{{left}}; width:{{width}};"></div>
+    {{/dragMiddle}}
+    {{#dragEndHandle}}
+    <div class="slider-handle end-handle drag-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
+      <div class="handle-bar"></div>
+      <div class="handle-bubble">{{formattedTime time}}</div>
+    </div>
+    {{/dragEndHandle}}
+
+
+
+
   </div>
 </div>
-<div class="slider-spacer spacer-bottom"></div>
+<div class="slider-spacer spacer-bottom">
+  <div class="bar-wrap">
+
+    {{#sliderButtons}}
+    <div class="spacer {{^show}} hide {{/show}}"></div>
+
+    <div class="slider-buttons {{^show}} hide {{/show}}" style="left:{{left}};">
+      
+      <button type="button" class="drag-new-move {{^showNewMove}} hide {{/showNewMove}}">
+        <i class="fa fa-plus-square"></i>
+      </button>
+
+      <button type="button" class="drag-zoom zoom-in {{^showZoomIn}} hide {{/showZoomIn}}">
+        <i class="fa fa-search-plus"></i>
+      </button>
+
+      <button type="button" class="drag-zoom  zoom-out{{^showZoomOut}} hide {{/showZoomOut}}">
+        <i class="fa fa-search-minus"></i>
+      </button>
+
+    </div>
+    {{/sliderButtons}}
+  </div>    
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+

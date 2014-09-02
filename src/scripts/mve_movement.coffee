@@ -38,10 +38,11 @@ Movement = can.Model.extend({
 	endTime: false
 	movementId: false
 	validated: false
-	videoId: false
+	# videoId: false
 	name: false
-	playing: false
-	saved: false
+	current: false
+	# playing: false
+	# saved: false
 
 	init: () ->
 

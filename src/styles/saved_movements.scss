@@ -16,6 +16,10 @@
 		background: #565656;
 		padding: 20px;
 		margin-bottom: 12px;
+		cursor: pointer;
+		&:hover{
+			background:tint(#565656, 10);
+		}
 		.fa{
 			cursor: pointer;
 			&:hover{
@@ -34,8 +38,8 @@
 		.end-time{
 
 		}
-		&.playing{
-			background:#6fffe7;
+		&.current{
+			background:#c2c2c2;
 			color: white;
 			.fa{
 				color: white;

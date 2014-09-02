@@ -3,25 +3,11 @@
 
 #https://github.com/bulutcy/youtube-storyboard/blob/master/youtube-storyboard/storyboard.js
 
-###
-
-
-Development guidelines
-
-
-
-- use options.elements for elements
-
-
-###
-
-console.log("RRAAA")
 
 # mve = window.mve or {} 
 
 mve = {}
-window.mve = mve
-
+# window.mve = mve
 mve.mustachePath = 'mustache/'
 
 mve.mustacheFor = (fileNameNoExt) ->
@@ -81,6 +67,18 @@ mve.PS = {
 	VIDEO_CUED: 5
 }
 
+mve.handleData = {
+	time: -1
+	left: -1
+	selected: false
+	show: false
+	}
+
+mve.handleMiddleData = {
+	left: false
+	width: false
+	show: false
+	}
 
 
 

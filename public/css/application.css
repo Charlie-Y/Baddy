@@ -124,13 +124,16 @@ ul.inline-list li {
 .controls.player-slider .slider-bar {
   cursor: pointer;
   height: 30px;
-  width: 885.6px;
-  left: 97.2px;
-  position: relative;
   z-index: 7;
   background: #bfbfbf;
 }
-/* line 30, ../../src/styles/slider.scss */
+/* line 28, ../../src/styles/slider.scss */
+.controls.player-slider .bar-wrap {
+  width: 885.6px;
+  left: 97.2px;
+  position: relative;
+}
+/* line 33, ../../src/styles/slider.scss */
 .controls.player-slider .slider-progress {
   background: red;
   -webkit-transition: width 0.1s linear;
@@ -139,7 +142,7 @@ ul.inline-list li {
   transition: width 0.1s linear;
   z-index: 2;
 }
-/* line 36, ../../src/styles/slider.scss */
+/* line 39, ../../src/styles/slider.scss */
 .controls.player-slider .slider-progress.show-end:after {
   position: absolute;
   content: " ";
@@ -150,24 +153,24 @@ ul.inline-list li {
   width: 2px;
   height: 100%;
 }
-/* line 54, ../../src/styles/slider.scss */
+/* line 57, ../../src/styles/slider.scss */
 .controls.player-slider .slider-loaded {
   z-index: 1;
   background: #d2d2d2;
 }
-/* line 59, ../../src/styles/slider.scss */
+/* line 62, ../../src/styles/slider.scss */
 .controls.player-slider .slider-mouser {
-  background: white;
+  background: rgba(169, 0, 0, 0.1);
   left: -3px;
   width: 3px;
   z-index: 3;
 }
-/* line 66, ../../src/styles/slider.scss */
+/* line 71, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels {
   width: 100%;
   z-index: 4;
 }
-/* line 70, ../../src/styles/slider.scss */
+/* line 77, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label {
   width: 0;
   position: absolute;
@@ -175,73 +178,78 @@ ul.inline-list li {
   height: 100%;
   border-left: 1px solid rgba(255, 255, 255, 0.6);
 }
-/* line 76, ../../src/styles/slider.scss */
+/* line 83, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label.full {
   height: 80%;
 }
-/* line 79, ../../src/styles/slider.scss */
+/* line 86, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label.half {
   height: 50%;
 }
-/* line 84, ../../src/styles/slider.scss */
+/* line 93, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time {
   width: 100%;
   z-index: 6;
   line-height: 30px;
 }
-/* line 90, ../../src/styles/slider.scss */
+/* line 99, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time {
   font-size: 12px;
   color: grey;
 }
-/* line 94, ../../src/styles/slider.scss */
+/* line 103, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time.left-time {
   float: left;
   margin-left: 10px;
 }
-/* line 98, ../../src/styles/slider.scss */
+/* line 107, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time.right-time {
   float: right;
   margin-right: 12px;
 }
-/* line 105, ../../src/styles/slider.scss */
+/* line 114, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer {
   position: relative;
   z-index: 1;
-  height: 15px;
   width: 100%;
+  min-height: 15px;
   background: black;
 }
-/* line 111, ../../src/styles/slider.scss */
-.controls.player-slider .slider-spacer.spacer-bottom {
-  height: 20px;
+/* line 123, ../../src/styles/slider.scss */
+.controls.player-slider .slider-spacer.spacer-bottom .bar-wrap {
+  height: 100%;
 }
-/* line 115, ../../src/styles/slider.scss */
+/* line 130, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time {
   height: 20px;
   line-height: 20px;
   font-size: 12px;
   display: inline-block;
 }
-/* line 120, ../../src/styles/slider.scss */
+/* line 135, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.zero-time {
   color: grey;
   float: left;
   margin-left: 48.6px;
 }
-/* line 125, ../../src/styles/slider.scss */
+/* line 140, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.current-time {
   color: white;
   width: 50px;
   text-align: center;
 }
-/* line 132, ../../src/styles/slider.scss */
+/* line 147, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.total-time {
   color: grey;
   float: right;
   margin-right: 48.6px;
 }
-/* line 139, ../../src/styles/slider.scss */
+/* line 153, ../../src/styles/slider.scss */
+.controls.player-slider .slider-spacer .spacer {
+  width: 1px;
+  height: 30px;
+}
+/* line 158, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -253,12 +261,12 @@ ul.inline-list li {
   line-height: 15px;
   top: -18px;
 }
-/* line 150, ../../src/styles/slider.scss */
+/* line 169, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-time {
   font-size: 12px;
   color: white;
 }
-/* line 154, ../../src/styles/slider.scss */
+/* line 173, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-img {
   height: 60px;
   width: 80px;
@@ -266,13 +274,13 @@ ul.inline-list li {
   top: -60px;
   left: -10px;
 }
-/* line 161, ../../src/styles/slider.scss */
+/* line 180, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-img.hd {
   width: 106px;
   height: 60px;
   left: -20px;
 }
-/* line 170, ../../src/styles/slider.scss */
+/* line 189, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle {
   z-index: 6;
   -webkit-transition: left 0.2s ease-in;
@@ -280,13 +288,13 @@ ul.inline-list li {
   -o-transition: left 0.2s ease-in;
   transition: left 0.2s ease-in;
 }
-/* line 174, ../../src/styles/slider.scss */
+/* line 193, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle .handle-bar {
   width: 2px;
   height: 100%;
   background: white;
 }
-/* line 179, ../../src/styles/slider.scss */
+/* line 198, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle .handle-bubble {
   background: rgba(0, 0, 0, 0.9);
   position: absolute;
@@ -300,19 +308,26 @@ ul.inline-list li {
   color: white;
   font-size: 12px;
 }
-/* line 194, ../../src/styles/slider.scss */
+/* line 213, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected {
   z-index: 7;
 }
-/* line 196, ../../src/styles/slider.scss */
+/* line 215, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected .handle-bar {
   background: #4de1ff;
 }
-/* line 199, ../../src/styles/slider.scss */
+/* line 218, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected .handle-bubble {
   color: #4de1ff;
 }
-/* line 204, ../../src/styles/slider.scss */
+/* line 222, ../../src/styles/slider.scss */
+.controls.player-slider .slider-handle.drag-handle {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+/* line 226, ../../src/styles/slider.scss */
 .controls.player-slider .handle-middle {
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
@@ -320,6 +335,27 @@ ul.inline-list li {
   transition: all 0.2s ease-in;
   z-index: 2;
   background: rgba(0, 0, 255, 0.2);
+}
+/* line 232, ../../src/styles/slider.scss */
+.controls.player-slider .handle-middle.drag-middle {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+/* line 238, ../../src/styles/slider.scss */
+.controls.player-slider .slider-buttons {
+  position: absolute;
+  width: 0;
+  height: 30px;
+  top: 0;
+  line-height: 30px;
+  white-space: nowrap;
+}
+/* line 245, ../../src/styles/slider.scss */
+.controls.player-slider .slider-buttons button {
+  background: #cecece;
+  border: none;
 }
 
 /* line 54, ../../src/styles/globals.scss */
@@ -611,43 +647,52 @@ ul.inline-list li {
 .controls.player-movement .new-movement .time-wrap .time-val-wrap .saved-time {
   text-align: center;
   width: 100%;
+  cursor: pointer;
 }
 /* line 121, ../../src/styles/movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap .saved-time:hover, .controls.player-movement .new-movement .time-wrap .time-val-wrap .controls.player-time .rates .saved-time.playback-rate.active-rate, .controls.player-time .rates .controls.player-movement .new-movement .time-wrap .time-val-wrap .saved-time.playback-rate.active-rate {
+  color: #92e8ff;
+}
+/* line 125, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-val-wrap .temp-time {
   display: none;
   width: 100%;
 }
-/* line 125, ../../src/styles/movement.scss */
+/* line 129, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time {
   padding-top: 5px;
 }
-/* line 128, ../../src/styles/movement.scss */
+/* line 132, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .temp-time {
   display: block;
 }
-/* line 132, ../../src/styles/movement.scss */
+/* line 136, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .saved-time {
   color: #858585;
   font-size: 12px;
   margin-bottom: 10px;
 }
-/* line 142, ../../src/styles/movement.scss */
+/* line 140, ../../src/styles/movement.scss */
+.controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .saved-time:hover, .controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .controls.player-time .rates .saved-time.playback-rate.active-rate, .controls.player-time .rates .controls.player-movement .new-movement .time-wrap .time-val-wrap.show-temp-time .saved-time.playback-rate.active-rate {
+  color: #92e8ff;
+}
+/* line 150, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-button-wrap {
   display: flex;
 }
-/* line 145, ../../src/styles/movement.scss */
+/* line 153, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-button-wrap button {
   font-size: 15px;
   width: 50%;
   background: none;
   color: #5e5e5e;
 }
-/* line 150, ../../src/styles/movement.scss */
+/* line 158, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .time-button-wrap button:hover, .controls.player-movement .new-movement .time-wrap .time-button-wrap .controls.player-time .rates button.playback-rate.active-rate, .controls.player-time .rates .controls.player-movement .new-movement .time-wrap .time-button-wrap button.playback-rate.active-rate {
   color: #5e5e5e;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 163, ../../src/styles/movement.scss */
+/* line 171, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .edit-time {
   position: absolute;
   cursor: pointer;
@@ -657,17 +702,17 @@ ul.inline-list li {
   top: 20px;
   right: 30px;
 }
-/* line 172, ../../src/styles/movement.scss */
+/* line 180, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .time-wrap .edit-time:hover, .controls.player-movement .new-movement .time-wrap .controls.player-time .rates .edit-time.playback-rate.active-rate, .controls.player-time .rates .controls.player-movement .new-movement .time-wrap .edit-time.playback-rate.active-rate {
   color: #5b5b5b;
 }
-/* line 179, ../../src/styles/movement.scss */
+/* line 187, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .new-move-controls .block-button {
   display: block;
   height: 33.33%;
   background: none;
 }
-/* line 183, ../../src/styles/movement.scss */
+/* line 191, ../../src/styles/movement.scss */
 .controls.player-movement .new-movement .new-move-controls .block-button:hover, .controls.player-movement .new-movement .new-move-controls .controls.player-time .rates .block-button.playback-rate.active-rate, .controls.player-time .rates .controls.player-movement .new-movement .new-move-controls .block-button.playback-rate.active-rate {
   background: rgba(0, 0, 0, 0.1);
 }
@@ -742,26 +787,31 @@ ul.inline-list li {
   background: #565656;
   padding: 20px;
   margin-bottom: 12px;
+  cursor: pointer;
 }
-/* line 19, ../../src/styles/saved_movements.scss */
+/* line 20, ../../src/styles/saved_movements.scss */
+.controls.saved-movements .movement-li:hover, .controls.saved-movements .controls.player-time .rates .movement-li.playback-rate.active-rate, .controls.player-time .rates .controls.saved-movements .movement-li.playback-rate.active-rate {
+  background: #666666;
+}
+/* line 23, ../../src/styles/saved_movements.scss */
 .controls.saved-movements .movement-li .fa {
   cursor: pointer;
 }
-/* line 21, ../../src/styles/saved_movements.scss */
+/* line 25, ../../src/styles/saved_movements.scss */
 .controls.saved-movements .movement-li .fa:hover, .controls.saved-movements .movement-li .controls.player-time .rates .fa.playback-rate.active-rate, .controls.player-time .rates .controls.saved-movements .movement-li .fa.playback-rate.active-rate {
   color: #4de1ff;
 }
-/* line 24, ../../src/styles/saved_movements.scss */
+/* line 28, ../../src/styles/saved_movements.scss */
 .controls.saved-movements .movement-li .fa:active {
   color: #00bfe6;
 }
-/* line 37, ../../src/styles/saved_movements.scss */
-.controls.saved-movements .movement-li.playing {
-  background: #6fffe7;
+/* line 41, ../../src/styles/saved_movements.scss */
+.controls.saved-movements .movement-li.current {
+  background: #c2c2c2;
   color: white;
 }
-/* line 40, ../../src/styles/saved_movements.scss */
-.controls.saved-movements .movement-li.playing .fa {
+/* line 44, ../../src/styles/saved_movements.scss */
+.controls.saved-movements .movement-li.current .fa {
   color: white;
 }
 
@@ -820,18 +870,23 @@ body {
 
 /* line 65, ../../src/styles/application.scss */
 .main-wrap {
+  display: flex;
   height: 1000px;
 }
 
-/* line 69, ../../src/styles/application.scss */
+/* line 70, ../../src/styles/application.scss */
 .main-video-column {
-  width: 1080px;
-  margin: 0 auto;
+  min-width: 1080px;
   height: 100%;
   background: #292929;
 }
 
-/* line 76, ../../src/styles/application.scss */
+/* line 77, ../../src/styles/application.scss */
+.side-column {
+  min-width: 300px;
+}
+
+/* line 82, ../../src/styles/application.scss */
 .player-wrap {
   -webkit-transition: -webkit-transform 0.3s ease-in;
   -moz-transition: -moz-transform 0.3s ease-in;
@@ -840,11 +895,11 @@ body {
   background: black;
   height: 558px;
 }
-/* line 81, ../../src/styles/application.scss */
+/* line 87, ../../src/styles/application.scss */
 .player-wrap div#player {
   background: #0000ff;
 }
-/* line 84, ../../src/styles/application.scss */
+/* line 90, ../../src/styles/application.scss */
 .player-wrap.flipped {
   -webkit-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
@@ -853,13 +908,13 @@ body {
   transform: scaleX(-1);
 }
 
-/* line 91, ../../src/styles/application.scss */
+/* line 97, ../../src/styles/application.scss */
 .time-movement-controls {
   white-space: nowrap;
   display: flex;
   flex-wrap: nowrap;
 }
-/* line 96, ../../src/styles/application.scss */
+/* line 102, ../../src/styles/application.scss */
 .time-movement-controls .controls {
   background: black;
   position: relative;
