@@ -79,12 +79,18 @@
 			position: absolute;
 			bottom: 0;
 			height: 100%;
-			border-left: 1px solid rgba(255,255,255,.6); 
+			border-left: 1px solid rgba(0,0,0,.3); 
 			&.full{
-				height: 80%;
+				color: rgba(0,0,0,.6);
+				line-height: 50px;
+				font-size: 15px;
+				height: 100%;
 			}
 			&.half{
 				height: 50%;
+			}
+			.slider-label-text{
+				margin-left: 2px;
 			}
 		}
 	}

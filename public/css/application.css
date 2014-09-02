@@ -176,38 +176,45 @@ ul.inline-list li {
   position: absolute;
   bottom: 0;
   height: 100%;
-  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
 }
 /* line 83, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label.full {
-  height: 80%;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 50px;
+  font-size: 15px;
+  height: 100%;
 }
-/* line 86, ../../src/styles/slider.scss */
+/* line 89, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label.half {
   height: 50%;
 }
-/* line 93, ../../src/styles/slider.scss */
+/* line 92, ../../src/styles/slider.scss */
+.controls.player-slider .slider-labels .slider-label .slider-label-text {
+  margin-left: 2px;
+}
+/* line 99, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time {
   width: 100%;
   z-index: 6;
   line-height: 30px;
 }
-/* line 99, ../../src/styles/slider.scss */
+/* line 105, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time {
   font-size: 12px;
   color: grey;
 }
-/* line 103, ../../src/styles/slider.scss */
+/* line 109, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time.left-time {
   float: left;
   margin-left: 10px;
 }
-/* line 107, ../../src/styles/slider.scss */
+/* line 113, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time.right-time {
   float: right;
   margin-right: 12px;
 }
-/* line 114, ../../src/styles/slider.scss */
+/* line 120, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer {
   position: relative;
   z-index: 1;
@@ -215,41 +222,41 @@ ul.inline-list li {
   min-height: 15px;
   background: black;
 }
-/* line 123, ../../src/styles/slider.scss */
+/* line 129, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer.spacer-bottom .bar-wrap {
   height: 100%;
 }
-/* line 130, ../../src/styles/slider.scss */
+/* line 136, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time {
   height: 20px;
   line-height: 20px;
   font-size: 12px;
   display: inline-block;
 }
-/* line 135, ../../src/styles/slider.scss */
+/* line 141, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.zero-time {
   color: grey;
   float: left;
   margin-left: 48.6px;
 }
-/* line 140, ../../src/styles/slider.scss */
+/* line 146, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.current-time {
   color: white;
   width: 50px;
   text-align: center;
 }
-/* line 147, ../../src/styles/slider.scss */
+/* line 153, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.total-time {
   color: grey;
   float: right;
   margin-right: 48.6px;
 }
-/* line 153, ../../src/styles/slider.scss */
+/* line 159, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .spacer {
   width: 1px;
   height: 30px;
 }
-/* line 158, ../../src/styles/slider.scss */
+/* line 164, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -261,12 +268,12 @@ ul.inline-list li {
   line-height: 15px;
   top: -18px;
 }
-/* line 169, ../../src/styles/slider.scss */
+/* line 175, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-time {
   font-size: 12px;
   color: white;
 }
-/* line 173, ../../src/styles/slider.scss */
+/* line 179, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-img {
   height: 60px;
   width: 80px;
@@ -274,13 +281,13 @@ ul.inline-list li {
   top: -60px;
   left: -10px;
 }
-/* line 180, ../../src/styles/slider.scss */
+/* line 186, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-img.hd {
   width: 106px;
   height: 60px;
   left: -20px;
 }
-/* line 189, ../../src/styles/slider.scss */
+/* line 195, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle {
   z-index: 6;
   -webkit-transition: left 0.2s ease-in;
@@ -288,13 +295,13 @@ ul.inline-list li {
   -o-transition: left 0.2s ease-in;
   transition: left 0.2s ease-in;
 }
-/* line 193, ../../src/styles/slider.scss */
+/* line 199, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle .handle-bar {
   width: 2px;
   height: 100%;
   background: white;
 }
-/* line 198, ../../src/styles/slider.scss */
+/* line 204, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle .handle-bubble {
   background: rgba(0, 0, 0, 0.9);
   position: absolute;
@@ -308,26 +315,26 @@ ul.inline-list li {
   color: white;
   font-size: 12px;
 }
-/* line 213, ../../src/styles/slider.scss */
+/* line 219, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected {
   z-index: 7;
 }
-/* line 215, ../../src/styles/slider.scss */
+/* line 221, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected .handle-bar {
   background: #4de1ff;
 }
-/* line 218, ../../src/styles/slider.scss */
+/* line 224, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected .handle-bubble {
   color: #4de1ff;
 }
-/* line 222, ../../src/styles/slider.scss */
+/* line 228, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.drag-handle {
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
   transition: none;
 }
-/* line 226, ../../src/styles/slider.scss */
+/* line 232, ../../src/styles/slider.scss */
 .controls.player-slider .handle-middle {
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
@@ -336,14 +343,14 @@ ul.inline-list li {
   z-index: 2;
   background: rgba(0, 0, 255, 0.2);
 }
-/* line 232, ../../src/styles/slider.scss */
+/* line 238, ../../src/styles/slider.scss */
 .controls.player-slider .handle-middle.drag-middle {
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
   transition: none;
 }
-/* line 238, ../../src/styles/slider.scss */
+/* line 244, ../../src/styles/slider.scss */
 .controls.player-slider .slider-buttons {
   position: absolute;
   width: 0;
@@ -352,7 +359,7 @@ ul.inline-list li {
   line-height: 30px;
   white-space: nowrap;
 }
-/* line 245, ../../src/styles/slider.scss */
+/* line 251, ../../src/styles/slider.scss */
 .controls.player-slider .slider-buttons button {
   background: #cecece;
   border: none;

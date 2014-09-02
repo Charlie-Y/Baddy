@@ -6,12 +6,24 @@
   </div>
 
   <div class="slider-bar bar-wrap">
+    
+
+
+
     <div class="slider-labels">
       {{#sliderLabels}}
-      <span class="slider-label {{type}}" style="left:{{left}};"></span>
+      <div class="slider-label {{type}}" style="left:{{left}};">
+        
+        <div class="slider-label-text">
+          {{timeLabel}}
+        </div>
+      </div>
       {{/sliderLabels}}
     </div>
     
+
+
+
     <div class="slider-progress show-end"></div>
     <div class="slider-loaded"></div>
     <div class="slider-mouser hide"></div>

@@ -883,8 +883,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     this.options.playMoveState = this.app.options.playMoveState;
     this.options.playMoveState(this.PMS.NONE);
     this.on();
-    this.options.playMoveState(this.PMS.NONE);
-    return this.options.newMoveState(this.NMS.DONE);
+    return this.options.playMoveState(this.PMS.NONE);
   },
   NMS: {
     NONE: {
@@ -1428,7 +1427,7 @@ MVE_SliderControls = MVE_Plugin.extend({
   },
   onPlayerReady: function() {
     this._super();
-    return this.labelSliderBar();
+    return this.labelSliderBar(0, this.duration);
   },
   onPlayerInterval: function() {
     var currentTime, loadedPercentage, percentage;
@@ -1526,7 +1525,6 @@ MVE_SliderControls = MVE_Plugin.extend({
   "{playerSliderSelector} click": function(el, ev) {
     var clickWidth, percentage, sliderWidth, timeFromPercent;
     mve.disableEvent(ev);
-    console.log('click');
     if (this.options.dragMoveState() === this.DMS.MOVED) {
       return;
     }
@@ -1570,7 +1568,7 @@ MVE_SliderControls = MVE_Plugin.extend({
   },
   handleDragMouseUp: function() {
     if (this.options.dragMoveState() === this.DMS.MOVED) {
-      this.showDragMoveButtons();
+      this.showDragMoveButtons(this.options.dragStartHandle.time + this.options.dragEndHandle.time);
     } else if (this.options.dragMoveState() === this.DMS.DOWN) {
       this.options.dragStartHandle.attr('show', false);
       this.options.dragMiddle.attr('show', false);
@@ -1578,10 +1576,10 @@ MVE_SliderControls = MVE_Plugin.extend({
     }
     return this.options.dragMoveState(this.DMS.DONE);
   },
-  showDragMoveButtons: function() {
+  showDragMoveButtons: function(startTime, endTime) {
     var middleVal, newLeft, o;
     o = this.options;
-    middleVal = (o.dragStartHandle.time + o.dragEndHandle.time) / 2;
+    middleVal = (startTime + endTime) / 2;
     newLeft = this.percentForTime(middleVal);
     o.sliderButtons.attr('show', true);
     o.sliderButtons.attr('showNewMove', true);
@@ -1611,12 +1609,71 @@ MVE_SliderControls = MVE_Plugin.extend({
     return mve.disableEvent(ev);
   },
   "{zoomInSelector} click": function(el, ev) {
-    return mve.disableEvent(ev);
+    mve.disableEvent(ev);
+    return console.log("zoomInSelector click");
   },
-  labelSliderBar: function() {
-    var sliderBar, width;
+
+  /*
+  
+  	labelOptions: {
+  		showMins: true
+  		minInterval: 1 
+  		
+  		showSeconds: true
+  		secondsInterval: 30
+  
+  		showHours: false
+  		hoursInterval: 1 
+  		}
+  
+  	 * globalLabelOptions
+  	GLO: {
+  		majorLabelsVisible: 5
+  	}
+  
+  	 * lets not worry about the minor labels for now
+  
+  
+  	 *  Intervals will be 10, 5, 1, 30s, 5s, 1s
+  
+  	from 6 * this interval -- 6 * next interval, show this interval's count
+  
+  	60  - 30 mins 	show 10m
+  	30  - 6 mins 	show 5m
+  	6   - 3 mins 	show 1m
+  	3   - 30s 		show 30s
+  	30s - 6s 		show 5s
+  	6s  - 3s 		show 1s
+  	3s  - .5s 		show .5s
+   */
+  labelOptionsForTime: function(minTime, maxTime) {
+    var HOUR, MINUTE, duration, result;
+    result = {};
+    duration = maxTime - minTime;
+    HOUR = 60 * 60;
+    MINUTE = 60;
+    if (duration < HOUR) {
+      return result.showMins = true;
+    }
+  },
+  labelSliderBar: function(minTime, maxTime) {
+    var minutes, num, sliderBar, width, _i, _results;
+    console.log({
+      minTime: minTime,
+      maxTime: maxTime
+    });
     sliderBar = this.element.find('.slider-bar');
-    return width = sliderBar.width();
+    width = sliderBar.width();
+    minutes = Math.floor(this.duration / 60);
+    _results = [];
+    for (num = _i = 1; 1 <= minutes ? _i <= minutes : _i >= minutes; num = 1 <= minutes ? ++_i : --_i) {
+      _results.push(this.sliderLabels.push({
+        left: "" + (num * 60 / this.duration * 100) + "%",
+        type: 'full',
+        timeLabel: "" + num + "m"
+      }));
+    }
+    return _results;
   }
 });
 

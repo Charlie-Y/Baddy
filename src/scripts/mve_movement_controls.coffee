@@ -80,7 +80,7 @@ MVE_MovementControls = MVE_Plugin.extend({
 
 		#  call @on first so that the control can react to this binding
 		@options.playMoveState(@PMS.NONE)
-		@options.newMoveState(@NMS.DONE)
+		# @options.newMoveState(@NMS.DONE)
 
 
 

@@ -80,7 +80,7 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	onPlayerReady: () ->
 		@_super()
-		@labelSliderBar()
+		@labelSliderBar(0, @duration)
 		# @loadSighData()
 
 	onPlayerInterval: () ->
@@ -226,7 +226,7 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	"{playerSliderSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
-		console.log('click')
+		# console.log('click')
 
 		if @options.dragMoveState() is @DMS.MOVED
 			return
@@ -301,7 +301,7 @@ MVE_SliderControls = MVE_Plugin.extend({
 	handleDragMouseUp: () ->
 
 		if @options.dragMoveState() is @DMS.MOVED
-			@showDragMoveButtons()
+			@showDragMoveButtons(@options.dragStartHandle.time + @options.dragEndHandle.time )
 		else if @options.dragMoveState() is @DMS.DOWN
 			@options.dragStartHandle.attr('show', false)
 			@options.dragMiddle.attr('show', false)
@@ -316,16 +316,16 @@ MVE_SliderControls = MVE_Plugin.extend({
 		# if @mousemove
 
 
-	showDragMoveButtons: () ->
+	showDragMoveButtons: (startTime, endTime) ->
 		# get the middle value
 		o = @options
 		
-		middleVal = ( o.dragStartHandle.time + o.dragEndHandle.time ) / 2
+		middleVal = ( startTime + endTime ) / 2
 		newLeft = @percentForTime(middleVal)
 
 		# console.log(newLeft: newLeft)
 
-		# TODO - center this naturally
+		# TODO - center this better...
 		o.sliderButtons.attr('show', true)
 		o.sliderButtons.attr('showNewMove', true)
 
@@ -366,6 +366,7 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	"{zoomInSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
+		console.log("zoomInSelector click")
 
 
 
@@ -373,21 +374,72 @@ MVE_SliderControls = MVE_Plugin.extend({
 	# label a small one every half minute
 	# label: {left: % | px, type: full | half}
 
+	###
+
+	labelOptions: {
+		showMins: true
+		minInterval: 1 
+		
+		showSeconds: true
+		secondsInterval: 30
+
+		showHours: false
+		hoursInterval: 1 
+		}
+
+	# globalLabelOptions
+	GLO: {
+		majorLabelsVisible: 5
+	}
+
+	# lets not worry about the minor labels for now
+
+
+	#  Intervals will be 10, 5, 1, 30s, 5s, 1s
+
+	from 6 * this interval -- 6 * next interval, show this interval's count
+
+	60  - 30 mins 	show 10m
+	30  - 6 mins 	show 5m
+	6   - 3 mins 	show 1m
+	3   - 30s 		show 30s
+	30s - 6s 		show 5s
+	6s  - 3s 		show 1s
+	3s  - .5s 		show .5s
+
+	###
+
+	labelOptionsForTime: (minTime, maxTime) ->
+		result = {}
+
+		duration = maxTime - minTime # in seconds
+
+		HOUR = 60 * 60
+		MINUTE = 60
+
+		if duration < HOUR
+			result.showMins = true
+
+
+
+
+
 	# THIS IS REALLY HARD
 
-	labelSliderBar: () ->
+	labelSliderBar: (minTime, maxTime) ->
+		console.log(minTime: minTime, maxTime: maxTime)
+
 		sliderBar = @element.find('.slider-bar')
 		width = sliderBar.width()
-		# console.log(duration: @duration)
 
-
-		# halfminutes = Math.floor( @duration / 60)
-		# for num in [1..minutes]
-		# 	@sliderLabels.push(
-		# 		{
-		# 			left: "#{ num * 60 / @duration * 100 }%"
-		# 			type: 'full'
-		# 		})
+		minutes = Math.floor( @duration / 60)
+		for num in [1..minutes]
+			@sliderLabels.push(
+				{
+					left: "#{ num * 60 / @duration * 100 }%"
+					type: 'full'
+					timeLabel: "#{num}m"
+				})
 
 
 })
