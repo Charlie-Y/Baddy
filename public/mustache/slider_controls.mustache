@@ -20,6 +20,12 @@
       </div>
       {{/sliderLabels}}
     </div>
+
+    <div class="pause-points  {{^showPausePoints}} hide {{/showPausePoints}}">
+      {{#pausePoints}}
+      <div class="pause-point-label {{#visited}} visited {{/visited}}" style="left:{{left}}"></div>
+      {{/pausePoints}}
+    </div>
     
 
 

@@ -64,11 +64,8 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 		# ----- Drag State machine stuff ---- #		 	
 
-		@app.setupState(@DMS)
-		@app.options.dragMoveState = can.compute()
-		@options.dragMoveState = @app.options.dragMoveState
-		@options.dragMoveState(@DMS.NONE)
-
+		@app.fullSetupState(@DMS, @, 'dragMoveState')
+		@app.fullSetupState(@ZS, @, 'zoomState')
 
 		# ------ Buttons etc ----- #
 
@@ -88,9 +85,13 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	onPlayerInterval: () ->
 		@_super()
+		if !@app.playerIsReady
+			return 
+
 		currentTime = @player.getCurrentTime()
 		# update the bar
-		percentage = "#{@percentForTime(currentTime)*100}%"
+		percentage = "#{@modWidth(currentTime - @displayStartTime)}%"
+		# percentage = "#{@percentForTime(currentTime)*100}%"
 		# console.log(percentage)
 		@app.options.sliderProgressBar.width( percentage )
 
@@ -150,7 +151,13 @@ MVE_SliderControls = MVE_Plugin.extend({
 	timeFromX: (x) ->
 		totalWidth = @app.options.slider.width()
 		percentage = x / totalWidth;
-		time = @duration * percentage;
+		
+		duration = @displayEndTime - @displayStartTime
+
+		time = duration * percentage + @displayStartTime;
+
+
+
 		return time;
 
 	"{playerSliderSelector} mouseleave": (el, ev) ->
@@ -211,10 +218,6 @@ MVE_SliderControls = MVE_Plugin.extend({
 		}
 	}
 
-	# Zoom Steate
-	ZS: {
-
-	}
 
 
 	# ------------------- Drag + create stuff ----------------- #
@@ -237,16 +240,19 @@ MVE_SliderControls = MVE_Plugin.extend({
 			return
 
 		@movementControls().cancelMovePlay()
-		sliderWidth = @app.options.slider.width()
+		# sliderWidth = @app.options.slider.width()
 		# clickWidth = event.pageX - @slider.get(0).offsetLeft
-		clickWidth = event.pageX - @app.options.slider.offset().left
-		percentage = clickWidth / sliderWidth
-		timeFromPercent = @duration * percentage
+		# clickWidth = event.pageX - @app.options.slider.offset().left
+		# percentage = clickWidth / sliderWidth
+		# timeFromPercent = @duration * percentage
+
+		time = @timeFromSliderMouse(el,ev)
+
 		# @sliderBar.width("#{percentage * 100}%")
 		if @options.playerState() is mve.PS.UNSTARTED
 			@player.playVideo()
 
-		@player.seekTo(timeFromPercent)
+		@player.seekTo(time)
 
 
 	"{playerSliderSelector} mousedown": (el, ev) ->
@@ -293,11 +299,11 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 			# TODO - debounce on the seekTo
 			@player.pauseVideo()
-			# @player.seekTo(@timeFromSliderMouse(el,ev))
 
 			@updateHandleMiddle(@options.dragMiddle, @options.dragStartHandle.time, @options.dragEndHandle.time, @options.dragStartHandle, @options.dragEndHandle)
 
 			# console.log("foo")
+
 
 
 	"{playerSliderSelector} mouseup": (el, ev) ->
@@ -333,7 +339,7 @@ MVE_SliderControls = MVE_Plugin.extend({
 		# TODO - center this better...
 		o.sliderButtons.attr('show', true)
 		o.sliderButtons.attr('showNewMove', true)
-		o.sliderButtons.attr('left', "#{@modLeft(middleVal, true, - 20)}px")
+		o.sliderButtons.attr('left', "#{@modLeft(middleVal, true, - 40)}px")
 
 	updateHandleMiddle: (handleMiddle, startTime, endTime, startHandle, endHandle) ->
 		# startTime = @options.currentMovement.startTime
@@ -363,37 +369,37 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	# ------------------- Zoom stuff -------------------------- #
 
+	# Zoom State
+	ZS: {
+		NONE: {}
+		DONE: {}
+		ZOOMING: {}
+	}
+
 	# takes in a time value and scales it according to the min and max times
 	# and returns the according 'left' css value
 	modLeft: (time, inPx = true, nudge = 0) ->
 		pxWidth = @app.options.slider.width()
-		
 		duration = Math.abs(@displayEndTime - @displayStartTime)
 		timeDiff = time - @displayStartTime
-
-
 		return (pxWidth * timeDiff / duration) + nudge
 
 	modWidth: (timeDuration, inPx = false) ->
 		duration = Math.abs(@displayEndTime - @displayStartTime)
-
 		if !inPx
 			return timeDuration / duration * 100
-
-
 		return timeDuration / duration
 
 
 	"{zoomOutSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
-		console.log("zoomOutSelector click")
+		# console.log("zoomOutSelector click")
 		@zoomOnTime(0, @duration)
 
 
 	"{zoomInSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
-		console.log("zoomInSelector click")
-
+		# console.log("zoomInSelector click")
 		@zoomOnTime(@options.dragStartHandle.time , @options.dragEndHandle.time )
 
 	saveDisplayTimes: (startTime, endTime) ->
@@ -402,12 +408,9 @@ MVE_SliderControls = MVE_Plugin.extend({
 
 	zoomOnTime: (startTime, endTime) ->
 		@saveDisplayTimes(startTime, endTime)
-
-		console.log(startTime: startTime, endTime: endTime)
-
-
+		# console.log(startTime: startTime, endTime: endTime)
 		@updateDragHandles()
-		
+		@labelSliderBar(startTime, endTime)
 
 	# updates them to the current display time
 	updateDragHandles: () ->
@@ -473,31 +476,72 @@ MVE_SliderControls = MVE_Plugin.extend({
 		if duration < HOUR
 			result.showMins = true
 
-
-
-
-
 	# THIS IS REALLY HARD
 
+	getInterval: (duration, offset = 1) ->
+		HOUR = 60 * 60
+		MINUTE = 60
+
+		intervals = [ 
+			{ val: 1*HOUR, label: 'h' },
+			{ val: 10*MINUTE, label: 'm'},
+			{ val: 5*MINUTE, label: 'm'},
+			{ val: 1*MINUTE, label: 'm'},
+			{ val: 30, label: 's'},
+			{ val: 5, label: 's'},
+			{ val: 1, label: 's'},
+			{ val: .5, label: 's'}
+		]
+
+		for interval, index in intervals
+			if duration > ( interval.val * 6 )
+				# will break...
+				if index is 0
+					return intervals[index]
+				else 
+					return intervals[index - offset]
+
+		return intervals[intervals.length - 1]
+
+
 	labelSliderBar: (minTime, maxTime) ->
-		console.log(minTime: minTime, maxTime: maxTime)
+		duration = Math.abs(maxTime - minTime)
+		interval = @getInterval(duration)
 
-
-
-		intervals = [ 10*60, 5*60, 1*60, 30, 5, 1, .5]
+		console.log(minTime: minTime, maxTime: maxTime, duration: duration.toFixed(2), interval: interval.val)
 
 
 		sliderBar = @element.find('.slider-bar')
 		width = sliderBar.width()
 
-		minutes = Math.floor( @duration / 60)
-		for num in [1..minutes]
-			@sliderLabels.push(
-				{
-					left: "#{ num * 60 / @duration * 100 }%"
-					type: 'full'
-					timeLabel: "#{num}m"
-				})
+		newMajorLabels = @labelsForInterval(interval, 'full', minTime, maxTime)
+		newMinorLabels = @labelsForInterval(@getInterval(duration, 0), 'half', minTime, maxTime)
+
+		newLabels = newMinorLabels.concat(newMajorLabels)
+
+		@sliderLabels.replace( newLabels)
+
+	labelsForInterval: (interval, type, minTime, maxTime) ->
+		newLabels = []
+		labelIntervals = [1..Math.floor( @duration / interval.val)]
+		for num in labelIntervals
+			time = num * interval.val
+			if minTime <= time <= maxTime
+				newLabel = {
+						left: "#{ @modLeft(time) }px"
+						# left: "#{ num * 60 / @duration * 100 }%"
+						type: type
+					}
+				if interval.label in ['m', 'h']
+					newLabel.timeLabel = "#{num}#{interval.label}"
+				else 
+					if num % (60 / interval.val) is 0 
+						newLabel.timeLabel = "#{num/ (60 / interval.val)}m"
+					else 
+						newLabel.timeLabel = "#{Math.floor(num/ (60 / interval.val) )}m#{(time) % 60}s"
+				newLabels.push(newLabel)
+
+		return newLabels
 
 
 })

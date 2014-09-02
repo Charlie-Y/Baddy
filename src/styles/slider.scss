@@ -5,6 +5,7 @@
 	background: darken(gray, 40);
 	$slider-w: $vid-w-s * .82;
 	$slider-side-w: ($vid-w-s - $slider-w) / 2;
+	overflow: hidden;
 
 	// Just makes it take up the entire space and gives it absolute positioning
 	%slider-rect{
@@ -21,7 +22,6 @@
 		// %slider-rects belong in here
 		cursor: pointer;
 		height: $slider-h;
-
 		z-index: 7;
 		background: $slider-color;
 	}
@@ -33,7 +33,7 @@
 	.slider-progress{
 		@extend %slider-rect;
 		background:red;
-		// @include transition(width .1s linear);
+		@include transition(width .1s linear);
 		z-index: 2;
 
 		&.show-end:after{
@@ -87,6 +87,10 @@
 				height: 100%;
 			}
 			&.half{
+				color: transparent;
+				// color: rgba(0,0,0,.4);
+				font-size: 12px;
+				line-height: 47px;
 				height: 50%;
 			}
 			.slider-label-text{
@@ -95,6 +99,21 @@
 		}
 	}
 
+	.pause-points{
+		@extend %slider-rect;
+		width: 100%;
+		z-index: 5;
+		.pause-point-label{
+			width: 0;
+			position: absolute;
+			bottom:0;
+			height: 100%;
+			border-left: 1px solid rgba(255,255,255,.7); 
+			&.visited{
+				border-color: green;
+			}
+		}
+	}
 
 	.slider-time{
 		// display: none;
@@ -239,6 +258,8 @@
 			@include transition(none);
 		}
 	}
+
+
 
 
 	.slider-buttons{

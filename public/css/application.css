@@ -107,20 +107,21 @@ ul.inline-list li {
 .controls.player-slider {
   position: relative;
   background: #1a1a1a;
+  overflow: hidden;
 }
-/* line 10, ../../src/styles/slider.scss */
-.controls.player-slider .slider-progress, .controls.player-slider .slider-loaded, .controls.player-slider .slider-mouser, .controls.player-slider .slider-labels, .controls.player-slider .slider-time, .controls.player-slider .slider-handle, .controls.player-slider .handle-middle {
+/* line 11, ../../src/styles/slider.scss */
+.controls.player-slider .slider-progress, .controls.player-slider .slider-loaded, .controls.player-slider .slider-mouser, .controls.player-slider .slider-labels, .controls.player-slider .pause-points, .controls.player-slider .slider-time, .controls.player-slider .slider-handle, .controls.player-slider .handle-middle {
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 16, ../../src/styles/slider.scss */
+/* line 17, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bar-wrap {
   position: relative;
   height: 100%;
 }
-/* line 20, ../../src/styles/slider.scss */
+/* line 21, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bar {
   cursor: pointer;
   height: 30px;
@@ -136,6 +137,10 @@ ul.inline-list li {
 /* line 33, ../../src/styles/slider.scss */
 .controls.player-slider .slider-progress {
   background: red;
+  -webkit-transition: width 0.1s linear;
+  -moz-transition: width 0.1s linear;
+  -o-transition: width 0.1s linear;
+  transition: width 0.1s linear;
   z-index: 2;
 }
 /* line 39, ../../src/styles/slider.scss */
@@ -183,34 +188,54 @@ ul.inline-list li {
 }
 /* line 89, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label.half {
+  color: transparent;
+  font-size: 12px;
+  line-height: 47px;
   height: 50%;
 }
-/* line 92, ../../src/styles/slider.scss */
+/* line 96, ../../src/styles/slider.scss */
 .controls.player-slider .slider-labels .slider-label .slider-label-text {
   margin-left: 2px;
 }
-/* line 99, ../../src/styles/slider.scss */
+/* line 102, ../../src/styles/slider.scss */
+.controls.player-slider .pause-points {
+  width: 100%;
+  z-index: 5;
+}
+/* line 106, ../../src/styles/slider.scss */
+.controls.player-slider .pause-points .pause-point-label {
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  border-left: 1px solid rgba(255, 255, 255, 0.7);
+}
+/* line 112, ../../src/styles/slider.scss */
+.controls.player-slider .pause-points .pause-point-label.visited {
+  border-color: green;
+}
+/* line 118, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time {
   width: 100%;
   z-index: 6;
   line-height: 30px;
 }
-/* line 105, ../../src/styles/slider.scss */
+/* line 124, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time {
   font-size: 12px;
   color: grey;
 }
-/* line 109, ../../src/styles/slider.scss */
+/* line 128, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time.left-time {
   float: left;
   margin-left: 10px;
 }
-/* line 113, ../../src/styles/slider.scss */
+/* line 132, ../../src/styles/slider.scss */
 .controls.player-slider .slider-time .time.right-time {
   float: right;
   margin-right: 12px;
 }
-/* line 120, ../../src/styles/slider.scss */
+/* line 139, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer {
   position: relative;
   z-index: 1;
@@ -218,41 +243,41 @@ ul.inline-list li {
   min-height: 15px;
   background: black;
 }
-/* line 129, ../../src/styles/slider.scss */
+/* line 148, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer.spacer-bottom .bar-wrap {
   height: 100%;
 }
-/* line 136, ../../src/styles/slider.scss */
+/* line 155, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time {
   height: 20px;
   line-height: 20px;
   font-size: 12px;
   display: inline-block;
 }
-/* line 141, ../../src/styles/slider.scss */
+/* line 160, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.zero-time {
   color: grey;
   float: left;
   margin-left: 48.6px;
 }
-/* line 146, ../../src/styles/slider.scss */
+/* line 165, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.current-time {
   color: white;
   width: 50px;
   text-align: center;
 }
-/* line 153, ../../src/styles/slider.scss */
+/* line 172, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .time.total-time {
   color: grey;
   float: right;
   margin-right: 48.6px;
 }
-/* line 159, ../../src/styles/slider.scss */
+/* line 178, ../../src/styles/slider.scss */
 .controls.player-slider .slider-spacer .spacer {
   width: 1px;
   height: 30px;
 }
-/* line 164, ../../src/styles/slider.scss */
+/* line 183, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -264,12 +289,12 @@ ul.inline-list li {
   line-height: 15px;
   top: -18px;
 }
-/* line 175, ../../src/styles/slider.scss */
+/* line 194, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-time {
   font-size: 12px;
   color: white;
 }
-/* line 179, ../../src/styles/slider.scss */
+/* line 198, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-img {
   height: 60px;
   width: 80px;
@@ -277,13 +302,13 @@ ul.inline-list li {
   top: -60px;
   left: -10px;
 }
-/* line 186, ../../src/styles/slider.scss */
+/* line 205, ../../src/styles/slider.scss */
 .controls.player-slider .slider-bubble .bubble-img.hd {
   width: 106px;
   height: 60px;
   left: -20px;
 }
-/* line 195, ../../src/styles/slider.scss */
+/* line 214, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle {
   z-index: 6;
   -webkit-transition: left 0.2s ease-in;
@@ -291,13 +316,13 @@ ul.inline-list li {
   -o-transition: left 0.2s ease-in;
   transition: left 0.2s ease-in;
 }
-/* line 199, ../../src/styles/slider.scss */
+/* line 218, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle .handle-bar {
   width: 2px;
   height: 100%;
   background: white;
 }
-/* line 204, ../../src/styles/slider.scss */
+/* line 223, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle .handle-bubble {
   background: rgba(0, 0, 0, 0.9);
   position: absolute;
@@ -311,26 +336,26 @@ ul.inline-list li {
   color: white;
   font-size: 12px;
 }
-/* line 219, ../../src/styles/slider.scss */
+/* line 238, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected {
   z-index: 7;
 }
-/* line 221, ../../src/styles/slider.scss */
+/* line 240, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected .handle-bar {
   background: #4de1ff;
 }
-/* line 224, ../../src/styles/slider.scss */
+/* line 243, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.selected .handle-bubble {
   color: #4de1ff;
 }
-/* line 228, ../../src/styles/slider.scss */
+/* line 247, ../../src/styles/slider.scss */
 .controls.player-slider .slider-handle.drag-handle {
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
   transition: none;
 }
-/* line 232, ../../src/styles/slider.scss */
+/* line 251, ../../src/styles/slider.scss */
 .controls.player-slider .handle-middle {
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
@@ -339,14 +364,14 @@ ul.inline-list li {
   z-index: 2;
   background: rgba(0, 0, 255, 0.2);
 }
-/* line 238, ../../src/styles/slider.scss */
+/* line 257, ../../src/styles/slider.scss */
 .controls.player-slider .handle-middle.drag-middle {
   -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
   transition: none;
 }
-/* line 244, ../../src/styles/slider.scss */
+/* line 265, ../../src/styles/slider.scss */
 .controls.player-slider .slider-buttons {
   position: absolute;
   width: 0;
@@ -355,7 +380,7 @@ ul.inline-list li {
   line-height: 30px;
   white-space: nowrap;
 }
-/* line 251, ../../src/styles/slider.scss */
+/* line 272, ../../src/styles/slider.scss */
 .controls.player-slider .slider-buttons button {
   background: #cecece;
   border: none;

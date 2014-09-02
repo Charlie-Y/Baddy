@@ -66,6 +66,8 @@ MVE_Plugin = can.Control.extend({
 			console.error("failed to pass in viewData and app")
 
 	onPlayerReady: () ->
+		@app.playerIsReady = true
+
 		@player = @options.app.player
 
 

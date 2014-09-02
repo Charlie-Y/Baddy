@@ -18,11 +18,13 @@ MVE_Storage = {
 
 	# Cuts down a movement to its essential elements
 	filtered: (m) ->
+		# console.log(m.pausePoints)
 		return {
 			startTime: m.startTime
 			endTime: m.endTime
 			movementId: m.movementId
 			name: m.name
+			rawPausePoints: m.pausePoints
 		}
 
 

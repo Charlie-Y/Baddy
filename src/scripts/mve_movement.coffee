@@ -43,8 +43,11 @@ Movement = can.Model.extend({
 	current: false
 	# playing: false
 	# saved: false
+	rawPausePoints: []
 
 	init: () ->
+		@attr('pausePoints', new can.List(@rawPausePoints))
+
 
 	isValid: () ->
 

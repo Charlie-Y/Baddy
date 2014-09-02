@@ -2,10 +2,14 @@
 
 Thigns to implement before a grevious redesign and refactoring
 
-Zooming with Labeling
-Chaining
-Remote Controlling
-PausePoints
+Notes:
+
+
+- doesn't feel like you can manipulate the time bar like you can
+- pausepoint should be a button somewhere else, maybe...
+- if you call them handles then manipulate them with dragging?
+- debounce on seekTo-s
+- 
 
 
 
@@ -245,6 +249,15 @@ MVEPlayerApp = can.Control.extend({
 
 	# =======================  State machine stuff ======================= #
 
+	fullSetupState: (state, _this, stateName) ->
+		@setupState(state)
+		@options[stateName] = can.compute()
+		
+		_this.options[stateName] = @options[stateName]
+		_this.options[stateName](state.NONE)
+
+
+
 	setupState: (states) ->
 		for key, obj of states
 			# append a name to each state
@@ -259,7 +272,8 @@ MVEPlayerApp = can.Control.extend({
 					return jQuery.Deferred().resolve()
 
 	handleStateChange: (_this, newState, oldState, superStateName) ->
-		console.log(superState: superStateName, newState: newState.name, oldState: oldState.name)
+		if superStateName isnt 'dragMoveState'
+			console.log(superState: superStateName, newState: newState.name, oldState: oldState.name)
 		
 
 

@@ -424,10 +424,14 @@ module.exports = ev;
 
 Thigns to implement before a grevious redesign and refactoring
 
-Zooming with Labeling
-Chaining
-Remote Controlling
-PausePoints
+Notes:
+
+
+- doesn't feel like you can manipulate the time bar like you can
+- pausepoint should be a button somewhere else, maybe...
+- if you call them handles then manipulate them with dragging?
+- debounce on seekTo-s
+-
  */
 var MVEPlayerApp, MVE_MovementControls, MVE_SliderControls, MVE_Storage, MVE_TimeControls, Movement, mve;
 
@@ -620,6 +624,12 @@ MVEPlayerApp = can.Control.extend({
   getAspectRatio: function() {
     return 16 / 9;
   },
+  fullSetupState: function(state, _this, stateName) {
+    this.setupState(state);
+    this.options[stateName] = can.compute();
+    _this.options[stateName] = this.options[stateName];
+    return _this.options[stateName](state.NONE);
+  },
   setupState: function(states) {
     var key, obj, _results;
     _results = [];
@@ -642,11 +652,13 @@ MVEPlayerApp = can.Control.extend({
     return _results;
   },
   handleStateChange: function(_this, newState, oldState, superStateName) {
-    console.log({
-      superState: superStateName,
-      newState: newState.name,
-      oldState: oldState.name
-    });
+    if (superStateName !== 'dragMoveState') {
+      console.log({
+        superState: superStateName,
+        newState: newState.name,
+        oldState: oldState.name
+      });
+    }
     return oldState.leave(_this).done(function() {
       return newState.enter(_this).done(function() {});
     });
@@ -795,7 +807,10 @@ Movement = can.Model.extend({
   validated: false,
   name: false,
   current: false,
-  init: function() {},
+  rawPausePoints: [],
+  init: function() {
+    return this.attr('pausePoints', new can.List(this.rawPausePoints));
+  },
   isValid: function() {
     if (Number.isNaN(parseInt(this.startTime)) || Number.isNaN(parseInt(this.endTime))) {
       this.attr('validated', false);
@@ -847,6 +862,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     newMoveSelector: ".new-move",
     saveMoveSelector: ".new-move-save",
     cancelMoveSelector: ".new-move-cancel",
+    pausePointSelector: '.new-move-pause-point',
     chainMoveSelector: ".new-move-chain",
     setTimeSelector: ".set-time",
     cancelTimeSelector: ".cancel-time",
@@ -867,30 +883,31 @@ MVE_MovementControls = MVE_Plugin.extend({
     this._super();
     this.options.newMovementCover = this.element.find(".new-movement.cover");
     this.options.newMovementContent = this.element.find(".new-movement.content").hide();
+    this.pausePoints = new can.List();
+    this.options.showPausePoints = can.compute(false);
+    this.options.viewData.attr('showPausePoints', this.options.showPausePoints);
+    this.options.pausePointLength = can.compute(500);
     this.loadNewMovement(false);
+    this.options.viewData.attr('pausePoints', this.pausePoints);
     this.startHandleData = this.app.options.startHandleData;
     this.endHandleData = this.app.options.endHandleData;
     this.handleMiddle = this.app.options.handleMiddle;
     this.loadHTMLElems();
     this.options.showMovementPlayButtons = can.compute(false);
     this.options.viewData.attr('showMovementPlayButtons', this.options.showMovementPlayButtons);
-    this.app.setupState(this.NMS);
-    this.app.options.newMoveState = can.compute();
-    this.options.newMoveState = this.app.options.newMoveState;
-    this.options.newMoveState(this.NMS.NONE);
-    this.app.setupState(this.PMS);
-    this.app.options.playMoveState = can.compute();
-    this.options.playMoveState = this.app.options.playMoveState;
-    this.options.playMoveState(this.PMS.NONE);
+    this.app.fullSetupState(this.NMS, this, 'newMoveState');
+    this.app.fullSetupState(this.PMS, this, 'playMoveState');
     this.on();
     return this.options.playMoveState(this.PMS.NONE);
   },
   NMS: {
     NONE: {
       enter: function(_this) {
+        _this.options.showPausePoints(false);
         return jQuery.when(_this.options.newMovementCover.show(), _this.options.newMovementContent.hide(), _this.updateHandleVisiblity());
       },
       leave: function(_this) {
+        _this.options.showPausePoints(true);
         return jQuery.when(_this.options.newMovementCover.hide(), _this.options.newMovementContent.show(), _this.updateHandleVisiblity());
       }
     },
@@ -952,7 +969,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     }
     return this.handlePlayMoveStateInterval();
   },
-  loadCurrentMovement: function(movement) {
+  loadNewCurrentmovement: function(movement) {
     var cm;
     if (this.options.currentMovement != null) {
       this.options.currentMovement.attr('current', false);
@@ -965,6 +982,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     cm.attr('current', true);
     this.options.viewData.attr('currentMovement', cm);
     this.checkMoveComplete();
+    this.pausePoints.replace(cm.pausePoints);
     this.on();
     this.loadHTMLElems();
     return this.updateHandles();
@@ -988,6 +1006,7 @@ MVE_MovementControls = MVE_Plugin.extend({
       current: true
     });
     this.options.viewData.attr('currentMovement', this.options.currentMovement);
+    this.pausePoints.replace([]);
     if (rebind) {
       this.loadHTMLElems();
       this.updateHandles();
@@ -1007,6 +1026,15 @@ MVE_MovementControls = MVE_Plugin.extend({
     }
     this.checkMoveComplete();
     return this.options.newMoveState(this.NMS.DONE);
+  },
+  createChainedMovement: function() {
+    var currentEnd;
+    currentEnd = this.options.currentMovement.endTime;
+    this.loadNewMovement();
+    this.options.currentMovement.attr('startTime', currentEnd);
+    this.updateHandleVisiblity();
+    this.player.seekTo(currentEnd);
+    return this.options.newMoveState(this.NMS.END);
   },
   checkMoveComplete: function() {
     var cm;
@@ -1086,11 +1114,16 @@ MVE_MovementControls = MVE_Plugin.extend({
     return this.saveMovement();
   },
   "{chainMoveSelector} click": function(el, ev) {
-    return mve.disableEvent(ev);
+    mve.disableEvent(ev);
+    return this.createChainedMovement();
   },
   "{cancelTimeSelector} click": function(el, ev) {
     mve.disableEvent(ev);
     return this.options.newMoveState(this.NMS.DONE);
+  },
+  "{pausePointSelector} click": function(el, ev) {
+    mve.disableEvent(ev);
+    return this.createPausePoint();
   },
   "{setTimeSelector} click": function(el, ev) {
     var endTime;
@@ -1123,6 +1156,26 @@ MVE_MovementControls = MVE_Plugin.extend({
       return this.app.options.movements.unshift(cm);
     }
   },
+  createPausePoint: function() {
+    var cm, currentTime, pausePoint;
+    currentTime = this.player.getCurrentTime();
+    console.log({
+      createPausePoint: currentTime
+    });
+    cm = this.options.currentMovement;
+    if (!cm) {
+      return;
+    }
+    if (!((cm.startTime <= currentTime && currentTime <= cm.endTime))) {
+      console.log("pausePoint needs to be inside the movement");
+    }
+    pausePoint = {
+      time: currentTime,
+      left: "" + (this.sliderControls().modLeft(currentTime)) + "px"
+    };
+    this.pausePoints.push(pausePoint);
+    return cm.pausePoints.push(pausePoint);
+  },
   dev_setupPMS: function() {
     var cm;
     cm = this.options.currentMovement;
@@ -1132,7 +1185,13 @@ MVE_MovementControls = MVE_Plugin.extend({
     return this.options.newMoveState(this.NMS.DONE);
   },
   PMS: {
-    NONE: {},
+    NONE: {
+      enter: function(_this) {
+        clearInterval(_this.pausePointInterval);
+        clearTimeout(_this.pausePointPauseTimeout);
+        return jQuery.when();
+      }
+    },
     DONE: {},
     PLAYING: {
       enter: function(_this) {
@@ -1173,7 +1232,33 @@ MVE_MovementControls = MVE_Plugin.extend({
   handleMovePlay: function() {
     this.options.playMoveState(this.PMS.PLAYING);
     this.player.seekTo(this.options.currentMovement.startTime);
+    this.pausePoints.each((function(item, index) {
+      return item.attr('visited', false);
+    }));
+    this.pausePoints.comparator = 'time';
+    this.pausePoints.sort();
+    this.pausePointIndex = 0;
+    clearInterval(this.pausePointInterval);
+    this.pausePointInterval = setInterval(this.checkPausePoint, 10, this);
     return this.player.playVideo();
+  },
+  checkPausePoint: function(_this) {
+    var upcomingPausePoint;
+    if (_this.pausePointIndex >= _this.pausePoints.length) {
+      clearInterval(_this.pausePointInterval);
+      return;
+    }
+    upcomingPausePoint = _this.pausePoints.attr(_this.pausePointIndex);
+    if (_this.player.getCurrentTime() > upcomingPausePoint.time) {
+      upcomingPausePoint.attr('visited', true);
+      _this.pausePointIndex += 1;
+      _this.player.pauseVideo();
+      clearTimeout(_this.pausePointPauseTimeout);
+      return _this.pausePointPauseTimeout = setTimeout(_this.continueFromPausePoint, _this.options.pausePointLength(), _this);
+    }
+  },
+  continueFromPausePoint: function(_this) {
+    return _this.player.playVideo();
   },
   cancelMovePlay: function() {
     if (this.options.currentMovement) {
@@ -1208,7 +1293,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     mve.disableEvent(ev);
     movement = el.closest(this.options.moveDataSelector).data('movement');
     if (this.options.currentMovement !== movement) {
-      this.loadCurrentMovement(movement);
+      this.loadNewCurrentmovement(movement);
       this.options.playMoveState(this.PMS.NONE);
       return this.options.newMoveState(this.NMS.DONE);
     }
@@ -1218,7 +1303,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     mve.disableEvent(ev);
     movement = el.closest(this.options.moveDataSelector).data('movement');
     if (this.options.currentMovement !== movement) {
-      this.loadCurrentMovement(movement);
+      this.loadNewCurrentmovement(movement);
       this.options.newMoveState(this.NMS.DONE);
     }
     return this.handleMovePlay();
@@ -1228,7 +1313,7 @@ MVE_MovementControls = MVE_Plugin.extend({
     mve.disableEvent(ev);
     movement = el.closest(this.options.moveDataSelector).data('movement');
     if (this.options.currentMovement !== movement) {
-      this.loadCurrentMovement(movement);
+      this.loadNewCurrentmovement(movement);
       this.options.newMoveState(this.NMS.DONE);
     }
     movement.attr('looping', true);
@@ -1315,6 +1400,7 @@ MVE_Plugin = can.Control.extend({
     }
   },
   onPlayerReady: function() {
+    this.app.playerIsReady = true;
     this.player = this.options.app.player;
     this.duration = this.player.getDuration();
     this.options.playerState = this.options.app.options.playerState;
@@ -1420,10 +1506,8 @@ MVE_SliderControls = MVE_Plugin.extend({
     viewData.attr('dragStartHandle', this.options.dragStartHandle);
     viewData.attr('dragEndHandle', this.options.dragEndHandle);
     viewData.attr('dragMiddle', this.options.dragMiddle);
-    this.app.setupState(this.DMS);
-    this.app.options.dragMoveState = can.compute();
-    this.options.dragMoveState = this.app.options.dragMoveState;
-    this.options.dragMoveState(this.DMS.NONE);
+    this.app.fullSetupState(this.DMS, this, 'dragMoveState');
+    this.app.fullSetupState(this.ZS, this, 'zoomState');
     this.options.sliderButtons = this.app.options.sliderButtons;
     return this.on();
   },
@@ -1435,8 +1519,11 @@ MVE_SliderControls = MVE_Plugin.extend({
   onPlayerInterval: function() {
     var currentTime, loadedPercentage, percentage;
     this._super();
+    if (!this.app.playerIsReady) {
+      return;
+    }
     currentTime = this.player.getCurrentTime();
-    percentage = "" + (this.percentForTime(currentTime) * 100) + "%";
+    percentage = "" + (this.modWidth(currentTime - this.displayStartTime)) + "%";
     this.app.options.sliderProgressBar.width(percentage);
     loadedPercentage = "" + (this.player.getVideoLoadedFraction() * 100) + "%";
     this.app.options.loadedBar.width(loadedPercentage);
@@ -1477,10 +1564,11 @@ MVE_SliderControls = MVE_Plugin.extend({
     return timeInSeconds / this.player.getDuration();
   },
   timeFromX: function(x) {
-    var percentage, time, totalWidth;
+    var duration, percentage, time, totalWidth;
     totalWidth = this.app.options.slider.width();
     percentage = x / totalWidth;
-    time = this.duration * percentage;
+    duration = this.displayEndTime - this.displayStartTime;
+    time = duration * percentage + this.displayStartTime;
     return time;
   },
   "{playerSliderSelector} mouseleave": function(el, ev) {
@@ -1520,27 +1608,23 @@ MVE_SliderControls = MVE_Plugin.extend({
     UP: {},
     DONE: {}
   },
-  ZS: {},
   "{dragMoveState} change": function(newMoveState, ev, newState, oldState) {
     var _this;
     _this = this;
     return this.app.handleStateChange(_this, newState, oldState, 'dragMoveState');
   },
   "{playerSliderSelector} click": function(el, ev) {
-    var clickWidth, percentage, sliderWidth, timeFromPercent;
+    var time;
     mve.disableEvent(ev);
     if (this.options.dragMoveState() === this.DMS.MOVED) {
       return;
     }
     this.movementControls().cancelMovePlay();
-    sliderWidth = this.app.options.slider.width();
-    clickWidth = event.pageX - this.app.options.slider.offset().left;
-    percentage = clickWidth / sliderWidth;
-    timeFromPercent = this.duration * percentage;
+    time = this.timeFromSliderMouse(el, ev);
     if (this.options.playerState() === mve.PS.UNSTARTED) {
       this.player.playVideo();
     }
-    return this.player.seekTo(timeFromPercent);
+    return this.player.seekTo(time);
   },
   "{playerSliderSelector} mousedown": function(el, ev) {
     var time;
@@ -1589,7 +1673,7 @@ MVE_SliderControls = MVE_Plugin.extend({
     middleVal = (startTime + endTime) / 2;
     o.sliderButtons.attr('show', true);
     o.sliderButtons.attr('showNewMove', true);
-    return o.sliderButtons.attr('left', "" + (this.modLeft(middleVal, true, -20)) + "px");
+    return o.sliderButtons.attr('left', "" + (this.modLeft(middleVal, true, -40)) + "px");
   },
   updateHandleMiddle: function(handleMiddle, startTime, endTime, startHandle, endHandle) {
     var smallerVal, timeDifference;
@@ -1610,6 +1694,11 @@ MVE_SliderControls = MVE_Plugin.extend({
     endTime = o.dragEndHandle.attr('time');
     this.movementControls().loadCreatedMovement(startTime, endTime);
     return this.options.dragMoveState(this.DMS.NONE);
+  },
+  ZS: {
+    NONE: {},
+    DONE: {},
+    ZOOMING: {}
   },
   modLeft: function(time, inPx, nudge) {
     var duration, pxWidth, timeDiff;
@@ -1637,12 +1726,10 @@ MVE_SliderControls = MVE_Plugin.extend({
   },
   "{zoomOutSelector} click": function(el, ev) {
     mve.disableEvent(ev);
-    console.log("zoomOutSelector click");
     return this.zoomOnTime(0, this.duration);
   },
   "{zoomInSelector} click": function(el, ev) {
     mve.disableEvent(ev);
-    console.log("zoomInSelector click");
     return this.zoomOnTime(this.options.dragStartHandle.time, this.options.dragEndHandle.time);
   },
   saveDisplayTimes: function(startTime, endTime) {
@@ -1651,11 +1738,8 @@ MVE_SliderControls = MVE_Plugin.extend({
   },
   zoomOnTime: function(startTime, endTime) {
     this.saveDisplayTimes(startTime, endTime);
-    console.log({
-      startTime: startTime,
-      endTime: endTime
-    });
-    return this.updateDragHandles();
+    this.updateDragHandles();
+    return this.labelSliderBar(startTime, endTime);
   },
   updateDragHandles: function() {
     var endHandleTime, o, starthandleTime;
@@ -1710,25 +1794,98 @@ MVE_SliderControls = MVE_Plugin.extend({
       return result.showMins = true;
     }
   },
+  getInterval: function(duration, offset) {
+    var HOUR, MINUTE, index, interval, intervals, _i, _len;
+    if (offset == null) {
+      offset = 1;
+    }
+    HOUR = 60 * 60;
+    MINUTE = 60;
+    intervals = [
+      {
+        val: 1 * HOUR,
+        label: 'h'
+      }, {
+        val: 10 * MINUTE,
+        label: 'm'
+      }, {
+        val: 5 * MINUTE,
+        label: 'm'
+      }, {
+        val: 1 * MINUTE,
+        label: 'm'
+      }, {
+        val: 30,
+        label: 's'
+      }, {
+        val: 5,
+        label: 's'
+      }, {
+        val: 1,
+        label: 's'
+      }, {
+        val: .5,
+        label: 's'
+      }
+    ];
+    for (index = _i = 0, _len = intervals.length; _i < _len; index = ++_i) {
+      interval = intervals[index];
+      if (duration > (interval.val * 6)) {
+        if (index === 0) {
+          return intervals[index];
+        } else {
+          return intervals[index - offset];
+        }
+      }
+    }
+    return intervals[intervals.length - 1];
+  },
   labelSliderBar: function(minTime, maxTime) {
-    var intervals, minutes, num, sliderBar, width, _i, _results;
+    var duration, interval, newLabels, newMajorLabels, newMinorLabels, sliderBar, width;
+    duration = Math.abs(maxTime - minTime);
+    interval = this.getInterval(duration);
     console.log({
       minTime: minTime,
-      maxTime: maxTime
+      maxTime: maxTime,
+      duration: duration.toFixed(2),
+      interval: interval.val
     });
-    intervals = [10 * 60, 5 * 60, 1 * 60, 30, 5, 1, .5];
     sliderBar = this.element.find('.slider-bar');
     width = sliderBar.width();
-    minutes = Math.floor(this.duration / 60);
-    _results = [];
-    for (num = _i = 1; 1 <= minutes ? _i <= minutes : _i >= minutes; num = 1 <= minutes ? ++_i : --_i) {
-      _results.push(this.sliderLabels.push({
-        left: "" + (num * 60 / this.duration * 100) + "%",
-        type: 'full',
-        timeLabel: "" + num + "m"
-      }));
+    newMajorLabels = this.labelsForInterval(interval, 'full', minTime, maxTime);
+    newMinorLabels = this.labelsForInterval(this.getInterval(duration, 0), 'half', minTime, maxTime);
+    newLabels = newMinorLabels.concat(newMajorLabels);
+    return this.sliderLabels.replace(newLabels);
+  },
+  labelsForInterval: function(interval, type, minTime, maxTime) {
+    var labelIntervals, newLabel, newLabels, num, time, _i, _j, _len, _ref, _ref1, _results;
+    newLabels = [];
+    labelIntervals = (function() {
+      _results = [];
+      for (var _i = 1, _ref = Math.floor(this.duration / interval.val); 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--){ _results.push(_i); }
+      return _results;
+    }).apply(this);
+    for (_j = 0, _len = labelIntervals.length; _j < _len; _j++) {
+      num = labelIntervals[_j];
+      time = num * interval.val;
+      if ((minTime <= time && time <= maxTime)) {
+        newLabel = {
+          left: "" + (this.modLeft(time)) + "px",
+          type: type
+        };
+        if ((_ref1 = interval.label) === 'm' || _ref1 === 'h') {
+          newLabel.timeLabel = "" + num + interval.label;
+        } else {
+          if (num % (60 / interval.val) === 0) {
+            newLabel.timeLabel = "" + (num / (60 / interval.val)) + "m";
+          } else {
+            newLabel.timeLabel = "" + (Math.floor(num / (60 / interval.val))) + "m" + (time % 60) + "s";
+          }
+        }
+        newLabels.push(newLabel);
+      }
     }
-    return _results;
+    return newLabels;
   }
 });
 
@@ -1757,7 +1914,8 @@ MVE_Storage = {
       startTime: m.startTime,
       endTime: m.endTime,
       movementId: m.movementId,
-      name: m.name
+      name: m.name,
+      rawPausePoints: m.pausePoints
     };
   }
 };
