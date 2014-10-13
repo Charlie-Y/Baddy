@@ -36,15 +36,17 @@ getImgSrcs = function(base, sigh, lengthInSeconds){
 exports.videoSigh = function( req, res){
 
     var ytid = req.params.ytid;
-    var imgs = req.params.imgs
+    var imgs = req.params.imgs;
     // ytid = '5VJhar3X_JA'
     // var ytid = 'IxxstCcJlsc'
+
+    console.log(ytid);
 
     // First check if the video already exists
     VideoSigh.find({ytid: ytid}).exec( function (err, sighs) {
         // if (0){
         if (sighs.length != 0){
-            console.log("Existing Sigh found")
+            console.log("Existing Sigh found");
             // console.log(req.params);
 
             var existingSigh = sighs[0];
@@ -61,7 +63,7 @@ exports.videoSigh = function( req, res){
                 res.json(resultData);
              }
         } else {
-            // console.log("no existing sighs found");
+            console.log("no existing sighs found");
             request('https://www.youtube.com/watch?v=' + ytid, function (error, response, data) {
                 // console.log({error: error, response: response})
               if (!error && response.statusCode == 200) {
@@ -124,12 +126,12 @@ exports.videoSigh = function( req, res){
                     sighBase: base,
                     sigh: sigh,
                     ytid: ytid,
-                    lengthInSeconds: lengthInSeconds
+                    lengthInSeconds: parseInt(lengthInSeconds.replace('"', ''))
                  })
 
                  newVideoSigh.save(function(err){
                     if (err) {
-                        console.log("CAN'T SAVE VIDEO");
+                        console.log("CAN'T SAVE VIDEO: " + err);
                     } 
                  });
 
@@ -173,6 +175,8 @@ exports.videoSigh = function( req, res){
 
 
 exports.devClear = function(req, res) {
+
+
     VideoSigh.remove({}, function(err) { 
        console.log('collection removed');
     });

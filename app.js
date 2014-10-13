@@ -11,7 +11,7 @@ var handlebars = require('express3-handlebars');
 
 var mongoose = require("mongoose");
 var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/test';
-// mongoose.connect(uristring);
+mongoose.connect(uristring);
 
 mongoose.model('Video', require('./models/video').Video, "videos");
 mongoose.model('VideoSigh', require('./models/videoSighs').VideoSigh, "videoSighs");
@@ -45,13 +45,16 @@ app.engine('handlebars', handlebars({'defaultLayout':'main'}));
 // app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 app.use(express.favicon());
-app.use(express.logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('My secret key'));
 app.use(express.session());
 app.use(app.router);
+app.use(express.logger({
+	format: ':method :status :url'
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
