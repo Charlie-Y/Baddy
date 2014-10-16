@@ -12,6 +12,9 @@ var browserify = require('gulp-browserify');
 var watchify = require('watchify');
 // var source = require('vinyl-source-stream');
 
+var path = require('path');
+
+
 var paths = {
 	js: './src/scripts/*.js',
 	jsFn: 'application.js',
@@ -21,7 +24,7 @@ var paths = {
 
 	sassEntry: './src/styles/application.scss',
 	sass: './src/styles/*.scss',
-	styles: './src/styles',
+	styles: 'MVE/src/styles',
 	sassDest: './public/css'
 	// css: './public/css'
 };
@@ -68,9 +71,12 @@ var handleErrors = function(){
 
 
 gulp.task('styles', function() {
+	// console.log(__dirname);
 	gulp.src(paths.sassEntry)
 		.pipe(compass({
+			project: path.join(__dirname, "../"),
 			css: paths.sassDest,
+			// scss: paths.styles,
 			sass: paths.styles
 		}))
 		.on('error', handleErrors) // this has to be right after the compiler to catch those errors

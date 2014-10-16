@@ -10,15 +10,19 @@
 		}
 	}
 	.movements-ul{
-		padding: 20px;
+		// padding: 20px;
 	}
 	.movement-li{
 		background: #565656;
 		padding: 20px;
-		margin-bottom: 12px;
-		cursor: pointer;
+		// margin-bottom: 12px;
+		border-bottom: solid 1px #111111;
+		cursor: pointer; 
 		&:hover{
 			background:tint(#565656, 10);
+		}
+		.fa-play, .fa-refresh{
+			display: none;
 		}
 		.fa{
 			cursor: pointer;
