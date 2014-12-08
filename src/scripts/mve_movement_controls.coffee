@@ -12,14 +12,19 @@ MVE_MovementControls = MVE_Plugin.extend({
 	defaults: {
 
 		# Selectors related to making new moves
-		newMoveSelector: ".new-move"
-		saveMoveSelector: ".new-move-save"
-		cancelMoveSelector: ".new-move-cancel"
+		newMoveCreateSelector: ".new-move-create"
+		# saveMoveSelector: ".new-move-save"
+		# cancelMoveSelector: ".new-move-cancel"
 		pausePointSelector: '.new-move-pause-point'
 		chainMoveSelector: ".new-move-chain"
 
-		setTimeSelector: ".set-time"
-		cancelTimeSelector: ".cancel-time"
+		deselectMoveSelector: ".move-deselect"
+
+		editStartSelector: ".edit-start"
+		editEndSelector: ".edit-end"
+
+		enabledButtonClass: "enabled"
+		activeButtonClass: "active"
 
 		# Selectors related to playing moves
 		playMoveSelector: '.play-move'
@@ -30,13 +35,13 @@ MVE_MovementControls = MVE_Plugin.extend({
 
 		seekableSelector: "[data-seekable]"
 
+		# Saved movement stuff
 		setCurrentMoveSelector: '.set-move'
 		setPlayMoveSelector: '.set-play-move'
 		setLoopMoveSelector: '.set-loop-move'
 		deleteMoveSelector: '.delete-move'
 
-		editStartSelector: ".edit-start"
-		editEndSelector: ".edit-end"
+		
 
 
 		playerSliderSelector: "."
@@ -45,8 +50,12 @@ MVE_MovementControls = MVE_Plugin.extend({
 },{
 	init: (element, options) ->
 		@_super();
-		@options.newMovementCover = @element.find(".new-movement.cover")
-		@options.newMovementContent = @element.find(".new-movement.content").hide()
+
+		@options.movementButtons = @element.find(".new-move-button-block")
+		# console.log(@options.movementButtons.addClass("active"))
+		@options.movementPlayButton = @element.find(@options.playMoveSelector)
+		@options.movementLoopButton = @element.find(@options.loopMoveSelector)
+		@options.movementCreateButton = @element.find(@options.newMoveCreateSelector)
 		# @options.newMovement.hide().removeClass('hide')
 
 		# -- Current move stuff --- #
@@ -55,7 +64,7 @@ MVE_MovementControls = MVE_Plugin.extend({
 		@options.viewData.attr('showPausePoints', @options.showPausePoints)
 		@options.pausePointLength = can.compute(500)
 
-		@loadNewMovement(false)
+		# @loadNewMovement(false)
 		@options.viewData.attr('pausePoints', @pausePoints)
 
 		# --- DIsplay elements --- # 
@@ -85,18 +94,18 @@ MVE_MovementControls = MVE_Plugin.extend({
 		@options.playMoveState(@PMS.NONE)
 		# @options.newMoveState(@NMS.DONE)
 
-
+		# console.log("Foo")
 
 
 
 	# New Move State
 	NMS: {
+		# When a move doesn't exist
 		NONE: {
 			enter: (_this) ->
 				_this.options.showPausePoints(false)
 				return jQuery.when(
-					_this.options.newMovementCover.show(),
-					_this.options.newMovementContent.hide()
+					_this.options.movementButtons.removeClass(_this.options.enabledButtonClass)
 					_this.updateHandleVisiblity()
 
 					)
@@ -104,56 +113,14 @@ MVE_MovementControls = MVE_Plugin.extend({
 				_this.options.showPausePoints(true)
 
 				return jQuery.when(
-					_this.options.newMovementCover.hide(),
-					_this.options.newMovementContent.show()
 					_this.updateHandleVisiblity()
 					)
 		}
-		START:{
-			enter: (_this) ->
-				_this.options.startTimeButtons.show()
-				_this.options.editStartTimeButton.hide()
-
-				_this.options.currentMovement.attr('tempStart', true)
-				_this.options.startTimeEl.addClass('show-buttons')
-				return jQuery.when()
-			leave: (_this) ->
-				_this.options.editStartTimeButton.show()
-				_this.options.startTimeButtons.hide()
-				_this.options.currentMovement.attr('tempStart', false)
-				_this.options.startTimeEl.removeClass('show-buttons')
-				# _this.updateHandleVisiblity()
-
-				return jQuery.when()
-		}
-		END: {
-			enter: (_this) ->
-				_this.options.endTimeButtons.show()
-				_this.options.editEndTimeButton.hide()
-
-				_this.options.currentMovement.attr('tempEnd', true)
-
-				_this.options.endTimeEl.addClass('show-buttons')
-				return jQuery.when()
-			leave: (_this) ->
-				_this.options.editEndTimeButton.show()
-				_this.options.endTimeButtons.hide()
-				_this.options.currentMovement.attr('tempEnd', false)
-				_this.options.endTimeEl.removeClass('show-buttons')
-				# _this.updateHandleVisiblity()
-
-				return jQuery.when()
-		}
+		# When a move exists
 		DONE: {
 			enter: (_this) ->
-				_this.options.startTimeButtons.hide()
-				_this.options.endTimeButtons.hide()
-
 				return jQuery.when(
-					
-
-					_this.options.newMovementCover.hide()
-					_this.options.newMovementContent.show()
+					_this.options.movementButtons.addClass(_this.options.enabledButtonClass)
 					_this.updateHandleVisiblity()
 
 					)
@@ -161,25 +128,14 @@ MVE_MovementControls = MVE_Plugin.extend({
 	}
 
 	loadHTMLElems: () ->
-		@options.startTimeEl = @element.find(".start")
-		@options.endTimeEl = @element.find(".end")
-
-		@options.editStartTimeButton = @options.startTimeEl.find('.edit-time')
-		@options.editEndTimeButton = @options.endTimeEl.find('.edit-time')
-		@options.startTimeButtons = @options.startTimeEl.find('.time-button-wrap').hide()
-		@options.endTimeButtons = @options.endTimeEl.find('.time-button-wrap').hide()
-
 
 	onPlayerReady:() ->
 		@_super()
-		# @showNewMovementControls()
-		# @dev_setupPMS() 
+		# @dev_setupPMS() 	
 
 
 	# states probably shouldn't change in these
 	onPlayerInterval: () ->
-		if @options.newMoveState() in [@NMS.START, @NMS.END]
-			@options.currentMovement.attr('tempTime',  @player.getCurrentTime())
 
 		@handlePlayMoveStateInterval()
 
@@ -190,9 +146,6 @@ MVE_MovementControls = MVE_Plugin.extend({
 
 		@options.currentMovement = movement
 		cm = @options.currentMovement
-		cm.attr('tempStart', false)
-		cm.attr('tempTime', -1)
-		cm.attr('tempEnd', false)
 		cm.attr('current', true)
 		@options.viewData.attr('currentMovement', cm)
 		# cm.isValid()
@@ -215,9 +168,6 @@ MVE_MovementControls = MVE_Plugin.extend({
 			saved: false
 
 			# to show or not to show considered 
-			tempTime: -1
-			tempStart: false
-			tempEnd: false
 			looping: false
 			current: true
 			})
@@ -232,8 +182,10 @@ MVE_MovementControls = MVE_Plugin.extend({
 
 
 
+
 	# Somethign else, drag handles, is creating a movement
 	# and setting it to be the current movement
+	# used to create one from a zoom or something like tha
 	loadCreatedMovement: (startTime, endTime) ->
 		@loadNewMovement()
 		cm = @options.currentMovement
@@ -319,67 +271,49 @@ MVE_MovementControls = MVE_Plugin.extend({
 	"{newMoveState} change": (newMoveState, ev, newState, oldState) ->
 		_this = @
 		
-		if newState isnt @NMS.DONE
-			@options.playMoveState(@PMS.NONE)
+		if newState isnt @NMS.NONE
+			@options.playMoveState(@PMS.DONE)
 
 		@app.handleStateChange(_this, newState, oldState, 'newMoveState')
 
-
-
-
-		# if newState is @app.NMS.START
-		# 	@startHandleData.attr('show', true)
-		# 	@startHandleData.attr('selected', true)
-
-		# 	@endHandleData.attr('show', true)
-		# 	@endHandleData.attr('selected', false)
-		# 	@handleMiddle.attr('show', true)
-
-		# 	@updateHandles()
-
-
-		# if newState is @app.NMS.END
-		# 	# @endHandleData.attr('show', true)
-		# 	@endHandleData.attr('selected', true)
-		# 	@startHandleData.attr('selected', false)
-		# 	@handleMiddle.attr('show', true)
-			
-		# 	@updateHandles()
-
-
-		# if newState is @app.NMS.NONE
-		# 	@startHandleData.attr('show', false)
-		# 	@endHandleData.attr('show', false)
-		# 	@startHandleData.attr('selected', false)
-		# 	@endHandleData.attr('selected', false)
-		# 	@handleMiddle.attr('show', false)
-
 	"{editStartSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
-		@options.newMoveState(@NMS.START)
+		# @options.newMoveState(@NMS.START)
+
+		cm = @options.currentMovement
+		cm.attr('startTime', @)
+
 
 	"{editEndSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
-		@options.newMoveState(@NMS.END)
+		# @options.newMoveState(@NMS.END)
 
-	"{newMoveSelector} click": (el, ev) ->
+	"{newMoveCreateSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
+		# puts the movement there
 		@loadNewMovement()
+
+		# now i have to set the times
+
+		cm = @options.currentMovement
+
+		cm.attr('startTime', @player.getCurrentTime())
+		cm.attr('endTime',mve.min([@player.getCurrentTime() + 3, @duration]))
+
+		@updateHandles()
+		console.log(cm)
+
 		@options.newMoveState(@NMS.DONE)
-		# @options.newMoveState(@NMS.START)
+		@saveMovement()
 
-		# if not @creatingMovement
-		# 	@showNewMovementControls()
 
-	"{cancelMoveSelector} click": (el, ev) ->
+	"{deselectMoveSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
 		@options.newMoveState(@NMS.NONE)
 
 		@options.currentMovement.attr('current', false)
 		@options.currentMovement = undefined
 
-		# if @creatingMovement
-		# 	@hideNewMovementControls()
 
 	"{saveMoveSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
@@ -392,32 +326,9 @@ MVE_MovementControls = MVE_Plugin.extend({
 		@createChainedMovement()
 
 
-	"{cancelTimeSelector} click": (el, ev) ->
-		mve.disableEvent(ev)
-		@options.newMoveState(@NMS.DONE)
-
 	"{pausePointSelector} click": (el, ev) ->
 		mve.disableEvent(ev)
 		@createPausePoint()
-
-	"{setTimeSelector} click": (el, ev) ->
-		mve.disableEvent(ev)
-		if @options.newMoveState() is @NMS.START
-
-			# @options.currentMovement.attr('startTime', @player.getCurrentTime())
-			@options.currentMovement.setStart(@player.getCurrentTime(), @duration)
-
-			# @updateHandle(@startHandleData, @player.getCurrentTime())
-			@checkMoveComplete()
-
-			endTime = parseInt(@options.currentMovement.attr('endTime'))
-			# console.log(endTime)
-			if Number.isNaN(endTime)
-				@options.newMoveState(@NMS.END)
-			else 
-				@options.newMoveState(@NMS.DONE)
-
-			return 
 
 
 		if @options.newMoveState() is @NMS.END
@@ -483,6 +394,8 @@ MVE_MovementControls = MVE_Plugin.extend({
 
 	dev_setupPMS: () ->
 		# return 
+		@loadNewMovement()
+
 		cm = @options.currentMovement
 
 		cm.attr('startTime', 10)

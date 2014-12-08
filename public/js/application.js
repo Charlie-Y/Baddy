@@ -744,6 +744,14 @@ mve.timeInHoursMinsSeconds = function(timeInSeconds) {
   }
 };
 
+mve.min = function(array) {
+  return Math.min.apply(Math, array);
+};
+
+mve.max = function(array) {
+  return Math.max.apply(Math, array);
+};
+
 mve.DeadPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
 mve.PS = {
@@ -859,13 +867,14 @@ Movement = require('./mve_movement');
 
 MVE_MovementControls = MVE_Plugin.extend({
   defaults: {
-    newMoveSelector: ".new-move",
-    saveMoveSelector: ".new-move-save",
-    cancelMoveSelector: ".new-move-cancel",
+    newMoveCreateSelector: ".new-move-create",
     pausePointSelector: '.new-move-pause-point',
     chainMoveSelector: ".new-move-chain",
-    setTimeSelector: ".set-time",
-    cancelTimeSelector: ".cancel-time",
+    deselectMoveSelector: ".move-deselect",
+    editStartSelector: ".edit-start",
+    editEndSelector: ".edit-end",
+    enabledButtonClass: "enabled",
+    activeButtonClass: "active",
     playMoveSelector: '.play-move',
     loopMoveSelector: '.loop-move',
     moveDataSelector: '.movement-data',
@@ -874,20 +883,19 @@ MVE_MovementControls = MVE_Plugin.extend({
     setPlayMoveSelector: '.set-play-move',
     setLoopMoveSelector: '.set-loop-move',
     deleteMoveSelector: '.delete-move',
-    editStartSelector: ".edit-start",
-    editEndSelector: ".edit-end",
     playerSliderSelector: "."
   }
 }, {
   init: function(element, options) {
     this._super();
-    this.options.newMovementCover = this.element.find(".new-movement.cover");
-    this.options.newMovementContent = this.element.find(".new-movement.content").hide();
+    this.options.movementButtons = this.element.find(".new-move-button-block");
+    this.options.movementPlayButton = this.element.find(this.options.playMoveSelector);
+    this.options.movementLoopButton = this.element.find(this.options.loopMoveSelector);
+    this.options.movementCreateButton = this.element.find(this.options.newMoveCreateSelector);
     this.pausePoints = new can.List();
     this.options.showPausePoints = can.compute(false);
     this.options.viewData.attr('showPausePoints', this.options.showPausePoints);
     this.options.pausePointLength = can.compute(500);
-    this.loadNewMovement(false);
     this.options.viewData.attr('pausePoints', this.pausePoints);
     this.startHandleData = this.app.options.startHandleData;
     this.endHandleData = this.app.options.endHandleData;
@@ -904,69 +912,24 @@ MVE_MovementControls = MVE_Plugin.extend({
     NONE: {
       enter: function(_this) {
         _this.options.showPausePoints(false);
-        return jQuery.when(_this.options.newMovementCover.show(), _this.options.newMovementContent.hide(), _this.updateHandleVisiblity());
+        return jQuery.when(_this.options.movementButtons.removeClass(_this.options.enabledButtonClass), _this.updateHandleVisiblity());
       },
       leave: function(_this) {
         _this.options.showPausePoints(true);
-        return jQuery.when(_this.options.newMovementCover.hide(), _this.options.newMovementContent.show(), _this.updateHandleVisiblity());
-      }
-    },
-    START: {
-      enter: function(_this) {
-        _this.options.startTimeButtons.show();
-        _this.options.editStartTimeButton.hide();
-        _this.options.currentMovement.attr('tempStart', true);
-        _this.options.startTimeEl.addClass('show-buttons');
-        return jQuery.when();
-      },
-      leave: function(_this) {
-        _this.options.editStartTimeButton.show();
-        _this.options.startTimeButtons.hide();
-        _this.options.currentMovement.attr('tempStart', false);
-        _this.options.startTimeEl.removeClass('show-buttons');
-        return jQuery.when();
-      }
-    },
-    END: {
-      enter: function(_this) {
-        _this.options.endTimeButtons.show();
-        _this.options.editEndTimeButton.hide();
-        _this.options.currentMovement.attr('tempEnd', true);
-        _this.options.endTimeEl.addClass('show-buttons');
-        return jQuery.when();
-      },
-      leave: function(_this) {
-        _this.options.editEndTimeButton.show();
-        _this.options.endTimeButtons.hide();
-        _this.options.currentMovement.attr('tempEnd', false);
-        _this.options.endTimeEl.removeClass('show-buttons');
-        return jQuery.when();
+        return jQuery.when(_this.updateHandleVisiblity());
       }
     },
     DONE: {
       enter: function(_this) {
-        _this.options.startTimeButtons.hide();
-        _this.options.endTimeButtons.hide();
-        return jQuery.when(_this.options.newMovementCover.hide(), _this.options.newMovementContent.show(), _this.updateHandleVisiblity());
+        return jQuery.when(_this.options.movementButtons.addClass(_this.options.enabledButtonClass), _this.updateHandleVisiblity());
       }
     }
   },
-  loadHTMLElems: function() {
-    this.options.startTimeEl = this.element.find(".start");
-    this.options.endTimeEl = this.element.find(".end");
-    this.options.editStartTimeButton = this.options.startTimeEl.find('.edit-time');
-    this.options.editEndTimeButton = this.options.endTimeEl.find('.edit-time');
-    this.options.startTimeButtons = this.options.startTimeEl.find('.time-button-wrap').hide();
-    return this.options.endTimeButtons = this.options.endTimeEl.find('.time-button-wrap').hide();
-  },
+  loadHTMLElems: function() {},
   onPlayerReady: function() {
     return this._super();
   },
   onPlayerInterval: function() {
-    var _ref;
-    if ((_ref = this.options.newMoveState()) === this.NMS.START || _ref === this.NMS.END) {
-      this.options.currentMovement.attr('tempTime', this.player.getCurrentTime());
-    }
     return this.handlePlayMoveStateInterval();
   },
   loadNewCurrentmovement: function(movement) {
@@ -976,9 +939,6 @@ MVE_MovementControls = MVE_Plugin.extend({
     }
     this.options.currentMovement = movement;
     cm = this.options.currentMovement;
-    cm.attr('tempStart', false);
-    cm.attr('tempTime', -1);
-    cm.attr('tempEnd', false);
     cm.attr('current', true);
     this.options.viewData.attr('currentMovement', cm);
     this.checkMoveComplete();
@@ -999,9 +959,6 @@ MVE_MovementControls = MVE_Plugin.extend({
       endTime: "---",
       name: "New Movement",
       saved: false,
-      tempTime: -1,
-      tempStart: false,
-      tempEnd: false,
       looping: false,
       current: true
     });
@@ -1085,25 +1042,33 @@ MVE_MovementControls = MVE_Plugin.extend({
   "{newMoveState} change": function(newMoveState, ev, newState, oldState) {
     var _this;
     _this = this;
-    if (newState !== this.NMS.DONE) {
-      this.options.playMoveState(this.PMS.NONE);
+    if (newState !== this.NMS.NONE) {
+      this.options.playMoveState(this.PMS.DONE);
     }
     return this.app.handleStateChange(_this, newState, oldState, 'newMoveState');
   },
   "{editStartSelector} click": function(el, ev) {
+    var cm;
     mve.disableEvent(ev);
-    return this.options.newMoveState(this.NMS.START);
+    cm = this.options.currentMovement;
+    return cm.attr('startTime', this);
   },
   "{editEndSelector} click": function(el, ev) {
-    mve.disableEvent(ev);
-    return this.options.newMoveState(this.NMS.END);
+    return mve.disableEvent(ev);
   },
-  "{newMoveSelector} click": function(el, ev) {
+  "{newMoveCreateSelector} click": function(el, ev) {
+    var cm;
     mve.disableEvent(ev);
     this.loadNewMovement();
-    return this.options.newMoveState(this.NMS.DONE);
+    cm = this.options.currentMovement;
+    cm.attr('startTime', this.player.getCurrentTime());
+    cm.attr('endTime', mve.min([this.player.getCurrentTime() + 3, this.duration]));
+    this.updateHandles();
+    console.log(cm);
+    this.options.newMoveState(this.NMS.DONE);
+    return this.saveMovement();
   },
-  "{cancelMoveSelector} click": function(el, ev) {
+  "{deselectMoveSelector} click": function(el, ev) {
     mve.disableEvent(ev);
     this.options.newMoveState(this.NMS.NONE);
     this.options.currentMovement.attr('current', false);
@@ -1117,28 +1082,9 @@ MVE_MovementControls = MVE_Plugin.extend({
     mve.disableEvent(ev);
     return this.createChainedMovement();
   },
-  "{cancelTimeSelector} click": function(el, ev) {
-    mve.disableEvent(ev);
-    return this.options.newMoveState(this.NMS.DONE);
-  },
   "{pausePointSelector} click": function(el, ev) {
     mve.disableEvent(ev);
-    return this.createPausePoint();
-  },
-  "{setTimeSelector} click": function(el, ev) {
-    var endTime;
-    mve.disableEvent(ev);
-    if (this.options.newMoveState() === this.NMS.START) {
-      this.options.currentMovement.setStart(this.player.getCurrentTime(), this.duration);
-      this.checkMoveComplete();
-      endTime = parseInt(this.options.currentMovement.attr('endTime'));
-      if (Number.isNaN(endTime)) {
-        this.options.newMoveState(this.NMS.END);
-      } else {
-        this.options.newMoveState(this.NMS.DONE);
-      }
-      return;
-    }
+    this.createPausePoint();
     if (this.options.newMoveState() === this.NMS.END) {
       this.options.currentMovement.setEnd(this.player.getCurrentTime(), this.duration);
       this.checkMoveComplete();
@@ -1178,6 +1124,7 @@ MVE_MovementControls = MVE_Plugin.extend({
   },
   dev_setupPMS: function() {
     var cm;
+    this.loadNewMovement();
     cm = this.options.currentMovement;
     cm.attr('startTime', 10);
     cm.attr('endTime', 13);

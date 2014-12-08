@@ -2,197 +2,91 @@
 
 $grey-1: #323232;
 
+%enabled-move-button{
+	color:grey;
+
+	&:hover{
+		color:white;
+		cursor: pointer;
+		background: grey;
+	}
+}
+
 .controls.player-movement{
 	color: white;
+	
 
 	.new-movement{
+		
 		display: flex;
+		align-content: flex-end;
+
 		position: relative;
-		// background: $grey-1;
+		
+		float: right;
 		height: 100%;
-		width: 100%;
-		// // width: $vid-w-s * .5;
-		// width: 50%;
-		// margin: 5px auto;
-		// // margin: 5px;
+		padding-right:10px;
+		
 
-		// background: darken($grey-1, 10);
-		// white-space: nowrap;
-
-		.cover-button{
-			background:none;
-			border: solid 2px #353535;
-			color:tint(#353535, 20);
-			height: 40%;
-			width: 80%;
-			@extend %abs-center;
-			font-size: 16px;
-
-		}
-
-		.new-movement-block{
+		.button-spacer{
+			width: 30px;
 			height: 100%;
-			box-sizing: border-box;
-		}
-		.name-left{
-			text-align: center;
-			line-height: $movement-controls-h;
-
-			.movement-play-controls{
-				display: none;	
-				margin-top: 15px;
-				.movement-play-control{
-					cursor: pointer;
-					display: inline-block;
-					font-size: 25px;
-					padding: 15px;
-					padding-top:0;
-					&:hover{
-						color: #3e6adc;
-					}
-					&:active{
-						color: #3861ca;
-					}
-					&.selected{
-						color: #05d3ff;
-					}
-				}
-			}	
-
-			&.show-buttons{
-				padding-top: 25px;
-				line-height: 15px;
-				.movement-play-controls{
-					display: block;
-				}
-			}
-
-			width: 25%;
-			background: #1a1a1a;
-		}
-		.new-move-body{
-			width: 55%;
-			background: #2c2c2c;
-			display: flex;
-		}
-		.new-move-controls{
-			width: 20%;
-			background: #4c4c4c;
 		}
 
-		.time-wrap{
-			width: 50%;
-			text-align: center;
+		// &.has-movement{
+			
+		// 	.new-move-button-block{
+		// 		@extend %active-move-button;
+		// 	}
+		// }
+
+		// Contains text with an icon/png
+		// Can be disabled/enabled
+		// Has a tooltip!. ARGH tooltips
+		.new-move-button-block{
+			// display: flex;
+			min-width: 35px;
+			// height: $movement-controls-h;
 			height: 100%;
+			// padding-top:20px;
+			padding-right: 5px;
+			padding-left:5px;
 
-			&.show-buttons{
-				.time-title{
-					height: 20%;
-					padding-top: 10px;
-					font-size: 12px;
+			// no movement color
+			color: #333333;
 
-				}
-				.time-val-wrap{
-					height: 40%;
-				}
-				.time-button-wrap{
-					display: flex;
-					height: 40%;
-				}
+			&.new-move-create{
+				@extend %enabled-move-button;
 			}
-			.time-title{
-				color: #5e5e5e;
-				// margin-top: 10px;
-				padding-top: 30px;
-				box-sizing: border-box;
-				// height: 30%;
-				position: relative;
+
+			&.enabled{
+				@extend %enabled-move-button;
 			}
-			.time-val-wrap{
-				// margin-top: 10px;
-				// height: 50%
-				padding-top: 15px;
-				box-sizing: border-box;
-				// display: flex;
-				.saved-time{
-					text-align: center;
-					width:100%;
-					cursor: pointer;
-					&:hover{
-						color: #92e8ff;
-					}
-				}
-				.temp-time{
-					display: none;
-					width: 100%;
-				}
-				&.show-temp-time{
-					
-					padding-top: 5px;
-					.temp-time{
-						display: block;
-						// width: 70%;
-					}
-					.saved-time{
-						color:#858585;
-						font-size: 12px;
-						margin-bottom: 10px;
-						&:hover{
-							color: #92e8ff;
-						}
 
-						// width: 30%
-						// display: none;
-					}
-				}
-
-			}
-			.time-button-wrap{
-				// display: none;
-				display: flex;
-				button{
-					font-size: 15px;
-					width: 50%;
-					background: none;
-					color: #5e5e5e;
-					&:hover{
-						color: #5e5e5e;
-						background: rgba(0,0,0,.1);
-					}
-
-				}
-				.set{
-
-				}
-				.cancel{
-
-				}
-			}
-			.edit-time{
-				// width: 100%;
-				position: absolute;
-				cursor:pointer;
-				font-size: 12px;
-				color: #414141;
-				padding: 10px;
-				top:20px;
-				right:30px;
+			&.active{
+				color: $highlight-blue;
+				cursor: pointer;
 				&:hover{
-					color:#5b5b5b;
+					color: white;
 				}
 			}
 
-		}
-		.new-move-controls{
-			.block-button{
-				display: block;
-				height: 33.33%;
-				background:none;
-				&:hover{
-					background: rgba(0,0,0,.1);
+
+			.button-name{
+				margin-top: 25px;
+				text-align: center;
+				font-size: 14px;
+			}
+			.button-icon-cont{
+				text-align: center;
+				margin-top: 8px;
+				.button-icon{
+					font-size: 20px;
 				}
 			}
 		}
 	}
+
+		
 
 }

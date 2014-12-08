@@ -49,7 +49,7 @@
     {{#startHandleData}}
     <div class="slider-handle start-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
       <div class="handle-bar"></div>
-      <div class="handle-bubble">{{formattedTime time}}</div>
+      <div class="handle-bubble hide">{{formattedTime time}}</div>
     </div>  
     {{/startHandleData}}
 
@@ -60,7 +60,7 @@
     {{#endHandleData}}
     <div class="slider-handle end-handle {{^show}} hide {{/show}} {{#selected}} selected {{/selected}}" style="left:{{left}};">
       <div class="handle-bar"></div>
-      <div class="handle-bubble">{{formattedTime time}}</div>
+      <div class="handle-bubble hide">{{formattedTime time}}</div>
     </div>
     {{/endHandleData}}
 

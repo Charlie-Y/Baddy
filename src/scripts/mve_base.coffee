@@ -56,6 +56,13 @@ mve.timeInHoursMinsSeconds = (timeInSeconds) ->
 			mins = "0" + mins
 		return hours + ":" + mins + " : " + seconds
 
+
+mve.min = (array) ->
+	return Math.min.apply(Math, array);
+
+mve.max = (array) ->
+	return Math.max.apply(Math, array);
+
 mve.DeadPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
 mve.PS = {
