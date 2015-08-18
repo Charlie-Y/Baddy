@@ -6,31 +6,6 @@
 @import "compass/css3/transform";
 
 
-
-
-// $vid-w-s: 853px; // Small vid width
-// $vid-h-s: 480px; // Mkae sure these sync with the stuff
-
-$vid-w-s: 1080px; // Small vid width
-$vid-h-s: 558px; // Mkae sure these sync with the stuff
-
-$main-h: 1000px;
-
-
-$slider-h: 30px;
-$time-controls-h: 50px;
-$movement-controls-h: 110px;
-
-$slider-color: #bfbfbf;
-
-
-
-
-
-$highlight-blue: #4de1ff;
-
-
-
 @mixin placeholder {
   &::-webkit-input-placeholder {@content}
   &:-moz-placeholder           {@content}

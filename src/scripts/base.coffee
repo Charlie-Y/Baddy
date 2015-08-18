@@ -4,23 +4,23 @@
 #https://github.com/bulutcy/youtube-storyboard/blob/master/youtube-storyboard/storyboard.js
 
 
-# mve = window.mve or {} 
+# baddy = window.baddy or {} 
 
-mve = {}
-# window.mve = mve
-mve.mustachePath = 'mustache/'
+baddy = {}
+# window.baddy = baddy
+baddy.mustachePath = 'mustache/'
 
-mve.mustacheFor = (fileNameNoExt) ->
+baddy.mustacheFor = (fileNameNoExt) ->
 	return @mustachePath + fileNameNoExt + '.mustache'
 
 disableEvent = (ev) ->
 	ev.preventDefault()
 	ev.stopPropagation()
 
-mve.disableEvent = disableEvent
+baddy.disableEvent = disableEvent
 
 
-mve.timeInMinsSeconds = (timeInSeconds) ->
+baddy.timeInMinsSeconds = (timeInSeconds) ->
 	mins = Math.floor(timeInSeconds / 60)
 	seconds = timeInSeconds % 60
 	# // return {'mins': mins, 'seconds': seconds}
@@ -29,7 +29,7 @@ mve.timeInMinsSeconds = (timeInSeconds) ->
 	    seconds = "0" + seconds
 	return mins + " : " + seconds
 
-mve.timeInHoursMinsSeconds = (timeInSeconds) ->
+baddy.timeInHoursMinsSeconds = (timeInSeconds) ->
 	
 	# in case can.computes are passed in
 	if typeof( timeInSeconds) is "function"
@@ -57,39 +57,16 @@ mve.timeInHoursMinsSeconds = (timeInSeconds) ->
 		return hours + ":" + mins + " : " + seconds
 
 
-mve.min = (array) ->
+baddy.min = (array) ->
 	return Math.min.apply(Math, array);
 
-mve.max = (array) ->
+baddy.max = (array) ->
 	return Math.max.apply(Math, array);
 
-mve.DeadPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-
-mve.PS = {
-	UNSTARTED: -1
-	ENDED: 0
-	PLAYING: 1
-	PAUSED: 2
-	BUFFERING: 3
-	VIDEO_CUED: 5
-}
-
-mve.handleData = {
-	time: -1
-	left: -1
-	selected: false
-	show: false
-	}
-
-mve.handleMiddleData = {
-	left: false
-	width: false
-	show: false
-	}
+baddy.DeadPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
 
-
-module.exports = mve
+module.exports = baddy
 
 
 
